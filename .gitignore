@@ -16,3 +16,5 @@ _minted-ctufit-thesis/
 *.run.xml
 *.synctex.gz
 *.toc
+
+text/samples/*
