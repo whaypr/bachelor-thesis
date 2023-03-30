@@ -2,3 +2,51 @@
 \chapter{Our results}
 %---------------------------------------------------------------
 
+\begin{theorem}
+    Hiding Leader parameterized by $|L|$ is at least W[1]-hard for degree centrality measure.
+\end{theorem}
+\begin{proof}
+    To proof this theorem, we propose a parameterized reduction from the k-clique problem on regular graphs, which is a known W[1]-hard problem \cite[p.~427]{Cygan2015}.
+    
+    Suppose we have a $k$-clique instance $(G, k)$, where $|V(G)|=n$, $G$ is a $r$-regular graph and $r \geq k \geq 3$
+    (for $r < k$ or $k < 3$ is problem trivial).
+    Then we construct a graph $H$ in the following way:
+    \begin{enumerate}
+        \item Start with an empty graph $H = (\{\}, \{\})$
+        \item Add all vertices from $G$, i.e., $V(H) \leftarrow V(G)$, mark these vertices as $F$.
+        \item Add all edges from $\overline{G}$, i.e., $E(H) \leftarrow E(\overline{G})$.
+        \item Add an extra vertex $l$, i.e., $V(H) \leftarrow V(H)\cup\{l\}$.
+        \item Add an edge between vertex $l$ and $n - r + (k - 1) \eqqcolon \lambda$ arbitrarily chosen vertices $X \subset F$,
+              i.e., $E(H) \leftarrow E(H) \cup \{ (l, x) \mid x \in X \}$
+        \item For each vertex $v \in V(H) \setminus X \eqqcolon Y$, introduce a new vertex $w_v$ and add edge $\{v, w_v\}$, i.e.,
+              $V(H) \leftarrow V(H) \cup \{ w_v \mid v \in Y \}$ and
+              $E(H) \leftarrow E(H) \cup \{ (v, w_v) \mid v \in Y \}$.
+    \end{enumerate}
+    Note that step 5 can always be done because $r \ge k$, so $|F| = n > n - r + (k - 1)$
+    and since $deg(l) = 0$ (before step 5), there are enough vertices for $l$ to connect with. 
+    Next we can see the following; considering $G$ is $r$-regular, its complement, constructed and added into $H$ in steps 2 and 3, must be $(n-r-1)$-regular.
+    After connecting all the $F$ vertices either with $l$ or the corresponding $w_v$ in steps 5 and 6,
+    they all end up with degree $n-r$;
+    in other words, graph $H - l$ is $(n-r)$-regular.
+
+    Now let us take $ \mathcal{I} = (H, \{l\}, \frac{k\cdot(k-1)}{2}, c, k)$, where $c$ is a degree centrality measure,
+    as the instance of HL.
+    First we note that degree of the only leader $l$ is $\lambda$, as presented above.
+    The other vertices $V(H) - l$ are naturally followers of which we can recognize two types;
+    the first type are vertices $F$, these from the original graph $G$, which all have degree $n-r$,
+    which is also stated above;
+    the second type are vertices created in step 6 as ``partners'' of vertices $Y$ and they all have degree $1$
+    since their only job is to substitute a missing connection with $l$.
+
+    Because we just have one leader in $\mathcal{I}$, it is clear that any follower $f$ must assure that the condition
+    $deg(f) \geq \lambda = n - r + (k - 1)$ is satisfied in order to be part of $F'$ ($F'$ as defined in \ref{HL}).
+    In addition to that, because all the followers have degree either $n-r$ (the first type), or $1$ (the second type) and because
+    there are at least $k$ (which is also the constraint for $|F'|$ in $\mathcal{I}$) of those with degree $n-r$,
+    it is only reasonable to search for a solution only between the followers of the first type.
+    Therefore in order for $\mathcal{I}$ to be a $yes$-instance,
+    we must add at least $\lambda - (n - r) = k - 1$ new edges to at least $k$ followers of the first type.
+    And as the budget $d$ in $\mathcal{I}$ is $\frac{k\cdot(k-1)}{2}$, the only possible way of satisfiing this is to connect
+    some $k$ followers with each other, forming a $k$-clique as a subgraph.
+    Since $F = V(G)$ are all the considered vertices and $E(G)$ are all the considered edges between them,
+    we conclude that $\mathcal{I}$ is a $yes$-instance of HL if and only if $(G, k)$ is a $yes$-instance of the $k$-clique problem.
+\end{proof}

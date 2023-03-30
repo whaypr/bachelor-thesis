@@ -9,6 +9,23 @@
 
 %---------------------------------------------------------------
 \section{Problem statement}
+\begin{definition}[Hiding Leader]\label{HL}
+    Let $(G, L, b, c, d)$ be the problem instance, then
+    \begin{description}
+        \item $G = (V, E)$ is a network,
+        \item $L \subseteq V$ are leaders and the remaining vertices $L = V \setminus L$ are followers,
+        \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
+        \item $b$ is a maximum number of edges that we are allowed to add in $G$,
+        \item $d$ is a safety margin -- a number of followers whose final centrality shoulds be at least as high as of any leader.
+    \end{description}
+    Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
+    such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
+    whose centrality must be at least as high as the centrality of any leader, that is
+    $$|W| \leq b$$
+    and
+    $$\exists_{F' \subseteq F} |F'| \geq d \wedge \forall_{f \in F'} \forall_{l \in L} c (G', f) \geq c (G', l).$$
+\end{definition}
+
 
 
 %---------------------------------------------------------------
