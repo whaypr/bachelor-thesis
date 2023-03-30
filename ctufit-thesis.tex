@@ -46,10 +46,10 @@ Complexity Perspective} % replace with the title of your thesis
 \ctufityear{2023} % replace with the year of your defence
 \ctufitdeclarationplace{Prague} % replace with the place where you sign the declaration
 \ctufitdeclarationdate{\today} % replace with the date of signature of the declaration
-\ctufitabstractENG{TODO: Fill in abstract of this thesis in English language. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Cras pede libero, dapibus nec, pretium sit amet, tempor quis. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Suspendisse sagittis ultrices augue.}
-\ctufitabstractCZE{TODO: Fill in abstract of this thesis in Czech language. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Cras pede libero, dapibus nec, pretium sit amet, tempor quis. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Suspendisse sagittis ultrices augue.}
-\ctufitkeywordsENG{TODO, enter, commma, separated, list, of, keywords, in, ENGLISH}
-\ctufitkeywordsCZE{TODO, enter, commma, separated, list, of, keywords, in, CZECH}
+\ctufitabstractENG{\todo{Fill in abstract of this thesis in English language}}
+\ctufitabstractCZE{\todo{Fill in abstract of this thesis in Czech language}}
+\ctufitkeywordsENG{\todo{enter, commma, separated, list, of, keywords, in, ENGLISH}}
+\ctufitkeywordsCZE{\todo{enter, commma, separated, list, of, keywords, in, CZECH}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % END FILL IN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,6 +92,7 @@ Complexity Perspective} % replace with the title of your thesis
 \addbibresource{text/bib-database.bib}
 \usepackage{listings} % typesetting of sources
 % \usepackage{minted} % typesetting of sources
+\usepackage{todonotes}
 
 %theorems, definitions, etc.
 \theoremstyle{plain}
@@ -147,8 +148,9 @@ Complexity Perspective} % replace with the title of your thesis
 % FILL IN / MODIFY
 % This is a place to thank people for helping you. It is common to thank your supervisor.
 %%%%%%%%%%%%%%%%%%%
+\todo{Acknowledgmen}
 \begin{acknowledgmentpage}
-	TODO: Chtěl bych poděkovat především sit amet, consectetuer adipiscing elit. Curabitur sagittis hendrerit ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Cras pede libero, dapibus nec, pretium sit amet, tempor quis. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Suspendisse sagittis ultrices augue.
+	Chtěl bych poděkovat především\dots
 \end{acknowledgmentpage} 
 %%%%%%%%%%%%%%%%%%%
 % ACKNOWLEDGMENT END
@@ -181,12 +183,10 @@ I acknowledge that my thesis is subject to the rights and obligations stipulated
 % List the abbreviations in lexicography order.
 %%%%%%%%%%%%%%%%%%%
 \chapter{List of abbreviations}
-	
+
+\todo{Abbreviations}
 \begin{tabular}{rl}
-TODO & TODO\\
-DFA & Deterministic Finite Automaton\\
-FA & Finite Automaton\\
-W3C & World Wide Web Consortium
+HL & Hiding Leader%//
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%
 % ABBREVIATIONS END
