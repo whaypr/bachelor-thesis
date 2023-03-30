@@ -17,4 +17,6 @@ _minted-ctufit-thesis/
 *.synctex.gz
 *.toc
 
-text/samples/*
+*.xdv
+*-blx.bib
+**/samples/*
