@@ -1,454 +1,56 @@
-% TODO
-
-@article{Sestakova2018,
-  author = {Eliška Šestáková and Jan Janoušek},
-  journal = {Information},
-  title = {Automata Approach to XML Data Indexing},
-  year = {2018},
-  volume = {9},
-  number = {1},
-  ISSN = {2078-2489},
-  medium = {online},
-  accessed = {2019-03-26},
-  DOI = {10.3390/info9010012},
-  URL = {http://www.mdpi.com/2078-2489/9/1/12},
+@inproceedings{Waniek2017,
+author = {Waniek, Marcin and Michalak, Tomasz P. and Rahwan, Talal and Wooldridge, Michael},
+title = {On the Construction of Covert Networks},
+year = {2017},
+publisher = {International Foundation for Autonomous Agents and Multiagent Systems},
+address = {Richland, SC},
+abstract = {Centrality measures are widely used to identify leaders of covert networks. We study how a group of such leaders can avoid being detected by such measures. More concretely, we study the hardness of choosing a set of edges that can be added to the network in order to decrease the leaders' ranking according to two fundamental centrality measures, namely degree, and closeness. We prove that this problem is NP-complete for each measure. We then study how the leaders can construct a network from scratch, designed specifically for them to hide in disguise. We identify a network structure that not only guarantees to hide the leaders to a certain extent, but also allows them to spread their influence across the network.},
+booktitle = {Proceedings of the 16th Conference on Autonomous Agents and MultiAgent Systems},
+pages = {1341–1349},
+numpages = {9},
+keywords = {centrality, hiding in networks, social network analysis},
+location = {S\~{a}o Paulo, Brazil},
+series = {AAMAS '17}
 }
 
-@book{Crochemore2002,
-  author = {Maxime Crochemore and Wojciech Rytter},
-  title = {Jewels of stringology},
-  publisher = {World Scientific},
-  address = {River Edge, NJ},
-  year = {2002},
-  ISBN = {978-9810247829},
+@inproceedings{Palash2019,
+author = {Dey, Palash and Medya, Sourav},
+title = {Covert Networks: How Hard is It to Hide?},
+year = {2019},
+isbn = {978-1-450-36309-9},
+publisher = {International Foundation for Autonomous Agents and Multiagent Systems},
+address = {Richland, SC},
+abstract = {Covert networks are social networks that often consist of harmful users. Social Network Analysis (SNA) has played an important role in reducing criminal activities (e.g., counter terrorism) via detecting the influential users in such networks. There are various popular measures to quantify how influential or central any vertex is in a network. As expected, strategic and influential miscreants in covert networks would try to hide herself and her partners (called em leaders ) from being detected via these measures by introducing new edges. Waniek et al. show that the corresponding computational problem, called Hiding Leader, is NP Complete for the degree and closeness centrality measures. We study the popular core centrality measure and show that the problem is NP Complete even when the core centrality of every leader is only 3. On the contrary, we prove that the problem becomes polynomial time solvable for the degree centrality measure if the degree of every leader is bounded above by any constant. We then focus on the optimization version of the problem and show that the Hiding Leader problem admits a 2 factor approximation algorithm for the degree centrality measure. We complement it by proving that one cannot hope to have any (2-epsilon) factor approximation algorithm for any constant $epsilon&gt;0$ unless there is a epsilon/2 factor polynomial time algorithm for the Densest k-Subgraph problem which would be considered a significant breakthrough. We empirically establish that our 2 factor approximation algorithm frequently finds out a near optimal solution. On the contrary, for the core centrality measure, we show that the Hiding Leader problem does not admit any (1-alpha) ln n factor approximation algorithm for any constant alpha in (0,1) unless P=NP even when the core centrality of every leader is only 3. Hence, our work shows that, although classical complexity theoretic framework fails to shed any light on relative difficulty of Hiding Leader for different centrality measures, the problem is significantly "harder'' for the core centrality measure than the degree centrality one.},
+booktitle = {Proceedings of the 18th International Conference on Autonomous Agents and MultiAgent Systems},
+pages = {628–637},
+numpages = {10},
+keywords = {centrality, densest subgraph, approximation algorithm, network design, covert network, core, social network analysis, algorithms, hiding in networks, social influence},
+location = {Montreal QC, Canada},
+series = {AAMAS '19}
 }
 
-@book{Motwani2014,
-  author = {Rajeev Motwani and Jeffrey D. Ullman and John E. Hopcroft},
-  title = {Introduction to automata theory, languages, and computation},
-  publisher = {Pearson},
-  address = {Harlow},
-  year = {2014},
-  edition = {Third},
-  ISBN = {9781292039053},
+@inproceedings{Palash2020,
+author = {Dey, Palash and Medya, Sourav},
+title = {Manipulating Node Similarity Measures in Networks},
+year = {2020},
+isbn = {9781450375184},
+publisher = {International Foundation for Autonomous Agents and Multiagent Systems},
+address = {Richland, SC},
+abstract = {Node similarity measures quantify how similar a pair of nodes are in a network. These similarity measures turn out to be an important fundamental tool for many real world applications such as link prediction in networks, recommender systems etc. An important class of similarity measures are local similarity measures. Two nodes are considered similar under local similarity measures if they have large overlap between their neighboring set of nodes. Manipulating node similarity measures via removing edges is an important problem. This type of manipulation, for example, hinders effectiveness of link prediction in terrorists networks. All the popular computational problems formulated around manipulating similarity measures turn out to be NP-hard. We, in this paper, provide fine grained complexity results of these problems through the lens of parameterized complexity. In particular, we show that some of these problems are fixed parameter tractable (FPT) with respect to various natural parameters whereas other problems remain intractable (W[1]-hard and W[2]-hard in particular). Finally we show the effectiveness of our proposed FPT algorithms on real world datasets as well as synthetic networks generated using Barabasi-Albert and Erdos-Renyi models.},
+booktitle = {Proceedings of the 19th International Conference on Autonomous Agents and MultiAgent Systems},
+pages = {321–329},
+numpages = {9},
+keywords = {fpt algorithm, algorithm, theory, manipulation, social network},
+location = {Auckland, New Zealand},
+series = {AAMAS '20}
 }
 
-@book{Kopka2004,
-  author = {Helmut Kopka and Patrick W. Daly},
-  title = {LATEX},
-  subtitle = {podrobný průvodce},
-  publisher = {Computer Press},
-  address = {Brno},
-  year = {2004},
-  ISBN = {80-7226-973-9},
-}
-
-
-
-
-
-@inproceedings{exponential:queries,
- author = {Mandhani, Bhushan and Suciu, Dan},
- title = {Query Caching and View Selection for XML Databases},
- booktitle = {Proceedings of the 31st International Conference on Very Large Data Bases},
- series = {VLDB '05},
- year = {2005},
- isbn = {1-59593-154-6},
- location = {Trondheim, Norway},
- pages = {469--480},
- numpages = {12},
- url = {http://dl.acm.org/citation.cfm?id=1083592.1083648},
- acmid = {1083648},
- publisher = {VLDB Endowment}
-}
-
-@inproceedings{dietz1982maintaining,
-  title={Maintaining order in a linked list},
-  author={Dietz, Paul F},
-  booktitle={Proceedings of the fourteenth annual ACM symposium on Theory of computing},
-  pages={122--127},
-  year={1982},
-  organization={ACM}
-}
-
-@MISC{ ebnf,
-  AUTHOR = "{BSI (British Standards Institution)}",
-  TITLE  = {BS 6154:1981 Method of defining -- syntactic metalanguage},
-  YEAR   = {1981},
-  ISBN   = {ISBN 0-580-12530-0},
-}
-
-@BOOK{ xml:technologie,
-  AUTHOR =    {Jaroslav Pokorný},
-  TITLE =     {XML Technologie -- Principy a aplikace v praxi},
-  PUBLISHER = {Grada Publishing, a.s.},
-  ADDRESS =   {Praha},
-  YEAR =      {2008},
-  ISBN =      {978-80-247-2725-7},
-}
-
-
-@inproceedings{def:2,
-	author={Leonid Libkin},
-	year={2005},
-	isbn={978-3-540-27580-0},
-	booktitle={Automata, Languages and Programming},
-	volume={3580},
-	series={Lecture Notes in Computer Science},
-	editor={Caires, Luís and Italiano, Giuseppe and Monteiro, Luís and Palamidessi, Catuscia and Yung, Moti},
-	title={Logics for Unranked Trees: An Overview},
-	publisher={Springer Berlin Heidelberg},
-	pages={35--50},
-}
-
-
-@inproceedings{ def:1,
-	author={Frank Neven},
-	year={2002},
-	isbn={978-3-540-44240-0},
-	booktitle={Computer Science Logic},
-	volume={2471},
-	series={Lecture Notes in Computer Science},
-	editor={Bradfield, Julian},
-	title={Automata, Logic, and XML},
-	publisher={Springer Berlin Heidelberg},
-	pages={2--26},
-}
-
-@MISC{xml:w3c,
-  AUTHOR = {Bray T. Paoli J. Sperberg-McQueen C. et al},
-  TITLE  = {Extensible Markup Language (XML) 1.0},
-  PUBLISHER = { W3C },
-  YEAR   = {Nov 2008},
-  URL    = {http://www.w3.org/XML},
-  URLDATE= {2015-02-05},
-}
-
-@inproceedings{ xml:index:9,
- author = {Chung, Chin-Wan and Min, Jun-Ki and Shim, Kyuseok},
- title = {APEX: An Adaptive Path Index for XML Data},
- booktitle = {Proceedings of the 2002 ACM SIGMOD International Conference on Management of Data},
- series = {SIGMOD '02},
- year = {2002},
- isbn = {1-58113-497-5},
- location = {Madison, Wisconsin},
- pages = {121--132},
- numpages = {12},
- doi = {10.1145/564691.564706},
- acmid = {564706},
- publisher = {ACM},
- address = {New York, NY, USA}
-} 
-
-@inproceedings{ xml:index:8,
-year={2007},
-isbn={978-3-540-71702-7},
-booktitle={Advances in Databases: Concepts, Systems and Applications},
-volume={4443},
-series={Lecture Notes in Computer Science},
-editor={Kotagiri, Ramamohanarao and Krishna, P. Radha and Mohania, Mukesh and Nantajeewarawat, Ekawit},
-title={AB-Index: An Efficient Adaptive Index for Branching XML Queries},
-url={http://dx.doi.org/10.1007/978-3-540-71703-4_90},
-publisher={Springer Berlin Heidelberg},
-author={Zhang, Bo and Wang, Wei and Wang, Xiaoling and Zhou, Aoying},
-pages={988--993},
-}
-
-@inproceedings{ xml:index:10,
- author = {Li, Quanzhong and Moon, Bongki},
- title = {Indexing and Querying XML Data for Regular Path Expressions},
- booktitle = {Proceedings of the 27th International Conference on Very Large Data Bases},
- series = {VLDB '01},
- year = {2001},
- isbn = {1-55860-804-4},
- pages = {361--370},
- numpages = {10},
- url = {http://dl.acm.org/citation.cfm?id=645927.672035},
- acmid = {672035},
- publisher = {Morgan Kaufmann Publishers Inc.},
- address = {San Francisco, CA, USA}
-} 
-
-@inproceedings{ xml:index:7, 
-author={Rao, P. and Moon, B.}, 
-booktitle={Data Engineering, 2004. Proceedings. 20th International Conference on}, 
-title={PRIX: indexing and querying XML using prufer sequences}, 
-year={2004}, 
-month={March}, 
-pages={288--299}, 
-keywords={XML;database indexing;pattern matching;query processing;sequences;tree data structures;trees (mathematics);B-tree;Prufer sequence;XML database;XML document indexing;false alarm;holistic processing;query processing;refinement phase;root-to-leaf path;twig pattern processing;Computer science;Databases;Indexing;Information representation;Internet;Merging;Moon;Pattern matching;Query processing;XML}, 
-doi={10.1109/ICDE.2004.1320005}, 
-ISSN={1063-6382}
-}
-
-@inproceedings{ xml:index:11,
- author = {Wang, Haixun and Park, Sanghyun and Fan, Wei and Yu, Philip S.},
- title = {ViST: A Dynamic Index Method for Querying XML Data by Tree Structures},
- booktitle = {Proceedings of the 2003 ACM SIGMOD International Conference on Management of Data},
- series = {SIGMOD '03},
- year = {2003},
- isbn = {1-58113-634-X},
- location = {San Diego, California},
- pages = {110--121},
- numpages = {12},
- doi = {10.1145/872757.872774},
- acmid = {872774},
- publisher = {ACM},
- address = {New York, NY, USA},
-}
-
-@inproceedings{ xml:index:2,
-author = {Qinghua Zou and Shaorong Liu and Wesley W. Chu},
-title = {Ctree: a compact tree for indexing XML data},
-booktitle = {Web Information and Data Management},
-year = {2004},
-pages = {39--46},
-doi = {10.1145/1031453.1031462},
-masid = {1242245}
-}
-
-@inproceedings{ xml:index:1,
- author = {Pettovello, P. Mark and Fotouhi, Farshad},
- title = {MTree: An XML XPath Graph Index},
- booktitle = {Proceedings of the 2006 ACM Symposium on Applied Computing},
- series = {SAC '06},
- year = {2006},
- isbn = {1-59593-108-2},
- location = {Dijon, France},
- pages = {474--481},
- numpages = {8},
- doi = {10.1145/1141277.1141389},
- acmid = {1141389},
- publisher = {ACM},
- address = {New York, NY, USA},
- keywords = {XML, XPath, graph, index, threaded paths}
-} 
-
-@inproceedings{ xml:index:5,
- author = {Kaushik, Raghav and Bohannon, Philip and Naughton, Jeffrey F and Korth, Henry F},
- title = {Covering Indexes for Branching Path Queries},
- booktitle = {Proceedings of the 2002 ACM SIGMOD International Conference on Management of Data},
- series = {SIGMOD '02},
- year = {2002},
- isbn = {1-58113-497-5},
- location = {Madison, Wisconsin},
- pages = {133--144},
- numpages = {12},
- doi = {10.1145/564691.564707},
- acmid = {564707},
- publisher = {ACM},
- address = {New York, NY, USA}
-} 
-
-@inproceedings{ xml:index:3, 
-author={Nan Tang and Yu, J.X. and Ozsu, M.T. and Kam-Fai Wong}, 
-booktitle={Data Engineering, 2008. On ICDE 2008, IEEE 24th International Conference}, 
-title={Hierarchical Indexing Approach to Support XPath Queries}, 
-year={2008}, 
-month={April}, 
-pages={1510--1512}, 
-keywords={XML;indexing;query processing;XML path indexing;XPath queries;hierarchical indexing approach;Books;Database languages;Indexing;Robustness;XML}, 
-doi={10.1109/ICDE.2008.4497606}
-}
-
-@inproceedings{ xml:index:6,
-year={1999},
-isbn={978-3-540-65452-0},
-booktitle={Database Theory -- ICDT’99},
-volume={1540},
-series={Lecture Notes in Computer Science},
-editor={Beeri, Catriel and Buneman, Peter},
-title={Index Structures for Path Expressions},
-url={http://dx.doi.org/10.1007/3-540-49257-7_18},
-publisher={Springer Berlin Heidelberg},
-author={Milo, Tova and Suciu, Dan},
-pages={277--295},
-}
-
-
-@book{DBLP:books/ox/CrochemoreR94,
-  author    = {Maxime Crochemore and
-               Wojciech Rytter},
-  title     = {Text Algorithms},
-  publisher = {Oxford University Press},
-  year      = {1994},
-  isbn      = {0-19-508609-0},
-  ee        = {http://www-igm.univ-mlv.fr/$\sim$mac/REC/B1.html, http://www.mimuw.edu.pl/$\sim$rytter/BOOKS/text-algorithms.pdf},
-  bibsource = {DBLP, http://dblp.uni-trier.de}
-}
-
-@book{crochemore2007algorithms,
-  title={Algorithms on strings},
-  author={Crochemore, Maxime and Hancart, Christophe and Lecroq, Thierry},
-  year={2007},
-  publisher={Cambridge Univ Pr}
-}
-
-
-@MISC{ xpath:w3c,
-  AUTHOR = {Clark, J. and DeRose, S.},
-  TITLE  = {XML Path Language (XPath) Version 1.0},
-  PUBLISHER = { W3C },
-  YEAR   = {Nov 1999},
-  URL    = {http://www.w3.org/TR/xpath},
-  CITEDATE= {2015-02-03},
-  howpublished = {online}
-}
-
-@MISC{ xpointer:w3c,
-  AUTHOR = {DeRose, S.},
-  TITLE  = {XML Pointer Language (XPointer)},
-  PUBLISHER = { W3C },
-  YEAR   = {2002},
-  URL    = {http://www.w3.org/TR/xptr},
-  CITEDATE= {2015-03-04},
-  howpublished = {online}
-}
-
-@MISC{ xlink:w3c,
-  AUTHOR = {DeRose, S.},
-  TITLE  = {XML Linking Language (XLink) Version 1.0},
-  PUBLISHER = { W3C },
-  YEAR   = {2001},
-  URL    = {http://www.w3.org/TR/xlink},
-  URLDATE= {2015-03-04},
-  CITEDATE= {2015-03-04},
-  howpublished = {online}
-}
-
-@MISC{arbology,
-  AUTHOR = {Bořivoj Melichar and Jan Janoušek and Tomáš Flouri},
-  PUBLISHER = {CTU, Faculty of Information Technology},
-  TITLE  = {Introduction to Arbology},
-  URL= {https://edux.fit.cvut.cz/oppa/PI-ARB/prednasky/arbology.pdf},
-  howpublished = {online},
-  citedate = {2015/05/01},
-}
-
-@inproceedings{papakonstantinou1995object,
-  title={Object exchange across heterogeneous information sources},
-  author={Papakonstantinou, Yannis and Garcia-Molina, Hector and Widom, Jennifer},
-  booktitle={Data Engineering, 1995. Proceedings of the Eleventh International Conference on},
-  pages={251--260},
-  year={1995},
-  organization={IEEE}
-}
-
-@article{mchugh1997lore,
-  title={Lore: A database management system for semistructured data},
-  author={McHugh, Jason and Abiteboul, Serge and Goldman, Roy and Quass, Dallan and Widom, Jennifer},
-  journal={SIGMOD record},
-  volume={26},
-  number={3},
-  pages={54--66},
-  year={1997}
-}
-
-@techreport{goldman1997dataguides,
-  title={Dataguides: Enabling query formulation and optimization in semistructured databases},
-  author={Goldman, Roy and Widom, Jennifer},
-  year={1997},
-  institution={Stanford}
-}
-
-@inproceedings{nestorov1997representative,
-  title={Representative objects: Concise representations of semistructured, hierarchical data},
-  author={Nestorov, Svetlozar and Ullman, Jeffrey and Wiener, Janet and Chawathe, Sudarashan},
-  booktitle={Data Engineering, 1997. Proceedings. 13th International Conference on},
-  pages={79--90},
-  year={1997},
-  organization={IEEE}
-}
-
-@article{goldman1999semistructured,
-  title={From semistructured data to XML: Migrating the Lore data model and query language},
-  author={Goldman, Roy and McHugh, Jason and Widom, Jennifer},
-  year={1999}
-}
-
-@article{dasg:1,
-title = {Searching subsequences},
-journal = {Theoretical Computer Science},
-volume = {78},
-number = {2},
-pages = {363--376},
-year = {1991},
-issn = {0304-3975},
-doi = {http://dx.doi.org/10.1016/0304-3975(91)90358-9},
-url = {http://www.sciencedirect.com/science/article/pii/0304397591903589},
-author = {Ricardo A. Baeza-Yates}
-}
-
-@article{dasg:3,
-title = {Directed acyclic subsequence graph -- Overview},
-journal = {Journal of Discrete Algorithms},
-volume = {1},
-number = {3-4},
-pages = {255--280},
-year = {2003},
-issn = {1570-8667},
-url = {http://www.sciencedirect.com/science/article/pii/S1570866703000297},
-author = {Maxime Crochemore and Bořivoj Melichar and Zdeněk Troníček},
-keywords = "Searching subsequences",
-keywords = "Directed acyclic subsequence graph",
-keywords = "Subsequence automation "
-}
-
-@INPROCEEDINGS{dasg:4, 
-author={Hoshino, H. and Shinohara, A. and Takeda, M. and Arikawa, S.}, 
-booktitle={String Processing and Information Retrieval, 2000. SPIRE 2000. Proceedings. Seventh International Symposium on}, 
-title={Online construction of subsequence automata for multiple texts}, 
-year={2000}, 
-month={}, 
-pages={146--152}, 
-keywords={computational complexity;deterministic automata;finite automata;query processing;set theory;text analysis;alphabet;deterministic finite automaton;minimum automaton;multiple texts;online algorithm;online construction;preprocessing;subsequence automata;subsequence automaton;Automata;Computational complexity;Data structures;Gain measurement;Informatics;Machine learning;Machine learning algorithms;Text recognition;Upper bound}, 
-doi={10.1109/SPIRE.2000.878190},}
-
-@incollection{dasg:5,
-year={2002},
-isbn={978-3-540-44158-8},
-booktitle={String Processing and Information Retrieval},
-volume={2476},
-series={Lecture Notes in Computer Science},
-editor={Laender, AlbertoH.F. and Oliveira, ArlindoL.},
-title={On the Size of DASG for Multiple Texts},
-url={http://dx.doi.org/10.1007/3-540-45735-6_6},
-publisher={Springer Berlin Heidelberg},
-author={Crochemore, Maxime and Troníček, Zdeněk},
-pages={58-64},
-}
-
-@misc{dataset:xmark,
-  title = {XMark -- An XML Benchmark Project},
-  author = {Schimdt{, et al}},
-  url = {http://www.xml-benchmark.org/},
-  howpublished = {online},
-  citedate = {2015/04/27}
-}
-
-@misc{saxon,
-  title = {SAXON -- The XSLT and XQuery Processor},
-  author = {{SAXONICA}},
-  url = {http://saxon.sourceforge.net/},
-  howpublished = {online},
-  citedate = {2015/04/28}
-}
-
-@misc{xmlgen,
-  title = {xmlgen -- faq},
-  author = {Florian Waas},
-  url = {http://www.xml-benchmark.org/faq.txt},
-  howpublished = {online},
-  citedate = {2015/04/27}
-}
-
-@article{rabin1959finite,
-  title="Finite automata and their decision problems",
-  author="Michael O Rabin and Dana Scott",
-  journal={IBM journal of research and development},
-  volume={3},
-  number={2},
-  pages={114--125},
-  year={1959},
-  publisher={IBM}
+@book{Cygan2015,
+  author = {Marek Cygan and Fedor V. Fomin and Łukasz Kowalik and Daniel Lokshtanov and Dániel Marx and Marcin Pilipczuk and Michał Pilipczuk and Saket Saurabh},
+  title = {Parameterized Algorithms},
+  publisher = {Springer},
+  address = {Cham},
+  year = {2015},
+  edition = {First},
+  isbn = {978-3-319-21274-6},
 }
