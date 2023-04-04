@@ -439,7 +439,7 @@
   \thm@postskip\thm@preskip
 }
 \def\@endtheorem{\endtrivlist}%\@endpefalse
-\renewcommand\qedsymbol{\textcolor{decoration}{\ensuremath{\blacktriangleleft}}}
+%\renewcommand\qedsymbol{\textcolor{decoration}{\ensuremath{\blacktriangleleft}}}
 \renewenvironment{proof}[1][\proofname]{\par
   \pushQED{\qed}%
   \normalfont \topsep6\p@\@plus6\p@\relax
@@ -449,6 +449,13 @@
     #1\@addpunct{.}]\ignorespaces
 }{%
   \popQED\endtrivlist%\@endpefalse
+}
+
+\newenvironment{subproof}[1][\proofname]{
+  \renewcommand{\qedsymbol}{$\blacksquare$}
+  \begin{proof}[#1]
+}{
+  \end{proof}
 }
 % theorems, proofs, definitions, etc. end
 
@@ -508,3 +515,7 @@
 		\setmintedinline{bgcolor={}}
 	}{}%
 }
+
+% custom commands
+\newcommand{\HL}{\textsc{Hiding Leaders}\xspace}
+\newcommand{\HLshort}{\textsf{HL}\xspace}
