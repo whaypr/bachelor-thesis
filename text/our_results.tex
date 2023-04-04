@@ -75,3 +75,106 @@
     the construction of $H$ is done in time polynomial to $n$;
     and there is a function of $k$, $g(k) = \frac{k\cdot(k-1)}{2} + k$, upper-bounding the parameter $k'$ of $\mathcal{I}$.
 \end{proof}
+
+% Figure
+\begin{figure}[t!]
+    \centering
+    % G
+    \begin{subfigure}[t]{.46\textwidth}
+        \centering
+        \begin{tikzpicture}[node distance={16mm}, scale=0.8, every node/.style={scale=0.8}]
+            \tikzstyle{vertex} = [circle, draw=black, text=white]
+            \tikzstyle{edge} = []
+            
+            \node[vertex] (g1) at (0,0) {$f_{1_1}$};
+            \node[vertex] (g2) [right of = g1] {$f_{1_2}$};
+            \node[vertex] (g3) [below of = g1] {$f_{1_3}$};
+            \node[vertex] (g4) [right of = g3] {$f_{1_4}$};
+            \node[vertex] (g5) [below of = g3] {$f_{1_5}$};
+            \node[vertex] (g6) [right of = g5] {$f_{1_6}$};
+            \draw[edge] (g1)--(g2);
+            \draw[edge] (g5)--(g6);
+            \draw[edge] (g1)--(g3);
+            \draw[edge] (g3)--(g5);
+            \draw[edge] (g2)--(g4);
+            \draw[edge] (g4)--(g6);
+            \draw[edge] (g3)--(g2);
+            \draw[edge] (g3)--(g6);
+            \draw[edge] (g4)--(g1);
+            \draw[edge] (g4)--(g5);
+            \draw[edge] (g1) to [out=180,in=180,looseness=0.5] (g5);
+            \draw[edge] (g2) to [out=0,in=0,looseness=0.5] (g6);
+            % dummy to ensure the same height as the other subfig
+            \node (l) [right of = g4] {};
+            \draw[color=white] (l) to [out=315,in=270] (g5);
+        \end{tikzpicture}
+        \caption{
+            ~A $4$-regular ($r = 4$) graph $G$ with $n=6$ vertices,
+            playing a role of the input graph for the $k$-\textsc{Clique} problem and
+            the starting point of our construction.
+        }
+    \end{subfigure}%
+    ~~~~
+    % H
+    \begin{subfigure}[t]{.46\textwidth}
+        \centering
+        \begin{tikzpicture}[node distance={16mm}, scale=0.8, every node/.style={scale=0.8}]
+            \tikzstyle{followerG} = [circle, draw=black]
+            \tikzstyle{edgeG} = [dashed, draw=green!40, thick]
+        
+            \tikzstyle{edgeCompl} = []
+
+            \tikzstyle{followerF2} = [circle, fill=red!50]
+            \tikzstyle{edgeF2} = [draw=red!50]
+
+            \tikzstyle{square} = [regular polygon, regular polygon sides=4]
+            \tikzstyle{leader} = [square, fill=blue!50, label={[text=blue!50]above:$\ell$}]
+            \tikzstyle{edgel} = [color=blue!50]
+
+            % G in H
+            \node[followerG] (g1) at (0,0) {$f_{1_1}$};
+            \node[followerG] (g2) [right of = g1] {$f_{1_2}$};
+            \node[followerG] (g3) [below of = g1] {$f_{1_3}$};
+            \node[followerG] (g4) [right of = g3] {$f_{1_4}$};
+            \node[followerG] (g5) [below of = g3] {$f_{1_5}$};
+            \node[followerG] (g6) [right of = g5] {$f_{1_6}$};
+            \draw[edgeG] (g1)--(g2);
+            \draw[edgeG] (g5)--(g6);
+            \draw[edgeG] (g1)--(g3);
+            \draw[edgeG] (g3)--(g5);
+            \draw[edgeG] (g2)--(g4);
+            \draw[edgeG] (g4)--(g6);
+            \draw[edgeG] (g3)--(g2);
+            \draw[edgeG] (g3)--(g6);
+            \draw[edgeG] (g4)--(g1);
+            \draw[edgeG] (g4)--(g5);
+            \draw[edgeG] (g1) to [out=180,in=180,looseness=0.5] (g5);
+            \draw[edgeG] (g2) to [out=0,in=0,looseness=0.5] (g6);
+            % complement
+            \draw[edgeCompl] (g1)--(g6);
+            \draw[edgeCompl] (g2)--(g5);
+            \draw[edgeCompl] (g3)--(g4);
+            % leader
+            \node[leader] (l) [right of = g4] {};
+            \draw[edgel] (l)--(g4);
+            \draw[edgel] (l)--(g6);
+            \draw[edgel] (l) to [out=45,in=90] (g1);
+            \draw[edgel] (l) to [out=315,in=270] (g5);
+            % partners
+            \node[followerF2, label={[text=red!50]above:$f_{2_1}$}] (f2) [above of = g2] {};
+            \node[followerF2, label={[text=red!50]above:$f_{2_2}$}] (f3) [left of = g3] {};
+            \draw[edgeF2] (f2)--(g2);
+            \draw[edgeF2] (f3)--(g3);
+        \end{tikzpicture}
+        \caption{
+            ~A $2$-regular graph $H$ constructed from graph $G$.
+            The black vertices are followers from $F_1$,
+            the red vertices are followers from $F_2$ and
+            the blue vertex is leader.
+            The green, dashed lines represent edges from $G$, which are not present in $H$,
+            but from which a potential solution $W$ of \HLshort would be picked.
+        }
+    \end{subfigure}
+    \caption{A sample construction of graph $H$ as presented in proof \ref{proofDB}.}
+    \label{fig:proofDB}
+\end{figure}
