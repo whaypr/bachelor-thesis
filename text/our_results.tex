@@ -78,10 +78,21 @@ with actual proof differences marked as bold text and notation-only differences 
 \end{proof}
 
 
-% Proof
+%---------------------------------------------------------------
+\section{Our results}
+
+The next proof is built on the same idea Waniek et al. \cite{Waniek2017} presented in their proof of
+NP-completeness of \HLshort for the degree centrality measure.
+The core idea of the proof is that we construct a network in such way that finding a solution $W$ of the \HL problem
+correspond to finding a solution of the problem we started with, essentially having the starting network
+present in the constructed network in some manner and then finding a solution inside of it.
+
+\begin{theorem}
+    \HL parameterized by $b + d$ is W[1]-hard even if $|L| = 1$.
+\end{theorem}
 \begin{proof}\label{proofDB}
     To proof this theorem, we propose a parameterized reduction from the $k$-\textsc{Clique} problem on regular graphs,
-    which is known to be W[1]-hard with respect to $k$
+    which is known to be W[1]-hard with respect to $k$ \cite{Mathieson2008}.
     
     Suppose we have a parameterized $k$-\textsc{Clique} instance $(G, k)$, where $|V(G)|=n$, $G$ is a $r$-regular graph and $n-2 \geq r \geq k \geq 3$
     (for $r > n-2$ or $r < k$ or $k < 3$ the problem is trivial).
@@ -103,8 +114,8 @@ with actual proof differences marked as bold text and notation-only differences 
     and since $deg(l) = 0$ (before step 5), there are enough vertices for $\ell$ to connect with.
     Considering $G$ is $r$-regular, its complement, constructed and added into $H$ in steps 2 and 3, must be $(n-r-1)$-regular.
     After connecting all the $F_1$ vertices either with $\ell$, or the corresponding $w_v$ in steps 5 and 6,
-    they all end up with degree $n-r$;
-    in other words, graph $H[F_1]$ is $(n-r)$-regular.
+    they all end up with degree $n-r$; in other words, graph $H[F_1]$ is $(n-r)$-regular.
+    Also note that the construction of $H$ is done in time polynomial to $n$.
     Now we show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in $H$.
 
     Let us take $ \mathcal{I} = (H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c, k)$, where $c$ is a degree centrality measure,
@@ -183,7 +194,7 @@ with actual proof differences marked as bold text and notation-only differences 
         \caption{
             ~A $4$-regular ($r = 4$) graph $G$ with $n=6$ vertices,
             playing a role of the input graph for the $k$-\textsc{Clique} problem and
-            the starting point of our construction.
+            is the starting point of our construction.
         }
     \end{subfigure}%
     ~~~~
@@ -243,22 +254,19 @@ with actual proof differences marked as bold text and notation-only differences 
             The black vertices are followers from $F_1$,
             the red vertices are followers from $F_2$ and
             the blue vertex is leader.
-            The green, dashed lines represent edges from $G$, which are not present in $H$,
-            but from which a potential solution $W$ of \HLshort would be picked.
+            The black edges are edges $E(\overline{G})$ and the green, dashed lines represent edges from $G$,
+            which are not present in $H$, but from which a potential solution $W$ of \HLshort would be picked.
         }
     \end{subfigure}
     \caption{A sample construction of graph $H$ as presented in proof \ref{proofDB}.}
     \label{fig:proofDB}
 \end{figure}
 
-% Corollaries
-Because we have just shown that the \HL problem parameterized by $b+d$ is W[1]-hard even for a constant number of leaders,
-we can see this straightforward corollary.
-\begin{corollary}
-    \HL is W[1]-hard with respect to parameters
-    $|L|+b+d$, $|L|+b$, $|L|+d$, $b+b$, $|L|$, $b$ and $d$.
-\end{corollary}
-From which we directly get another corollary.
+% Corollary
+Because we have just shown there is the reduction from the $k$-\textsc{Clique} problem on regular graphs to the
+\HL problem with a constant number of leaders and because this reduction is done in polynomial time,
+we directly get this corollary.
+
 \begin{corollary}
     \HL is para-NP-hard with respect to $|L|$.
 \end{corollary}
