@@ -1,0 +1,33 @@
+%---------------------------------------------------------------
+\chapter{Problem statement}
+%---------------------------------------------------------------
+
+Now we define the central problem of this thesis, the \HL problem.
+
+\begin{definition}[Hiding Leaders]\label{HL}
+    Let $(G, L, b, c, d)$ be the problem instance, then
+    \begin{description}
+        \item $G = (V, E)$ is a network,
+        \item $L \subseteq V$ are leaders and the remaining vertices $L = V \setminus L$ are followers,
+        \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
+        \item $b$ is a maximum number of edges that we are allowed to add in $G$,
+        \item $d$ is a safety margin -- a number of followers whose final centrality shoulds be at least as high as of any leader.
+    \end{description}
+    Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
+    such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
+    whose centrality must be at least as high as the centrality of any leader, that is
+    $$|W| \leq b$$
+    and
+    $$\exists_{F' \subseteq F} |F'| \geq d \wedge \forall_{f \in F'} \forall_{l \in L} c(G', f) \geq c(G', l).$$
+\end{definition}
+
+There are two definitions of the \HL problem in the literature and they differ from each other in some details.
+Namely, the definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
+which is a small difference, but the more important difference is that it requires centrality measure of followers $F'$ to be strictly greater
+than that of any leader, $\forall_{f \in F'} \forall_{l \in L} c(G', f) > c(G', l)$.
+We decided to stick to the definition from Dey \cite{Dey2019} because it seems more natural to us to let followers to be part of a solution
+as soon as their centrality is at least the same as of all the leaders. If no leader has centrality measure greater than any follower from $F'$,
+we consider the leaders hidden and safe from detection.
+On the other hand, the name ``\HL'' is from the original definition by Waniek et al. as the definition tells us there can be many leaders in the network.
+Later in section \ref{sec:proofRevs}, we show that complexity results from Waniek et al.
+are correct even with this slighty different definition of \HLshort.

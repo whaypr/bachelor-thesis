@@ -2,32 +2,122 @@
 \chapter{Preliminaries}
 %---------------------------------------------------------------
 
+In this chapter, we introduce the reader to the theory needed for a comprehensive understanding of this thesis.
+
 
 %---------------------------------------------------------------
 \section{Basic graph theory concepts}
 
+Let us start with basic concepts from a graph theory.
+Definitions in this section are based on the text from the graph theory textbook from Diestel \cite{Diestel2018}.
+\todo{check}
 
-%---------------------------------------------------------------
-\section{Problem statement}
-\begin{definition}[Hiding Leaders]\label{HL}
-    Let $(G, L, b, c, d)$ be the problem instance, then
-    \begin{description}
-        \item $G = (V, E)$ is a network,
-        \item $L \subseteq V$ are leaders and the remaining vertices $L = V \setminus L$ are followers,
-        \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
-        \item $b$ is a maximum number of edges that we are allowed to add in $G$,
-        \item $d$ is a safety margin -- a number of followers whose final centrality shoulds be at least as high as of any leader.
-    \end{description}
-    Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
-    such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
-    whose centrality must be at least as high as the centrality of any leader, that is
-    $$|W| \leq b$$
-    and
-    $$\exists_{F' \subseteq F} |F'| \geq d \wedge \forall_{f \in F'} \forall_{l \in L} c(G', f) \geq c(G', l).$$
+% Graph
+\begin{definition}[Graph]
+    Graph $G$ is an ordered pair of sets $V$ and $E$, $G=(V,E)$.
+    Set $V$ is a finite set of arbitrary items called vertices (or nodes).
+    Set $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
+    Sets of all vertices $V$ and edges $E$ of graph $G$ are in general denoted by $V(G)$ and $E(G)$ respectively.
+\end{definition}
+We use a standard graph definition, where graphs are undirected (edges are not ordered),
+unweighted (edges has uniformed ``value''), without loops (edges are pairs of distinct vertices) and
+without multiple edges (edges are unique pairs).
+These graphs are called \emph{simple}.
+
+% Degree
+\begin{definition}[Vertex degree]
+    Vertex degree (or degree) of vertex $v$ in some graph $G$ is the number of edges that are incident
+    (there exist another vertex $w$ that $\{v,w\} \in E(G)$) with $v$.
+    In other words degree is the number of edges vertex $v$ is a part of.
+\end{definition}
+
+% r-regular graph
+\begin{definition}[$r$-regular graph]
+    Graph $G$ is $r$-regular if degree of each vertex from $V(G)$ is $r$, i.e., $(\forall v \in V(G))(deg(v) = r)$.
+\end{definition}
+
+% Regular graph
+\begin{definition}[Regular graph]
+    Graph $G$ is regular if there exists some $r \in \mathbb{N}$ for which $G$ is $r$-regular.
+\end{definition}
+
+% Complement graph
+\begin{definition}[Complement graph]
+    Complement graph $\overline{G}$ of graph $G$ is the graph on vertices $V(G)$,
+    where two vertices are adjacent (there is an edge between them) if and only if
+    they are not adjacent in $G$, i.e., $(\forall e \in V(G) \times V(G))(e \in E(\overline{G}) \Leftrightarrow e \notin E(G))$.
+\end{definition}
+
+% Induced subgraph
+\begin{definition}[Induced subgraph]
+    Induced subgraph $G[S]$ of graph $G$ is the graph on vertices $V(G[S]) = S \subset V(G)$,
+    where two vertices are adjacent if and only if they are adjacent in $G$, i.e.,
+    $(\forall u,v \in S)(\{u,v\} \in E(G[S]) \Leftrightarrow \{u,v\} \in E(G))$.
+\end{definition}
+
+% Complete graph
+\begin{definition}[Complete graph]
+    Complete graph is the graph $G$ if there is an edge between every pair of vertices from $V(G)$, i.e.,
+    $(\forall u,v \in V(G))(\{u,v\} \in E(G))$.
+\end{definition}
+
+% Clique
+\begin{definition}[Clique]
+    Clique $C$ is the subgraph of graph $G$ where $G[E(C)]$ is a complete graph.
+\end{definition}
+
+% Vertex cover
+\begin{definition}[Vertex cover]
+    Vertex cover of graph $G$ is the subset $S \subseteq V(G)$ where each edge from $E(G)$ is
+    covered by some vertex from $S$. In other words, at least one endpoint of each edge is present in $S$, i.e.,
+    $(\forall \{u,v\} \in E(G))(u \in S \vee v \in S)$.
 \end{definition}
 
 
+\subsection{Graph problems}
+
+This subsection provides definitions of graph problems referenced later in the text.
+
+% k-Clique
+\begin{definition}[$k$-\textsc{Clique}]
+    Given graph $G$, the $k$-\textsc{Clique} problem is to determine if
+    there exists a clique $C$ in $G$ where $|V(C)| = k$.
+\end{definition}
+There are many other graph problems related to cliques. The $k$-\textsc{Clique} problem is a decision problem but
+there are also optimization variants, for example the \textsc{Maximum Clique} problem.
+
+% Minimum Vertex Cover
+\begin{definition}[\textsc{Minimum Vertex Cover}]
+    Given graph $G$, the \textsc{Minimum Vertex Cover} problem is to find
+    the vertex cover $M$ that there is no other vertex cover $N$ with fewer vertices than $M$, i.e., 
+    $(\nexists N)(|N| < |M|)$.
+\end{definition}
+Do not confuse \emph{minimum vertex cover} from the \textsc{Minimum Vertex Cover} problem defined above with \emph{minimal vertex cover},
+which is the vertex cover such that any of its non-trivial subsets is not a vertex cover.
+Every \emph{minimum vertex cover} is also \emph{minimal vertex cover} but not necessarily vice versa.
+
 
 %---------------------------------------------------------------
-\section{Centraliry measures}
+\section{Parameterized complexity}
 
+We use parameterized complexity definitions as they are stated by
+Garey with Johnson \cite{Garey1990} and Cygan et al. \cite{Cygan2015}.
+\todo{revide}
+
+\begin{definition}[Parameterized problem]
+    A parameterized problem is a language $L \subseteq \Sigma^* \times \mathbb{N}$, where
+    $\Sigma$ is a fixed, finite alphabet. For an instance $(x, k) \in \Sigma^* \times \mathbb{N}$, $k$ is called the parameter.
+\end{definition}
+
+
+%---------------------------------------------------------------
+\section{Centrality measures}
+
+\todo{Centrality measures}
+
+\begin{definition}[Degree centrality]
+    A degree centrality, introduced by Shaw \cite{Shaw1954}, measures an importance of a vertex by its degree
+    (a number of its neighbours).
+    A degree centrality of the vertex $v$ in network $G$, normalized by size of the network, is defined as:
+    $$c_{deg}(G, v) = \frac{deg(v)}{|V(G) - 1|}.$$
+\end{definition}
