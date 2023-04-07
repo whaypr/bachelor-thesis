@@ -2,9 +2,81 @@
 \chapter{Our results}
 %---------------------------------------------------------------
 
+\todo{chapter intro}
+
+
+%---------------------------------------------------------------
+\section{Proofs revision}\label{sec:proofRevs}
+
+Waniek et al. \cite{Waniek2017} proposed three hardness results for the \HL problem given degree, closeness and betweenness
+centralities. In this section, we review the first two aforementioned results with respect to our definition of \HLshort.
+The following text is a direct citation of the original proofs from Waniek et al.
+with actual proof differences marked as bold text and notation-only differences in square brackets.
+
+% Theorem - degree
 \begin{theorem}
-    \HL parameterized by $b + d$ is W[1]-hard even if $|L| = 1$.
+    The \HL problem is NP-complete given the degree centrality.
 \end{theorem}
+\begin{proof}
+    \itshape{``
+    \todo{change} The problem is trivially in NP, since after the addition of a given [|W|] it is possible to
+    compute the degree centrality for all nodes in polynomial time.
+    
+    Next, we prove that the problem is NP-hard. To this end, we propose a reduction from the NP-complete problem of Finding k-clique.
+    The decision version of this problem is defined by a network,
+    $G = (V , E)$, and a constant, $k \in \mathbb{N}$, where the goal is to determine whether there exist $k$ nodes in $G$ that form a clique.
+    
+    Let us assume that $k \geq 3$ (if $k = 2$ then the problem is trivial). Given an instance of the problem
+    of Finding k-clique, defined by some $k \geq 3$ and a network $G = (V , E)$, let us construct a network,
+    $H = (V', E')$, as follows:
+    
+    \begin{description}
+        \item[The set of nodes:] For every node, $v_i \in V$, we create a single node, $v_i$ , as well as $|N_G(v_i)|$
+        other nodes, denoted by $X = \{x_{i,1},\dots, x{i,|N_G(v_i)|} \}$. Additionally, we create one node called $y$,
+        as well as $\boldsymbol{n + k}$ other nodes, namely, $L' = l_1,\dots, \boldsymbol{l_{n+k}}$;
+        \item[The set of edges:] We create an edge between two nodes $v_i, v_k \in V$ if and only if this edge
+        was not present in $G$, i.e., $(v_i, v_j ) \in E' \Leftrightarrow (v_i, v_j ) \notin E$.
+        Additionally, for every $v_i$ , we create an edge $(v_i , y)$ as well as an edge $(v_i, x_i, j)$ for every $x_i, j$.
+        We also create an edge $(l_i, l_j)$ between every pair of nodes $l_i, l_j \in L'$, except for the edge $(l_1, l_2)$.
+        Finally, we create two additional edges, $(l_1, y)$ and $(l_2, y)$.
+    \end{description}
+
+    An example of such an $H$ network is illustrated in [figure ommited]. Now, consider the following instance
+    of the problem of hiding leaders, $(H, L, b, c, [d] )$, where:
+
+    \begin{description}
+        \item $H = (V', E')$ is the network we just constructed;
+        \item $L = V' \setminus V$;
+        \item $b = \frac{k\cdot(k-1)}{2}$;
+        \item $c$ is the degree centrality measure;
+        \item $[d] = k$. 
+    \end{description}
+
+    Next, we reduce the problem of Finding k-cliques in $G$ to the aforementioned instance of Hiding
+    Leaders in $H$ . To this end, from the definition of the problem of Hiding Leaders, we know that the
+    edges to be added to $H$ must be chosen from $F \times F$. Since in our instance we have:
+    $F = V' \setminus L = V' \setminus (V' \setminus V ) = V$, then the edges to be added to $H$ must be chosen
+    from $V \times V$ . However, since the edges in $(V \times V ) \setminus E$ are already present in $H$
+    (see how $H$ is created), then the edges to be added to $H$ must be chosen from $E$.
+    Out of those edges, we need to choose a subset, $[W] \subseteq E$, as a solution to the problem.
+    In what follows, we will show that a solution to the above instance of the problem of \HL in $H$ corresponds
+    to a solution to the problem of Finding k-clique in $G$.
+
+    First, note that each of the k nodes with the highest degree centrality in $H$ must be a member of
+    $L'$. This is because there are more than k nodes in $L'$, each of which has a degree of $\boldsymbol{n+k-1}$, while
+    the degree of every node in $V' \setminus L'$ is smaller than $\boldsymbol{n + k - 1}$. Thus, for $[W]$
+    to be a solution to the problem of hiding leaders, the addition of $[W]$ to $H$ must increase
+    the degree of at least $k$ nodes in $V$ such that each of them has a degree of at least $n + k - 1$
+    (note that the addition of $[W]$ only increases the degrees of nodes in $V$, as we already established
+    that $[W] \subseteq E$). Now, since in $H$ the degree of every node in $V$ equals $n$
+    (because of the way $H$ is created), then to increase the degree of $k$ such nodes to $n + k - 1$, each of them
+    must be an end of at least $k - 1$ edges in $[W]$. But, since the budget in our problem instance is
+    $\frac{k\cdot(k-1)}{2}$, then the only possible choice of $[W]$ is the one that increases the
+    degree of exactly $k$ nodes in $V$ by exactly $k - 1$. If such a choice of $[W]$ is available, then surely
+    those $k$ nodes would form a clique in $G$, since all $\frac{k\cdot(k-1)}{2}$ edges in $[W]$ are taken from $G$.
+    }''
+\end{proof}
+
 
 % Proof
 \begin{proof}\label{proofDB}
