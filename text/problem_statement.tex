@@ -1,17 +1,21 @@
 %---------------------------------------------------------------
-\chapter{Problem statement}
+\chapter{Problem statement}\label{chapter:ProblemStatement}
 %---------------------------------------------------------------
 
 Now we define the central problem of this thesis, the \HL problem.
+We also provide a detailed description for a better understanding of the problem.
 
+\begin{center}
+    \line(1,0){\textwidth}
+\end{center}
 \begin{definition}[Hiding Leaders]\label{HL}
     Let $(G, L, b, c, d)$ be the problem instance, then
     \begin{description}
         \item $G = (V, E)$ is a network,
-        \item $L \subseteq V$ are leaders and the remaining vertices $L = V \setminus L$ are followers,
+        \item $L \subseteq V$ are leaders and the remaining vertices $F = V \setminus L$ are followers,
         \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
         \item $b$ is a maximum number of edges that we are allowed to add in $G$,
-        \item $d$ is a safety margin -- a number of followers whose final centrality shoulds be at least as high as of any leader.
+        \item $d$ is a safety margin -- a number of followers whose final centrality should be at least as high as of any leader.
     \end{description}
     Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
     such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
@@ -20,14 +24,53 @@ Now we define the central problem of this thesis, the \HL problem.
     and
     $$\exists_{F' \subseteq F} |F'| \geq d \wedge \forall_{f \in F'} \forall_{l \in L} c(G', f) \geq c(G', l).$$
 \end{definition}
+\begin{center}
+    \line(1,0){\textwidth}
+\end{center}
+
+In other words, we want to \emph{``identify a set of edges to be added between the followers so that
+the ranking of the leaders (based on some centrality measure) drops below a certain threshold''} \cite{Waniek2017}.
+We survey \HLshort only with respect to degree centrality measure, that is, with $c = c_{deg}$.
+We will denote this version of the problem as \HLdeg.
 
 There are two definitions of the \HL problem in the literature and they differ from each other in some details.
 Namely, the definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
-which is a small difference, but the more important difference is that it requires centrality measure of followers $F'$ to be strictly greater
-than that of any leader, $\forall_{f \in F'} \forall_{l \in L} c(G', f) > c(G', l)$.
-We decided to stick to the definition from Dey \cite{Dey2019} because it seems more natural to us to let followers to be part of a solution
-as soon as their centrality is at least the same as of all the leaders. If no leader has centrality measure greater than any follower from $F'$,
+which is a small difference since for $L = V$ the problem is trivial, but the more important difference is that
+it requires centrality measure of followers $F'$ to be strictly greater than that of any leader,
+$\forall_{f \in F'} \forall_{l \in L} c(G', f) > c(G', l)$.
+We decided to stick to the definition from Dey \cite{Dey2019} because it seems more natural to us to let followers
+to be part of a solution as soon as their centrality is at least the same as of all the leaders.
+If no leader has centrality measure greater than any follower from $F'$,
 we consider the leaders hidden and safe from detection.
-On the other hand, the name ``\HL'' is from the original definition by Waniek et al. as the definition tells us there can be many leaders in the network.
-Later in section \ref{sec:proofRevs}, we show that complexity results for degree centrality from Waniek et al.
+On the other hand, the name ``\HL'' comes from the original definition by Waniek et al. as
+the name is more indicative of the possibility that there are many leaders in the network.
+Later in Section \ref{section:proofRevision}, we show that complexity results for degree centrality from Waniek et al.
 are correct even with this slighty different definition of \HLshort.
+
+The motivation behind only adding edges, with no deletion involved, is that we want leaders to maintain
+their existing control over the network.
+Indeed, deleting edges incident to the leaders would decrease their number of connections and thus network control,
+whereas deleting edges between followers would only decrease their centrality \todo{explain why},
+which is the exact opposite of what we want.
+Because no connections are deleted in the resulting network, all leaders keep their existing control over the network,
+having increased their security but keeping their efficiency, although, new members with great influence may arise.
+
+Also note that decreasing the value of degree centrality of any given member is a straightforward task
+(in contrary with decreasing other centralities) as it only consists in cutting edges \cite{Waniek2016}.
+On the other hand, \HLdeg is \NPc \cite{Waniek2017}.
+The core difference between these two problems is that \HLdeg, and \HLshort in general,
+is not about decreasing centrality of given member but rather about decreasing their ranking,
+the relative position among other nodes with respect to the centrality measure.
+To decrease member's ranking, we must increase centrality of some other members.
+This fact, together with budget constraint $b$ and safety margin constraint $d$,
+is what stands behind the hardness of the \HL problem, because,
+as Waniek et al. \cite{Waniek2017} shown, and as we will also show in Chapter \ref{chapter:contribution},
+there exist instances of \HLshort where finding a solution corresponds to solving certain \NPh problem.
+
+From the work of Dey et al. \cite{Dey2019} we know that \HLdeg is polynomial time solvable
+if the degree of every leader is bounded by some constant.
+That means that \HLdeg admits a \FPT algorithm when parameterized by degree of leaders.
+Moreover, the authors present a $2$-approximation algorithm for \HLdeg which optimizes
+the number of edges added and they complement that by proving that,
+if there exists a $(2-\epsilon)$-approximation algorithm for the above problem for any constant $0 < \epsilon < 1$,
+then there exists a $(\frac{\epsilon}{2})$-approximation algorithm for the \textsc{Densest} $k$-\textsc{Subgraph} problem.
