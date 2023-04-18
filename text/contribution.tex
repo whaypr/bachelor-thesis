@@ -1,86 +1,62 @@
 %---------------------------------------------------------------
-\chapter{Contribution}
+\chapter{Contribution}\label{chapter:contribution}
 %---------------------------------------------------------------
 
 \todo{chapter intro}
 
 
 %---------------------------------------------------------------
-\section{Proofs revision}\label{sec:proofRevs}
+\section{Proof revision}\label{section:proofRevision}
 
 Waniek et al. \cite{Waniek2017} proposed three hardness results for the \HL problem given degree, closeness and betweenness
 centralities. In this section, we review the first aforementioned result with respect to our definition of \HLshort.
+The original theorem reads: \emph{``The \HL problem is \NPc given the degree centrality.''}.
+The proof adjustments are pretty straightforward but to better understand them,
+let us first briefly describe the idea of that proof.
 
-% Theorem - degree
-\begin{theorem}
-    The \HL problem is NP-complete given the degree centrality.
-\end{theorem}
-\begin{proof}
-    \itshape{``
-    \todo{change} The problem is trivially in NP, since after the addition of a given [|W|] it is possible to
-    compute the degree centrality for all nodes in polynomial time.
-    
-    Next, we prove that the problem is NP-hard. To this end, we propose a reduction from the NP-complete problem of Finding k-clique.
-    The decision version of this problem is defined by a network,
-    $G = (V , E)$, and a constant, $k \in \mathbb{N}$, where the goal is to determine whether there exist $k$ nodes in $G$ that form a clique.
-    
-    Let us assume that $k \geq 3$ (if $k = 2$ then the problem is trivial). Given an instance of the problem
-    of Finding k-clique, defined by some $k \geq 3$ and a network $G = (V , E)$, let us construct a network,
-    $H = (V', E')$, as follows:
-    
-    \begin{description}
-        \item[The set of nodes:] For every node, $v_i \in V$, we create a single node, $v_i$ , as well as $|N_G(v_i)|$
-        other nodes, denoted by $X = \{x_{i,1},\dots, x{i,|N_G(v_i)|} \}$. Additionally, we create one node called $y$,
-        as well as $\boldsymbol{n + k}$ other nodes, namely, $L' = l_1,\dots, \boldsymbol{l_{n+k}}$;
-        \item[The set of edges:] We create an edge between two nodes $v_i, v_k \in V$ if and only if this edge
-        was not present in $G$, i.e., $(v_i, v_j ) \in E' \Leftrightarrow (v_i, v_j ) \notin E$.
-        Additionally, for every $v_i$ , we create an edge $(v_i , y)$ as well as an edge $(v_i, x_i, j)$ for every $x_i, j$.
-        We also create an edge $(l_i, l_j)$ between every pair of nodes $l_i, l_j \in L'$, except for the edge $(l_1, l_2)$.
-        Finally, we create two additional edges, $(l_1, y)$ and $(l_2, y)$.
-    \end{description}
+A common way of proving \NP-hardness is to propose a polynomial reduction from another \NPh problem to the
+problem we are proving \NP-hardness of.
+In this proof, the authors show a reduction from the $k$-\textsc{Clique} problem defined on graph $G$.
+The idea is following: In a polynomial time, construct a new graph $H$ from $G$ in a way that
+in order to solve \HL in $H$ we must solve $k$-\textsc{Clique} in $G$ in the first place.
+To achieve that, the authors, as a starting point of $H$, first create a complement of $G$ 
+where all vertices are marked as followers. This will be the only followers in final $H$.
+This initial construction assures that every possible solution of \HLshort will only consists of edges from $G$, i.e.,
+$W \subseteq E(G)$ (and $F' \subseteq V(G)$).
+Next, they add two types of leaders into $H$, each type with a different purpose.
+Leaders of the first type act like ``regularizators'' as their only job is to connect with followers (in some way) and,
+by doing so, make degree of every follower the same and equal to $n$.
+These leaders are denoted as $X$ and $y$ in the original proof.
+The task of the second type, having no connection with followers at all,
+is then to set a maximum degree across all leaders, which followers from $F'$ will have to reach.
+These leaders are denoted as $L'$ and are practically the only concern of our adjustments to which we now proceed.
 
-    An example of such an $H$ network is illustrated in [figure ommited]. Now, consider the following instance
-    of the problem of hiding leaders, $(H, L, b, c, [d] )$, where:
+We allow equality of centralities between followers from $F'$ and leaders in our definition of \HL.
+To compensate it, we just need to create one extra leader of the second type, that is,
+$|L'| = n+k$ as opposed of $|L'| = n+k-1$ in the original proof,
+leading to all leaders from $L'$ having degree of $n+k-1$, as opposed of $n+k-2$ in the original proof.
+Now note that this is the highest degree among the leaders and that all the followers have degree $n$,
+so, in order to be part of $F'$, they must obtain at least $(n+k-1) - n = k-1$ new neighbors.
+We got into exactly the same situation as in the original proof and since, as stated above,
+leaders from $L'$ do not have any other purpose than setting the maximum degree of all leaders,
+the rest of the arguments presented in the proof remain unchanged.
 
-    \begin{description}
-        \item $H = (V', E')$ is the network we just constructed;
-        \item $L = V' \setminus V$;
-        \item $b = \frac{k\cdot(k-1)}{2}$;
-        \item $c$ is the degree centrality measure;
-        \item $[d] = k$. 
-    \end{description}
-
-    Next, we reduce the problem of Finding k-cliques in $G$ to the aforementioned instance of Hiding
-    Leaders in $H$ . To this end, from the definition of the problem of Hiding Leaders, we know that the
-    edges to be added to $H$ must be chosen from $F \times F$. Since in our instance we have:
-    $F = V' \setminus L = V' \setminus (V' \setminus V ) = V$, then the edges to be added to $H$ must be chosen
-    from $V \times V$ . However, since the edges in $(V \times V ) \setminus E$ are already present in $H$
-    (see how $H$ is created), then the edges to be added to $H$ must be chosen from $E$.
-    Out of those edges, we need to choose a subset, $[W] \subseteq E$, as a solution to the problem.
-    In what follows, we will show that a solution to the above instance of the problem of \HL in $H$ corresponds
-    to a solution to the problem of Finding k-clique in $G$.
-
-    First, note that each of the k nodes with the highest degree centrality in $H$ must be a member of
-    $L'$. This is because there are more than k nodes in $L'$, each of which has a degree of $\boldsymbol{n+k-1}$, while
-    the degree of every node in $V' \setminus L'$ is smaller than $\boldsymbol{n + k - 1}$. Thus, for $[W]$
-    to be a solution to the problem of hiding leaders, the addition of $[W]$ to $H$ must increase
-    the degree of at least $k$ nodes in $V$ such that each of them has a degree of at least $n + k - 1$
-    (note that the addition of $[W]$ only increases the degrees of nodes in $V$, as we already established
-    that $[W] \subseteq E$). Now, since in $H$ the degree of every node in $V$ equals $n$
-    (because of the way $H$ is created), then to increase the degree of $k$ such nodes to $n + k - 1$, each of them
-    must be an end of at least $k - 1$ edges in $[W]$. But, since the budget in our problem instance is
-    $\frac{k\cdot(k-1)}{2}$, then the only possible choice of $[W]$ is the one that increases the
-    degree of exactly $k$ nodes in $V$ by exactly $k - 1$. If such a choice of $[W]$ is available, then surely
-    those $k$ nodes would form a clique in $G$, since all $\frac{k\cdot(k-1)}{2}$ edges in $[W]$ are taken from $G$.
-    }''
-\end{proof}
+We have just shown that allowing equality of centralities between followers from $F'$ and leaders does not
+break the proof presented by Waniek et al. \cite{Waniek2017}.
+The other change in our definition of \HL is that we allow all members to be leaders, $L = V$,
+but since such instances are trivial as they are $yes$-instances if and only if $d = 0$,
+there is nothing to change in the proof.
 
 
 %---------------------------------------------------------------
 \section{Our results}
 
 The next proof is built on the same idea Waniek et al. \cite{Waniek2017} presented in their proof of
-NP-completeness of \HLshort for the degree centrality measure.
+\NP-completeness of \HLshort for the degree centrality measure.
+We reviewed the proof from Waniek et al. and its core ideas in Section \ref{section:proofRevision}.
+We present a proof of a stronger theorem, with simpler reduction graph and in the language of parameterized complexity.
+These results are possible mainly because of a stronger assumption in the proof where we assume a regular graph as the input.
+
 The core idea of the proof is that we construct a network in such way that finding a solution $W$ of the \HL problem
 correspond to finding a solution of the problem we started with, essentially having the starting network
 present in the constructed network in some manner and then finding a solution inside of it.
