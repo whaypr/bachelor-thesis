@@ -62,11 +62,12 @@ correspond to finding a solution of the problem we started with, essentially hav
 present in the constructed network in some manner and then finding a solution inside of it.
 
 \begin{theorem}
-    \HL parameterized by $b + d$ is W[1]-hard even if $|L| = 1$.
+    \HL parameterized by $b + d$ is \Wh even if $|L| = 1$.
 \end{theorem}
+
 \begin{proof}\label{proofDB}
     To proof this theorem, we propose a parameterized reduction from the $k$-\textsc{Clique} problem on regular graphs,
-    which is known to be W[1]-hard with respect to $k$ \cite{Mathieson2008}.
+    which is known to be \Wh with respect to $k$ \cite{Mathieson2008}.
     
     Suppose we have a parameterized $k$-\textsc{Clique} instance $(G, k)$, where $|V(G)|=n$, $G$ is a $r$-regular graph and $n-2 \geq r \geq k \geq 3$
     (for $r > n-2$ or $r < k$ or $k < 3$ the problem is trivial).
@@ -80,9 +81,9 @@ present in the constructed network in some manner and then finding a solution in
               i.e., $E(H) \leftarrow E(H) \cup \{ (\ell, x) \mid x \in X \}$.
         \item For each vertex $v \in V(H) \setminus X \eqqcolon Y$, introduce a new vertex $w_v$ and add edge $\{v, w_v\}$, i.e.,
               $V(H) \leftarrow V(H) \cup \{ w_v \mid v \in Y \}$ and $E(H) \leftarrow E(H) \cup \{ (v, w_v) \mid v \in Y \}$,
-              mark set of $w_v$ for each $v \in Y$ as $F_2$.
+              mark the set of $w_v$ for each $v \in Y$ as $F_2$.
     \end{enumerate}
-    An example of such construction can be seen in figure \ref{fig:proofDB}.
+    An example of such construction can be seen in Figure \ref{fig:proofDB}.
 
     Note that step 5 can always be done because $r \ge k$, so $|F_1| = n > n - r + (k - 1)$
     and since $deg(l) = 0$ (before step 5), there are enough vertices for $\ell$ to connect with.
@@ -93,7 +94,7 @@ present in the constructed network in some manner and then finding a solution in
     Now we show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in $H$.
 
     Let us take $ \mathcal{I} = (H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c, k)$, where $c$ is a degree centrality measure,
-    as an instance of \HLshort with $k' \coloneqq b + d = \frac{k\cdot(k-1)}{2} + k$ as a parameter.
+    as an instance of \HLdeg with $k' \coloneqq b + d = \frac{k\cdot(k-1)}{2} + k$ as a parameter.
     First we note that degree of the only leader $\ell$ is $\lambda$, as presented above.
     The other vertices $V(H) - l$ are naturally followers of which we can recognize two types, $F_1$ and $F_2$,
     where $\forall_{f_1 \in F_1} deg(f_1)$ = $n-r$ and $\forall_{f_2 \in F_2} deg(f_2)$ = $1$.
@@ -110,7 +111,7 @@ present in the constructed network in some manner and then finding a solution in
     \end{lemma}
     \begin{subproof}
         Assume $F' \subseteq F_1$. This is a valid assumption because $|F_1| = n > k$ and it must be at least $d = k$ vertices in $F'$.
-        Because all vertices from $F_1$ have degree $n-r$, we must have added at least $\lambda - (n - r) = k - 1$ new neighbours to all vertices from $F'$.
+        Because all vertices from $F_1$ have degree $n-r$, we must have added at least $\lambda - (n - r) = k - 1$ new neighbors to all vertices from $F'$.
         Since the budget $b$ in $\mathcal{I}$ is $\frac{k\cdot(k-1)}{2}$,
         the only possible way of how $F'$ could have been constructed is that $|F'|=k$ and the newly added edges $W \subset F_1 \times F_1$, $|W| = b$
         connect all the $k$ vertices $f' \in F'$ in a way that graph $(F', W)$ forms a $k$-clique.
@@ -118,7 +119,7 @@ present in the constructed network in some manner and then finding a solution in
         since there will never be large enough budget $b$ to let us reach the safety margin $d$.
     \end{subproof}
 
-    As shown in the proof of lemma \ref{lemmaInProof}, every feasible solution $W$ of \HLshort for instance $\mathcal{I}$, together with corresponding $F'$,
+    As shown in the proof of Lemma \ref{lemmaInProof}, every feasible solution $W$ of \HLshort for instance $\mathcal{I}$, together with corresponding $F'$,
     will form a $k$-clique.
     Note that every edge from $W$ must be an edge from the original graph $G$ because $W \subset F_1 \times F_1$ and $F_1 = E(G)$
     and also all the edges from $E(\overline{G})$ are already in $E(H)$ so they cannot be in $W$ since it only contains newly added edges.
@@ -128,12 +129,12 @@ present in the constructed network in some manner and then finding a solution in
     finding a solution for the $k$-\textsc{Clique} problem in graph $G$.
 
     The reduction presented in this proof is a valid parameterized reduction because;
-    $(G, k)$ is a yes-instance of the $k$-\textsc{Clique} problem if and only if $\mathcal{I}$ is a yes-instance of \HLshort;
+    $(G, k)$ is a yes-instance of the $k$-\textsc{Clique} problem if and only if $\mathcal{I}$ is a yes-instance of \HLdeg;
     the construction of $H$ is done in time polynomial to $n$;
     and there is a function of $k$, $g(k) = \frac{k\cdot(k-1)}{2} + k$, upper-bounding the parameter $k'$ of $\mathcal{I}$.
 \end{proof}
 
-% Figure
+% Figure - proof 1
 \begin{figure}[t!]
     \centering
     % G
@@ -178,7 +179,7 @@ present in the constructed network in some manner and then finding a solution in
         \begin{tikzpicture}[node distance={16mm}, scale=0.8, every node/.style={scale=0.8}]
             \tikzstyle{followerG} = [circle, draw=black]
             \tikzstyle{edgeG} = [dashed, draw=green!40, thick]
-        
+
             \tikzstyle{edgeCompl} = []
 
             \tikzstyle{followerF2} = [circle, fill=red!50]
@@ -224,7 +225,7 @@ present in the constructed network in some manner and then finding a solution in
             \draw[edgeF2] (f3)--(g3);
         \end{tikzpicture}
         \caption{
-            ~A $2$-regular graph $H$ constructed from graph $G$.
+            ~A graph $H$ constructed from graph $G$ where $H[F_1]$ is $2$-regular.
             The black vertices are followers from $F_1$,
             the red vertices are followers from $F_2$ and
             the blue vertex is leader.
@@ -232,15 +233,16 @@ present in the constructed network in some manner and then finding a solution in
             which are not present in $H$, but from which a potential solution $W$ of \HLshort would be picked.
         }
     \end{subfigure}
-    \caption{A sample construction of graph $H$ as presented in proof \ref{proofDB}.}
+    \caption{A sample construction of graph $H$ as presented in Proof \ref{proofDB}.}
     \label{fig:proofDB}
 \end{figure}
 
 % Corollary
-Because we have just shown there is the reduction from the $k$-\textsc{Clique} problem on regular graphs to the
+Because we have just shown there is a parameterized reduction from the $k$-\textsc{Clique} problem on regular graphs to the
 \HL problem with a constant number of leaders and because this reduction is done in polynomial time,
 we directly get this corollary.
 
 \begin{corollary}
-    \HL is para-NP-hard with respect to $|L|$.
+    \HL is \pNPh with respect to $|L|$.
 \end{corollary}
+This means that we cannot hope for a FPT algorithm for the \HL problem with respect to any possible parameter. 
