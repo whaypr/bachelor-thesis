@@ -6,15 +6,14 @@ In this chapter, we introduce the reader to the theory needed for a comprehensiv
 
 
 %---------------------------------------------------------------
-\section{Basic graph theory concepts}
+\section{Graph theory}
 
-Let us start with basic concepts from a graph theory.
-Definitions in this section are based on the text from the graph theory textbook from Diestel \cite{Diestel2018}.
-\todo{check}
+This section introduces basic concepts from graph theory.
+For a thorough revision on this topic, please refer the graph theory textbook from Diestel \cite{Diestel2018}.
 
 % Graph
 \begin{definition}[Graph]
-    Graph $G$ is an ordered pair of sets $V$ and $E$, $G=(V,E)$.
+    Graph $G$ is an ordered pair of disjoint sets $V$ and $E$, $G=(V,E)$.
     Set $V$ is a finite set of arbitrary items called vertices (or nodes).
     Set $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
     Sets of all vertices $V$ and edges $E$ of graph $G$ are in general denoted by $V(G)$ and $E(G)$ respectively.
@@ -24,12 +23,17 @@ unweighted (edges has uniformed ``value''), without loops (edges are pairs of di
 without multiple edges (edges are unique pairs).
 These graphs are called \emph{simple}.
 
+In this thesis, the terms ``graph'' and ``network'' are interchangeable as we only use graphs to describe networks.
+By network we mean such graph, where vertices represents members of the network 
+and edges represents a, in some sence, connection between two given members, e.g., enabling their communication.
+
 % Degree
 \begin{definition}[Vertex degree]
-    Vertex degree (or degree) of vertex $v$ in some graph $G$ is the number of edges that are incident
-    (there exist another vertex $w$ that $\{v,w\} \in E(G)$) with $v$.
-    In other words degree is the number of edges vertex $v$ is a part of.
+    Degree of vertex $v$ in some graph $G$, denoted as deg(v), is the number of neighbors of v.
+    In other words, it is the number of edges vertex $v$ is a part of, i.e.,
+    $\Big|\{x \in V(G) \vert \{v,x\} \in E(G) \vee \{x,v\} \in E(G)\}\Big|$.
 \end{definition}
+The number of neighbors of some vertex $v$ can be also denoted as $N(v)$, thus $deg(v) = N(v)$.
 
 % r-regular graph
 \begin{definition}[$r$-regular graph]
@@ -76,10 +80,10 @@ These graphs are called \emph{simple}.
 
 \subsection{Graph problems}
 
-This subsection provides definitions of graph problems referenced later in the text.
+Here are definitions of some common \NPh graph problems we will need.
 
 % k-Clique
-\begin{definition}[$k$-\textsc{Clique}]
+\begin{definition}[$k$-\textsc{Clique} problem]
     Given graph $G$, the $k$-\textsc{Clique} problem is to determine if
     there exists a clique $C$ in $G$ where $|V(C)| = k$.
 \end{definition}
@@ -87,7 +91,7 @@ There are many other graph problems related to cliques. The $k$-\textsc{Clique} 
 there are also optimization variants, for example the \textsc{Maximum Clique} problem.
 
 % Minimum Vertex Cover
-\begin{definition}[\textsc{Minimum Vertex Cover}]
+\begin{definition}[\textsc{Minimum Vertex Cover} problem]
     Given graph $G$, the \textsc{Minimum Vertex Cover} problem is to find
     the vertex cover $M$ that there is no other vertex cover $N$ with fewer vertices than $M$, i.e., 
     $(\nexists N)(|N| < |M|)$.
@@ -97,27 +101,144 @@ which is the vertex cover such that any of its non-trivial subsets is not a vert
 Every \emph{minimum vertex cover} is also \emph{minimal vertex cover} but not necessarily vice versa.
 
 
+\subsection{Centrality measures}
+
+Centrality measure, or centrality for short, is a measure from graph theory which is widely used in social network analysis.
+Generally, centrality is a function $c: G \times V \rightarrow \mathbb{R}$ which describes the importance of a node in given network.
+With centrality, we can measure a ranking (position among other nodes) of given node within their network.
+What follows is a definition of a degree centrality introduced by Shaw \cite{Shaw1954} but there are other centralities used in SNA like
+closeness \cite{Beauchamp1965}, betweenness \cite{Anthonisse1971,Freeman1977} or core \cite{Seidman1983} centrality.
+
+\begin{definition}[Degree centrality]
+    A degree centrality measures an importance of a vertex by its degree.
+    A degree centrality of the vertex $v$ in network $G$ is defined as:
+    $$c_{deg}(G, v) = deg(v).$$
+\end{definition}
+
+
 %---------------------------------------------------------------
-\section{Parameterized complexity}
+\section{Classical computational complexity}
 
-We use parameterized complexity definitions as they are stated by
-Garey with Johnson \cite{Garey1990} and Cygan et al. \cite{Cygan2015}.
-\todo{revide}
+In this section we describe the two most fundamental complexity classes.
+Detailed revision on this topic --
+including definitions on formal languages, Turing machines and their programs --
+can be found in the textbook from Garey and Johnson \cite{Garey1990}. 
 
+% P
+\begin{definition}[\Po]
+    Complexity class \Po is a set of all languages $L$ for which there is a polynomial time DTM program $M$
+    such that $L$ is recognized by $M$.
+\end{definition}
+Informally, complexity class \Po consists of all decision problems that can be solved in polynomial time.
+Problems for which exists in practice efficient enough algorithm are called \emph{tractable}.
+These problems are typically in \Po.
+
+% NP
+\begin{definition}[\NP]
+    Complexity class \NP is a set of all languages $L$ for which there is a polynomial time NDTM program $M$
+    such that $L$ is recognized by $M$.
+\end{definition}
+Informally, complexity class \NP consists of all decision problems that can be solved in polynomial time
+when multiple steps can be done in parallel.
+Alternatively, we can say that in \NP are such problem, that their solution can be verified in polynomial time.
+Note that definitions of classes \Po and \NP differs only in a determinism/nondeterminism of the Turing machine.
+
+Lastly, let us briefly recall computational complexity terms \emph{hardness} and \emph{completeness}.
+A problem $p$ is, given some complexity class \textsf{C}, \textsf{C-hard} if for any problem $c$ from \textsf{C}
+there exists a polynomial reduction from $c$ to $p$.
+A problem $p$ is then \textsf{C-complete} if it is \textsf{C-hard} and it belongs to \textsf{C} at the same time.
+
+
+%---------------------------------------------------------------
+\section{Parameterized computational complexity}
+
+In this section, we introduce parameterized complexity definitions and related theory as they are stated by
+Cygan et al. \cite{Cygan2015}, Downey with Fellows \cite{Downey2002} or Flum with Grohe \cite{Flum2006}.
+
+\todo{Intro and motivation for param complex}
+
+% Parameterized problem
 \begin{definition}[Parameterized problem]
     A parameterized problem is a language $L \subseteq \Sigma^* \times \mathbb{N}$, where
     $\Sigma$ is a fixed, finite alphabet. For an instance $(x, k) \in \Sigma^* \times \mathbb{N}$, $k$ is called the parameter.
 \end{definition}
 
-
-%---------------------------------------------------------------
-\section{Centrality measures}
-
-\todo{Centrality measures}
-
-\begin{definition}[Degree centrality]
-    A degree centrality, introduced by Shaw \cite{Shaw1954}, measures an importance of a vertex by its degree
-    (a number of its neighbours).
-    A degree centrality of the vertex $v$ in network $G$, normalized by size of the network, is defined as:
-    $$c_{deg}(G, v) = \frac{deg(v)}{|V(G) - 1|}.$$
+% FPT problem and class
+\begin{definition}[FPT]
+    A parameterized problem $L$ is called fixed-parameter tractable (FPT) if there exists
+    \begin{description}
+        \item an algorithm $\mathcal{A}$, called fixed-parameter algorithm, or FPT algorithm,
+        \item a computable, nondecreasing function $f : \mathbb{N} \times \mathbb{N}$
+        \item and a constant $c$
+    \end{description}
+    such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
+    the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
+    $f(k) \cdot |(x,k)|^c$.
 \end{definition}
+The complexity class containing all fixed-parameter tractable problems is called \FPT.
+
+The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent $c$
+in the running time boundary as small as possible.
+
+% XP
+\begin{definition}[XP]
+    A parameterized problem $L$ is called slice-wise polynomial (XP) if there exists
+    \begin{description}
+        \item an algorithm $\mathcal{A}$
+        \item and two computable, nondecreasing functions $f,g : \mathbb{N} \times \mathbb{N}$
+    \end{description}
+    such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
+    the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
+    $f(k) \cdot |(x,k)|^{g(k)}$.
+\end{definition}
+The complexity class containing all slice-wise polynomial problems is called \XP.
+
+Note that definitions of parameterized problems FTP and XP differs only in a running time boundary of algorithm $\mathcal{A}$.
+From this we can see that each problem from \FPT is trivialy also in \XP and that $\FPT \subset \XP$.
+
+% para-NP
+\begin{definition}[para-NP]
+    A parameterized problem $L$ is called para-NP if there exists
+    \begin{description}
+        \item a nondeterministic algorithm $\mathcal{A}$,
+        \item a computable, nondecreasing function $f : \mathbb{N} \times \mathbb{N}$
+        \item and a constant $c$
+    \end{description}
+    such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
+    the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
+    $f(k) \cdot |(x,k)|^c$.
+\end{definition}
+The complexity class containing all para-NP problems is called \pNP.
+
+Note that definitions of parameterized problems FTP and para-NP differs only in a determinism/nondeterminism of
+algorithm $\mathcal{A}$.
+Without a formal proof, let us mention a known fact that $\FPT = \pNP \Leftrightarrow \Po = \NP$ \cite[p.~39]{Flum2006}\todo{original source}.
+From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter
+and also that \pNPh problems are not in \XP unless $\Po = \NP$ \cite[p.~41]{Flum2006}\todo{original source}. 
+
+
+\subsection{W-hierarchy}
+
+As stated by Cygan et al. \cite[p.~423]{Cygan2015},
+there are thousands of natural problems which are \NPc and which are reducible to each other,
+meaning that in this sense they are equally hard and thus we can say that
+they occupy the same level of hardness.
+However, we cannot say the same when talking about parameterized problems as it seems there are
+different levels of hardness for such problems and in this sense even basic problems
+seem to be differently hard as they occupy different hardness levels.
+For this reason, W-hierarchy was introduced by Downey and Fellows \cite{Downey2002} as
+an attempt to shed a light on these apparent differences in hardness of parameterized problems. 
+
+The levels of W-hierarchy are marked as W[$t$] for $t \in \mathbb{N} \wedge t \geq 0$
+where each level represents its own complexity class.
+The most important level for us will be W[1].
+The $k$-\textsc{Clique}, \textsc{Independent Set} and \textsc{Partial Vertex Cover} problems
+are examples of W[1]-complete problems.
+We will not provide the exact definition and further description of W-hierarchy
+because it is not important for the purposes of this work.
+On the other hand, what is important is a fact that we interpret the \W-hardness as an evidence that
+a problem is not fixed-parameter tractable.
+This interpretation is based on a general assumption that $\FPT \neq \W$.
+Further, this assumption is implied by the Exponential Time Hypothesis -- unproven conjecture,
+formulated by Impagliazzo and Paturi \cite{Impagliazzo1999}, saying that there is no
+algorithm subexponential in the number of variables for the $3$-\textsc{SAT} problem.
