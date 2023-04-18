@@ -278,3 +278,84 @@ Now we proceed to a proof of the variant with parameter $d$.
     \todo{todo}
 \end{proof}
 
+
+% Overview
+\subsection{Overview}
+
+% Figure - overview
+\label{lem:allHDG:FPT:ColorsSize}
+\label{lem:allHDGNash:XP:ColorsStrongNum}
+\label{lem:allHDG:XP:ColorsTypes}
+\label{lem:allHDGNash:XP:ColorsWeakNum}
+\label{lem:allHDG:NPh:TypesNum}
+\label{lem:allHDG:NPh:SizeTypes}
+\label{lem:allHDG:FPT:StrongNumSize}
+\label{lem:allHDG:XP:WeakNumSize}
+\label{lem:allHDG:Wh:ColorsNumTypes}
+\label{lem:allHDG:Wh:SizeTypeNum}
+
+\begin{figure}[bt]
+    \centering
+    \begin{tikzpicture}[node distance=1cm]
+        \tikzstyle{every node} = [minimum height=0.6cm,,minimum width=0.7cm];
+        \tikzstyle{result} = [draw,thick];
+        \tikzstyle{known} = [label={[label distance=-5pt]270:\small{\tt Known}}];
+        \tikzstyle{NPh} = [fill=red!30];
+        \tikzstyle{Wh} = [fill=orange!30];
+        \tikzstyle{FPT} = [fill=green!30];
+        % singletons
+        \node[NPh,known] (C) at (0, 0) {$\colors$};
+        \node[NPh] (SN) [right=of C] {$\scoalnum$};
+        \node[NPh] (S) [right=of SN] {$\coalsize$};
+        \node[NPh] (T) [right=of S] {$\types$};
+        \node[NPh] (WN) [right=of T] {$\coalnum$};
+        % pairs
+        \node[result,FPT,label={[label distance=-5pt]90:\small{\tt T\ref{lem:allHDG:FPT:ColorsSize}}}] (CS) [below left=1 and 0 of C] {$\colors\coalsize$};
+        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt C\ref{lem:allHDGNash:XP:ColorsStrongNum}}}] (CSN) [right=0.15 of CS] {$\colors\scoalnum$};
+        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt T\ref{lem:allHDG:XP:ColorsTypes}}}] (CT) [right=0.15 of CSN] {$\colors\types$};
+        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt T\ref{lem:allHDGNash:XP:ColorsWeakNum}}}] (CWN) [right=0.15 of CT] {$\colors\coalnum$};
+        \node[result,NPh,label={[label distance=-5pt]270:\small{\tt\, T\ref{lem:allHDG:NPh:TypesNum}}}] (SNT) [right=0.15 of CWN] {$\scoalnum\types$};
+        \node[result,NPh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:NPh:SizeTypes}}}] (ST) [right=0.15 of SNT] {$\coalsize\types$};
+        \node[result,NPh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:NPh:TypesNum}}}] (WNT) [right=0.15 of ST] {$\coalnum\types$};
+        \node[result,FPT,label={[label distance=-5pt]90:\small{\tt L\ref{lem:allHDG:FPT:StrongNumSize}}}] (SSN) [right=0.15 of WNT] {$\coalsize\scoalnum$};
+        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt L\ref{lem:allHDG:XP:WeakNumSize}}}] (SWN) [right=0.15 of SSN] {$\coalsize\coalnum$};
+        % triplets
+        \node[FPT] (CSSN) [below=1 of CS] {$\colors\coalsize\scoalnum$};
+        \node[FPT] (CSWN) [right=0.25 of CSSN] {$\colors\coalsize\coalnum$};
+        \node[FPT] (CST) [right=0.25 of CSWN] {$\colors\coalsize\types$};
+        \node[result,Wh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:Wh:ColorsNumTypes}}}] (CSNT) [right=0.25 of CST] {$\colors\scoalnum\types$};
+        \node[Wh] (CWNT) [right=0.25 of CSNT] {$\colors\coalnum\types$};
+        \node[FPT] (SSNT) [right=0.25 of CWNT] {$\coalsize\scoalnum\types$};
+        \node[result,Wh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:Wh:SizeTypeNum}}}] (SWNT) [right=0.25 of SSNT] {$\coalsize\coalnum\types$};
+        % quadruplets
+        \node[FPT] (CSSNT) [below right=1 and 0.25 of CSWN] {$\colors\coalsize\scoalnum\types$};
+        \node[FPT] (CSWNT) [right=of CSSNT] {$\colors\coalsize\coalnum\types$};
+        % edges
+        \draw[->] (SSN.south) -- (SSNT.north);
+        \draw[->] (CS.south) -- (CSSN.north);
+        \draw[->] (CS.south) -- (CSWN.north);
+        \draw[->] (CS.south) -- (CST.north);
+        \draw[->] (CST.south) -- (CSSNT.north);
+        \draw[->] (CST.south) -- (CSWNT.north);
+        \draw[->] (ST.north) -- (S.south);
+        \draw[->] (ST.north) -- (T.south);
+        \draw[->] (SNT.north) -- (SN.south);
+        \draw[->] (WNT.north) -- (WN.south);
+        \draw[<->] (CSNT.north) -- (CT.south);
+        \draw[->] (CSNT.north) -- (CSN.south);
+        \draw[->] (3.7,0 |- CSNT.south east) .. controls +(down:5mm) and +(down:5mm) .. (CWNT.south);
+        \draw[<->] (CWNT.north) -- (CWN.south);
+        \draw[<->] (SWNT.north) -- (SWN.south);
+    \end{tikzpicture}
+    \caption{
+        The complexity picture for \HDGshort for both Nash and individual stability.
+        Combinations of parameters which give rise to fixed-parameter algorithms are highlighted in green,
+        while combinations for which \HDGshort is \Wh but in \XP are highlighted in orange and \NPc combinations
+        are highlighted in red.
+        Results explicitly proved in this work are represented by a black box and a reference to the given theorem,
+        corollary or lemma.
+    }
+    \label{fig:complexityPicture}
+\end{figure}
+\todo{todo}
+%---------------------------------------------------------------
