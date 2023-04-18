@@ -30,6 +30,7 @@
 % thesis type: bachelor/master/dissertation
 % colour: bw for black&white OR no option for default colour scheme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\includeonly{text/introduction.tex,text/preliminaries.tex,text/problem_statement.tex,text/contribution.tex}
 \documentclass[english,bachelor,unicode]{ctufit-thesis}
 
 
@@ -96,6 +97,7 @@ Complexity Perspective} % replace with the title of your thesis
 \usepackage{todonotes}
 \usepackage{xspace}
 \usepackage{subcaption}
+\usepackage{xevlna}
 
 %theorems, definitions, etc.
 \theoremstyle{plain}
@@ -210,13 +212,13 @@ NDTM & nondeterministic Turing machine
 % THE THESIS
 % MODIFY ANYTHING BELOW THIS LINE
 %%%%%%%%%%%%%%%%%%%
-%\include{text/introduction.tex}
+\include{text/introduction.tex}
 \include{text/preliminaries.tex}
 \include{text/problem_statement.tex}
 \include{text/contribution.tex}
-%\include{text/conclusion.tex}
-% \include{text/samples/cviko.tex}
-% \include{text/samples/text.tex} % include `text.tex' from `text/samples/' subdirectory
+\include{text/conclusion.tex}
+%\include{text/samples/cviko.tex}
+%\include{text/samples/text.tex}
 
 \appendix\appendixinit % do not remove these two commands
 
