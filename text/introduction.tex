@@ -13,13 +13,23 @@ Such influential users are called leaders.
 Being crucial for their working, leaders try to stay undetected for which they use various counter-techniques such as
 network modification by adding or deleting edges, or creating whole new networks from scratch.
 
-In this thesis, we take a closer look on the problematics of covert networks studied in the literature
-with focus on the \HL problem first defined by Waniek et al. \cite{Waniek2017}.
-\todo{better intro about HL and param complex}
+In this thesis, we survey covert networks from a perspective of the \HL problem first defined by
+Waniek et al. \cite{Waniek2017} and further studied by various authors \cite{Dey2019,Waniek2021,Mohan2023}.
+More concretely, our main concern is the \HL problem with respect to a degree centrality measure
+and using the framework of parameterized complexity.
+Profound description of the \HL problem can be found in Chapter \ref{chapter:ProblemStatement}, for introduction to
+the theory of parameterized computational complexity, please refer to Section \ref{section:ParamComp}.
 
 
 %---------------------------------------------------------------
 \section{Literature review}
+
+In this section, we bring a thorough examination of the literature on two topics;
+social network analysis and covert networks, together with parameterized complexity.
+The former is an essential knowedge providing us with better context for studying the \HL problem, whereas
+the later gives us tools to better reason about \NPh problems which, as we will see, the \HL problem is.
+
+\subsection{Social network analysis \& covert networks}
 
 First of all, we mention the publication from Morselli \cite{Morselli2009} that the reader can refer to get
 an extensive study of criminal networks.
@@ -83,15 +93,22 @@ To this end, we mention the work from Waniek et al. \cite[y.~2021]{Waniek2021} i
 the strategy of which centralities seekers should use to maximize the chances of detecting
 a leader.
 
-
-%---------------------------------------------------------------
-\section{Focus of this work}\label{section:focusOfThisWork}
-
-In this work we focus on the \HL problem firstly defined by Waniek et al. \cite{Waniek2017}
-and further studied by various authors \cite{Dey2019,Waniek2021,Mohan2023}.
-More concretely, our main concern is the \HL problem with respect to a degree centrality measure
-and using the framework of parameterized complexity.
-In the terminology of the previous section, we have a covert network consisting of strategic leaders trying to
-evade being detected by use of centrality measuring techniques
+In the terminology of this section, the \HL problem describes a covert network consisting of strategic leaders, trying to
+evade being detected by use of centrality measuring techniques,
 for which they modify the network by adding new connections between network members. 
-More information about the problem together with formal definition can be found in Chapter \ref{chapter:ProblemStatement}.
+
+\subsection{Parameterized computational complexity}
+
+What follows is a sumamry of the literature on the topic of parameterized complexity.
+For an introduction to the topic itself, please refer to Section \ref{section:ParamComp}.
+
+The foundations of parameterized complexity were laid by Downey and Fellows
+in the series of papers from years 1992 to 1995 \cite{Downey1992,Downey1995.1,Downey1995.2,Downey1993,Downey1995.4},
+which the authors further presented later in 1999 in their book \cite{Downey1999},
+which was refined and once more published in 2013 \cite{Downey2013}.
+Other relevant and potentially useful literature on this topic are
+two books by Flum with Grohe \cite{Flum2006} and by Niedermeier \cite{Niedermeier2006} from 2006, book by Hans et al. \cite{Hans2012} from 2012,
+book by Cygan et al. \cite{Cygan2015} from 2015 (which to a great extent covers knowledge from the previous literature)
+and two books by Haan \cite{Haan2019} and by Fomin et al. (focused mainly on kernelization) \cite{Fomin2019} from 2019.
+However, keep in mind that there is a highly active line of research in the field of parameterized complexity, so,
+as researchers keep making new discoveries, information presented in the work of mentioned authors may not necessarily be up-to-date.
