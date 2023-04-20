@@ -83,7 +83,7 @@ The number of neighbors of some vertex $v$ can be also denoted as $N(v)$, thus $
 
 \subsection{Graph problems}
 
-Here are definitions of some common \NPh graph problems we will need.
+Here are definitions of some common \NPh graph problems we will refer to.
 
 % k-Clique
 \begin{definition}[$k$-\textsc{Clique} problem]
@@ -155,7 +155,7 @@ A problem $p$ is then \textsf{C-complete} if it is \textsf{C-hard} and it belong
 %---------------------------------------------------------------
 \section{Parameterized computational complexity}\label{section:ParamComp}
 
-We use textbook by Cygan et al. \cite{Cygan2015} as our main source of information on this topic since it
+We use the textbook by Cygan et al. \cite{Cygan2015} as our main source of information on this topic since it
 provides arguably the most complex and comprehensive overview of the theory of parameterized complexity and,
 in many cases, presents the state of the art in the field.
 
@@ -174,7 +174,7 @@ Such parameter is then used together with the input instance size when describin
 Given a problem, there is typically many parameters we can parameterize the problem by.
 This leads us to the importance of choosing the right parameter.
 
-When parameterizing some problem, we typically look for parameters which are small in real-world application,
+When parameterizing some problem, we typically look for parameters which are small in real-world applications,
 as one of the main goal when studying parameterized problems is to find algorithms for these problems in which
 the running time is exponential only in the parameter, leaving the running time polynomial in the, potentially enormous, input size.
 However, not every choice of the parameter let us design such an efficient algorithm, as it seems that many problems with
@@ -184,9 +184,9 @@ Typically, the more information a parameter carries about the input instance, th
 information and design a faster algorithm.
 
 The typical parameter we often try is the size, or other property, of the solution we are looking for.
-Other type of parameter is a measure of some property of the input instance.
+The other type of parameter is a measure of some property of the input instance.
 For example the maximum degree, regularity or treewidth measurings of the input graph.
-For non-graph instances it may be the maximum length of a string when the input instance consists of a set of strings,
+For non-graph instances, it may be the maximum length of a string when the input instance consists of a set of strings,
 or a number of variables when working with Boolean formulas.
 
 Given problem parameterized by $p$, algorithm designers commonly talk about some function of $p$, $f(p)$.
@@ -271,7 +271,7 @@ and also that \pNPh problems are not in \XP unless $\Po = \NP$ \cite[p.~41]{Flum
 
 As stated by Cygan et al. \cite[p.~423]{Cygan2015},
 there are thousands of natural problems which are \NPc and which are reducible to each other,
-meaning that in this sense they are equally hard and thus we can say that
+meaning that in this sense, they are equally hard and thus we can say that
 they occupy the same level of hardness.
 However, we cannot say the same when talking about parameterized problems as it seems there are
 different levels of hardness for such problems and, in this sense, even basic problems
@@ -284,6 +284,7 @@ where each level represents its own complexity class.
 The most important level for us will be W[1].
 The $k$-\textsc{Clique}, \textsc{Independent Set} and \textsc{Partial Vertex Cover} problems
 are examples of W[1]-complete problems.
+
 We will not provide the exact definition and further description of W-hierarchy
 because it is not important for the purposes of this work.
 On the other hand, what is important is a fact that we interpret the \W-hardness as an evidence that
