@@ -28,7 +28,7 @@ These graphs are called \emph{simple}.
 
 In this thesis, the terms ``graph'' and ``network'' are interchangeable as we only use graphs to describe networks.
 By network we mean such graph, where vertices represents members of the network 
-and edges represents a, in some sence, connection between two given members, e.g., enabling their communication.
+and edges represents a, in some sense, connection between two given members, e.g., enabling their communication.
 
 % Degree
 \begin{definition}[Vertex degree]
@@ -153,17 +153,68 @@ A problem $p$ is then \textsf{C-complete} if it is \textsf{C-hard} and it belong
 
 
 %---------------------------------------------------------------
-\section{Parameterized computational complexity}
+\section{Parameterized computational complexity}\label{section:ParamComp}
 
-In this section, we introduce parameterized complexity definitions and related theory as they are stated by
-Cygan et al. \cite{Cygan2015}, Downey with Fellows \cite{Downey2002} or Flum with Grohe \cite{Flum2006}.
+The foundations of parameterized complexity were laid by Downey and Fellows
+in the series of papers from years 1992 to 1995 \cite{Downey1992,Downey1995.1,Downey1995.2,Downey1993,Downey1995.4},
+which the authors further presented later in 1999 in their book \cite{Downey1999},
+which was refined and once more published in 2013 \cite{Downey2013}.
+Other relevant and potentially useful literature on this topic are
+two books by Flum with Grohe \cite{Flum2006} and by Niedermeier \cite{Niedermeier2006} from 2006, book by Hans et al. \cite{Hans2012} from 2012,
+book by Cygan et al. \cite{Cygan2015} from 2015 (which to a great extent covers knowledge from the previous literature)
+and two books by Haan \cite{Haan2019} and by Fomin et al. (focused mainly on kernelization) \cite{Fomin2019} from 2019.
+However, keep in mind that there is a highly active line of research in the field of parameterized complexity, so,
+as researchers keep making new discoveries, information presented in the work of mentioned authors may not necessarily be up-to-date.
+We use textbook by Cygan et al. \cite{Cygan2015} as our main source of information on this topic since it
+provides arguably the most complex and comprehensive overview of the theory of parameterized complexity and,
+in many cases, presents the state of the art in the field.
 
-\todo{Intro and motivation for param complex}
+The classical complexity analysis is often insufficient when dealing with \NPh problems.
+The main reason is that there are \NPh problems that are in some sense harder than the others.
+This inability of the classical approach to distinguish between the hardness of various \NPh problems
+led to a development of the parameterized complexity theory.
+Parameterized complexity is a direct generalization of the classical complexity theory and it arms its users
+with the ability to analyze running time of algorithms, and thus computational complexities of problems
+they try to solve, in a finer detail.
+It gives us tools which help us to distinguish between different difficulty levels in places where
+\NP-hardness fails to do so.
+To achieve this, parameter complexity introduces a notion of parameterization of the input instance, where
+the parameter is just some secondary measurement of the input instance.
+Such parameter is then used together with the input instance size when describing a computational complexity of \NPh problems.
+Given a problem, there is typically many parameters we can parameterize the problem by.
+This leads us to the importance of choosing the right parameter.
+
+When parameterizing some problem, we typically look for parameters which are small in real-world application,
+as one of the main goal when studying parameterized problems is to find algorithms for these problems in which
+the running time is exponential only in the parameter, leaving the running time polynomial in the, potentially enormous, input size.
+However, not every choice of the parameter let us design such an efficient algorithm, as it seems that many problems with
+certain parameters admit no efficient algorithm at all.
+That means the hardness, or tractability, of the problem depends on the parameter we use.
+Typically, the more information a parameter carries about the input instance, the higher are chances for us to exploit this
+information and design a faster algorithm.
+
+The typical parameter we often try is the size, or other property, of the solution we are looking for.
+Other type of parameter is a measure of some property of the input instance.
+For example the maximum degree, regularity or treewidth measurings of the input graph.
+For non-graph instances it may be the maximum length of a string when the input instance consists of a set of strings,
+or a number of variables when working with Boolean formulas.
+
+Given problem parameterized by $p$, algorithm designers commonly talk about some function of $p$, $f(p)$.
+Let us note that it is also possible to use more than one parameter.
+Having parameters $k$ and $l$, we then talk about a function of $k$ and $l$, $f(k,l)$.
+However, we can (and we actually do) express the parameterization by $k$ and $l$ by using just one parameter $k+l$, $f(k+l)$.
+
+The two most fundamental complexity classes of this theory, used to reason about the complexity of parameterized problems,
+are \FPT and \XP.
+To distinguish between \NPh problems that are in \XP but not in \FPT, we can use another set of complexity classes, the W-hierarchy.
+There is also complexity class called \pNP.
+What follows are the formal definitions of some of these classes, together with definition of parameterized problem.   
 
 % Parameterized problem
 \begin{definition}[Parameterized problem]
     A parameterized problem is a language $L \subseteq \Sigma^* \times \mathbb{N}$, where
-    $\Sigma$ is a fixed, finite alphabet. For an instance $(x, k) \in \Sigma^* \times \mathbb{N}$, $k$ is called the parameter.
+    $\Sigma$ is a fixed, finite alphabet and $\Sigma^*$ is a set of all strings over $\Sigma$.
+    For an instance $(x, k) \in \Sigma^* \times \mathbb{N}$, $k$ is called the parameter.
 \end{definition}
 
 % FPT problem and class
@@ -182,6 +233,8 @@ The complexity class containing all fixed-parameter tractable problems is called
 
 The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent $c$
 in the running time boundary as small as possible.
+We can see that if the parameter is equal to the input size, then \FPT become equal to \NP and,
+on the other hand if $k = 1$, then \FPT become \P \cite{Koutensky2020}.
 
 % XP
 \begin{definition}[XP]
@@ -197,7 +250,11 @@ in the running time boundary as small as possible.
 The complexity class containing all slice-wise polynomial problems is called \XP.
 
 Note that definitions of parameterized problems FTP and XP differs only in a running time boundary of algorithm $\mathcal{A}$.
-From this we can see that each problem from \FPT is trivialy also in \XP and that $\FPT \subset \XP$.
+Although both FPT and XP algorithms run in polynomial time for every fixed value of the parameter,
+the underlying difference between them is that FPT algorithms have the combinatorial explosion
+restricticted to the parameter only, leaving the exponent of the instance size constant, in other words,
+FPT algorithms are more efficient that XP algorithms.
+From this we can see that each problem from \FPT is trivialy also in \XP, $\FPT \subset \XP$.
 
 % para-NP
 \begin{definition}[para-NP]
@@ -227,12 +284,12 @@ there are thousands of natural problems which are \NPc and which are reducible t
 meaning that in this sense they are equally hard and thus we can say that
 they occupy the same level of hardness.
 However, we cannot say the same when talking about parameterized problems as it seems there are
-different levels of hardness for such problems and in this sense even basic problems
+different levels of hardness for such problems and, in this sense, even basic problems
 seem to be differently hard as they occupy different hardness levels.
-For this reason, W-hierarchy was introduced by Downey and Fellows \cite{Downey2002} as
+For this reason, W-hierarchy was introduced by Downey and Fellows \cite{Downey1999} as
 an attempt to shed a light on these apparent differences in hardness of parameterized problems. 
 
-The levels of W-hierarchy are marked as W[$t$] for $t \in \mathbb{N} \wedge t \geq 0$
+The levels of W-hierarchy are marked as W[$t$] for $t \in \mathbb{N} \wedge t \geq 0$,
 where each level represents its own complexity class.
 The most important level for us will be W[1].
 The $k$-\textsc{Clique}, \textsc{Independent Set} and \textsc{Partial Vertex Cover} problems
