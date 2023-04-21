@@ -83,7 +83,7 @@ present in the constructed network in some manner and then finding a solution in
         \item Add all vertices from $G$, i.e., $V(H) \leftarrow V(G)$, mark these vertices as $F_1$.
         \item Add all edges from $\overline{G}$, i.e., $E(H) \leftarrow E(\overline{G})$.
         \item Add an extra vertex $\ell$, i.e., $V(H) \leftarrow V(H) \cup \{\ell\}$.
-        \item Add an edge between vertex $\ell$ and $n - r + (k - 1) \eqqcolon \lambda$ arbitrarily chosen vertices $X \subset F_1$,
+        \item Add an edge between vertex $\ell$ and $n - r + (k - 1) = \lambda$ arbitrarily chosen vertices $X \subset F_1$,
               i.e., $E(H) \leftarrow E(H) \cup \{ (\ell, x) \mid x \in X \}$.
         \item For each vertex $v \in V(H) \setminus X \eqqcolon Y$, introduce a new vertex $w_v$ and add edge $\{v, w_v\}$, i.e.,
               $V(H) \leftarrow V(H) \cup \{ w_v \mid v \in Y \}$ and $E(H) \leftarrow E(H) \cup \{ (v, w_v) \mid v \in Y \}$,
@@ -99,7 +99,7 @@ present in the constructed network in some manner and then finding a solution in
     Also note that the construction of $H$ is done in time polynomial to $n$.
     Now we show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in $H$.
 
-    Let us take $ \mathcal{I} = (H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c, k)$, where $c$ is a degree centrality measure,
+    Let us take $\mathcal{I} = (H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c, k)$, where $c$ is a degree centrality measure,
     as an instance of \HLdeg with $k' \coloneqq b + d = \frac{k\cdot(k-1)}{2} + k$ as a parameter.
     First we note that degree of the only leader $\ell$ is $\lambda$, as presented above.
     The other vertices $V(H) - l$ are naturally followers of which we can recognize two types, $F_1$ and $F_2$,
@@ -253,35 +253,83 @@ we directly get this corollary.
 \end{corollary}
 This means that we cannot hope for a FPT algorithm for the \HL problem with respect to any possible parameter. 
 
-% XP algos for params b and d
+
+% XP algo for param d
 Let us now look at the problem from the opposite end.
 We will show that \HL parameterized whether by budget $b$ or by safety margin $d$ is XP.
-We present a proof of the variant with parameter $b$ first.
-
-\begin{theorem}
-    \HL parameterized by $b$ is XP.
-\end{theorem}
-
-\begin{proof}
-    Given parameterized problem $(x, b)$, where $x = (G, L, b, c, d)$ is a \HLdeg instance and $b$ is the parameter,
-    we show an algorithm which decides whether or not $(x, b)$ is a $yes$-instance in time bounded by
-    $f(b) \cdot |(x, b)|^{g(b)}$ for some computable functions $f,g$.
-
-    We try to find a solution by a brute-force.
-    Let us use symbol $\hat{A}$ to denote a set of edges between followers that are not present in $G$ and
-    thus can be added, $\hat{A} = \overline{G[F]}$.
-    The idea is that \todo{todo}
-\end{proof}
-
-
-Now we proceed to a proof of the variant with parameter $d$.
+We present a proof of the variant with parameter $d$ first.
 
 \begin{theorem}
     \HL parameterized by $d$ is XP.
 \end{theorem}
 
 \begin{proof}
-    \todo{todo}
+    Given parameterized instance $(\mathcal{I}, d)$, where $\mathcal{I} = (G, L, b, c, d)$ is a \HLdeg instance and $d$ is the parameter,
+    we show an algorithm which decides whether or not $(\mathcal{I}, d)$ is a $yes$-instance in time bounded by
+    $f(d) \cdot |(\mathcal{I}, d)|^{g(d)}$ for some computable functions $f,g$.
+
+    We start by picking gradually each of the $\binom{|F|}{d} = \Theta(|V(G)|^d)$ $d$-element subsets of followers $F$,
+    we denote the current subset as $D$.
+    Because we take all the possible $d$-element subsets of $F$, we eventually find a subset $D$ such that $D = F'$,
+    if $F'$ exists, i.e., if $(\mathcal{I}, d)$ is a $yes$-instance.
+    Then, we try to add $min(|E(\overline{G[D]})|, b) \coloneqq t$ edges between followers from $D$ in each of the $\binom{d}{t} \leq 2^d$ possible ways.
+    Note that $|E(\overline{G[D]})|$ denotes a number of edges that are not present between followers from $D$,
+    so we can potentially add them, and that $t$ is a minimum of this number and the budget $b$,
+    because we are not allowed to add more than $b$ edges into $G$.
+    From now, only these three situations can occur:
+
+    First, we added $t$ edges into $G$ and all $D$ vertices have degree greater than $\lambda$.
+    Because $|D| = d$, $(\mathcal{I}, d)$ is a $yes$-instance.
+    We can check this in time $\mathcal{O}(|V(G)|)$.
+    
+    Second, we added $t$ edges into $G$ but not all $D$ vertices have degree greater than $\lambda$.
+    Moreover, $|E(\overline{G[D]})| < b$ and thus we know that $G[D]$ is (after adding new edges) already a complete graph
+    but we still can add some edges into $G$ before reaching the budget $b$. 
+    In this situation $D = F'$ if and only if there is at least $min_{\delta \in D}\{deg(\delta)\}$ followers
+    outside of $D$ and a number of edges we are still allowed to add before reaching budget $b$, $b - |E(\overline{G[D]})|$,
+    is smaller than the sum of connections needed to reach $\lambda$ of all vertices from $D$,
+    $\sum_{\delta \in D} min(0, \lambda - deg(\delta))$.
+    This is true because in order for instance $(\mathcal{I}, d)$ to be a $yes$-instance, we must
+    ensure that each follower from $D$ has degree at least $\lambda$, for what we connect them to some followers
+    outside $D$ (becuase $D$ is already complete), for which there must be enough followers outside $D$ and
+    we must have enough edges left before reaching $b$.
+    Note that if $D = F'$, then $(\mathcal{I}, d)$ in a $yes$-instance.
+    
+    Third, we added $t$ edges into $G$ but not all $D$ vertices have degree greater than $\lambda$.
+    Moreover, $|E(\overline{G[D]})| \geq b$ so $t = b$ and $D \neq F'$.
+    We can check this in time $\mathcal{O}(|V(G)|)$.
+
+    Situation other than one of the three cannot occur.
+    If instance $(\mathcal{I}, d)$ is not identified as a $yes$-instance for any choice of $D$,
+    then we conclude that $(\mathcal{I}, d)$ is a $no$-instance because if it was a $yes$-instance,
+    then we would have found it by the procedure above.
+    
+    The algorithm we have just described runs in time $f(d) \cdot |(\mathcal{I}, d)|^{g(d)}$ for $f(d) = 2^d$ and $g(d) = d$
+    and where the instance size $|(\mathcal{I}, d)|$ is measured as $|V(G)|$.
+    From this we can conclude that \HL parameterized by $d$ is XP.
+\end{proof}
+
+Notice that although the just presented algorithm is not possibly the best one we could find,
+it surely belongs to the best possible complexity class, \XP, because as we already know,
+there can be no FPT algorithm for \HL. 
+
+
+% XP algo for param b
+Now we proceed to a proof of the variant with parameter $b$.
+
+\begin{theorem}
+    \HL parameterized by $b$ is XP.
+\end{theorem}
+
+\begin{proof}
+    Given parameterized problem $(\mathcal{I} b)$, where $x = (G, L, b, c, d)$ is a \HLdeg instance and $b$ is the parameter,
+    we show an algorithm which decides whether or not $(\mathcal{I} b)$ is a $yes$-instance in time bounded by
+    $f(b) \cdot |(\mathcal{I} b)|^{g(b)}$ for some computable functions $f,g$.
+
+    We try to find a solution by a brute-force.
+    Let us use symbol $\hat{A}$ to denote a set of edges between followers that are not present in $G$ and
+    thus can be added, $\hat{A} = \overline{G[F]}$.
+    The idea is that \todo{todo}
 \end{proof}
 
 
