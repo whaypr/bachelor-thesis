@@ -269,13 +269,13 @@ We present a proof of the variant with parameter $d$ first.
     $f(d) \cdot |(\mathcal{I}, d)|^{g(d)}$ for some computable functions $f,g$.
 
     We start by picking gradually each of the $\binom{|F|}{d} = \Theta(|V(G)|^d)$ $d$-element subsets of followers $F$,
-    we denote the current subset as $D$.
-    Because we take all the possible $d$-element subsets of $F$, we eventually find a subset $D$ such that $D = F'$,
+    we denote the current subset as $D$ and a set of edges that can be added between followers from $D$
+    as $\hat{A}_D \subseteq \hat{A}$, $\hat{A}_D = E(\overline{G[D]})$.
+    Because we take all the possible $d$-element subsets of $F$, we eventually find a subset $D$ such that,
+    after addition of new edges, $D = F'$,
     if $F'$ exists, i.e., if $(\mathcal{I}, d)$ is a $yes$-instance.
-    Then, we try to add $min(|E(\overline{G[D]})|, b) \coloneqq t$ edges between followers from $D$ in each of the $\binom{d}{t} \leq 2^d$ possible ways.
-    Note that $|E(\overline{G[D]})|$ denotes a number of edges that are not present between followers from $D$,
-    so we can potentially add them, and that $t$ is a minimum of this number and the budget $b$,
-    because we are not allowed to add more than $b$ edges into $G$.
+    Then, we try to add $min(|\hat{A}_D|, b) \coloneqq t$ edges between followers from $D$ in each of the $\binom{d}{t} \leq 2^d$ possible ways.
+    Note that $t$ can be $b$ because we are not allowed to add more than $b$ edges into $G$.
     From now, only these three situations can occur:
 
     First, we added $t$ edges into $G$ and all $D$ vertices have degree greater than $\lambda$.
@@ -283,10 +283,10 @@ We present a proof of the variant with parameter $d$ first.
     We can check this in time $\mathcal{O}(|V(G)|)$.
     
     Second, we added $t$ edges into $G$ but not all $D$ vertices have degree greater than $\lambda$.
-    Moreover, $|E(\overline{G[D]})| < b$ and thus we know that $G[D]$ is (after adding new edges) already a complete graph
+    Moreover, $|\hat{A}_D| < b$ and thus we know that $G[D]$ is (after adding new edges) already a complete graph
     but we still can add some edges into $G$ before reaching the budget $b$. 
     In this situation $D = F'$ if and only if there is at least $min_{\delta \in D}\{deg(\delta)\}$ followers
-    outside of $D$ and a number of edges we are still allowed to add before reaching budget $b$, $b - |E(\overline{G[D]})|$,
+    outside of $D$ and a number of edges we are still allowed to add before reaching budget $b$, $b - |\hat{A}_D|$,
     is smaller than the sum of connections needed to reach $\lambda$ of all vertices from $D$,
     $\sum_{\delta \in D} min(0, \lambda - deg(\delta))$.
     This is true because in order for instance $(\mathcal{I}, d)$ to be a $yes$-instance, we must
@@ -296,7 +296,7 @@ We present a proof of the variant with parameter $d$ first.
     Note that if $D = F'$, then $(\mathcal{I}, d)$ in a $yes$-instance.
     
     Third, we added $t$ edges into $G$ but not all $D$ vertices have degree greater than $\lambda$.
-    Moreover, $|E(\overline{G[D]})| \geq b$ so $t = b$ and $D \neq F'$.
+    Moreover, $|\hat{A}_D| \geq b$ so $t = b$ and $D \neq F'$.
     We can check this in time $\mathcal{O}(|V(G)|)$.
 
     Situation other than one of the three cannot occur.

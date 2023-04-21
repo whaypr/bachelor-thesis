@@ -4,7 +4,7 @@
 
 Now we define the central problem of this thesis, the \HL problem.
 We also provide a detailed description of the problem, a motivation behind its formulation,
-an explanation of its hardness and a presentation of results from the literature. 
+an explanation of its hardness, an introduction to notation we use and a presentation of results from the literature. 
 
 \begin{center}
     \line(1,0){\textwidth}
@@ -31,10 +31,13 @@ an explanation of its hardness and a presentation of results from the literature
 
 In other words, we want to \emph{``identify a set of edges to be added between the followers so that
 the ranking of the leaders (based on some centrality measure) drops below a certain threshold''} \cite{Waniek2017}.
+
 We survey \HLshort only with respect to the degree centrality measure, that is, with $c = c_{deg}$.
 We denote this version of the problem as \HLdeg.
 We also use symbol $\lambda$ to denote a maximum degree among leaders, this is the minimum degree that
-all followers from $F'$ have to reach.  
+all followers from $F'$ have to reach.
+Lastly, we use symbol $\hat{A}$ to denote a set of edges between followers that are not present in $G$ and thus can be added,
+$\hat{A} = E(\overline{G[F]})$.
 
 There are two definitions of the \HL problem in the literature and they differ from each other in some details.
 Namely, the definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
