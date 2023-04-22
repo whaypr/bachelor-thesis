@@ -263,7 +263,7 @@ We present a proof of the variant with parameter $d$ first.
     \HL parameterized by $d$ is XP.
 \end{theorem}
 
-\begin{proof}
+\begin{proof}\label{proof:XPd}
     Given parameterized instance $(\mathcal{I}, d)$, where $\mathcal{I} = (G, L, b, c, d)$ is a \HLdeg instance and $d$ is the parameter,
     we show an algorithm which decides whether or not $(\mathcal{I}, d)$ is a $yes$-instance in time bounded by
     $f(d) \cdot |(\mathcal{I}, d)|^{g(d)}$ for some computable functions $f,g$.
@@ -316,20 +316,31 @@ there can be no FPT algorithm for \HL.
 
 % XP algo for param b
 Now we proceed to a proof of the variant with parameter $b$.
+This proof will be led in a similar manner as Proof \ref{proof:XPd}.
 
 \begin{theorem}
     \HL parameterized by $b$ is XP.
 \end{theorem}
 
 \begin{proof}
-    Given parameterized problem $(\mathcal{I} b)$, where $x = (G, L, b, c, d)$ is a \HLdeg instance and $b$ is the parameter,
-    we show an algorithm which decides whether or not $(\mathcal{I} b)$ is a $yes$-instance in time bounded by
+    Given parameterized problem $(\mathcal{I}, b)$, where $\mathcal{I} = (G, L, b, c, d)$ is a \HLdeg instance and $b$ is the parameter,
+    we show an algorithm which decides whether or not $(\mathcal{I}, b)$ is a $yes$-instance in time bounded by
     $f(b) \cdot |(\mathcal{I} b)|^{g(b)}$ for some computable functions $f,g$.
 
-    We try to find a solution by a brute-force.
-    Let us use symbol $\hat{A}$ to denote a set of edges between followers that are not present in $G$ and
-    thus can be added, $\hat{A} = \overline{G[F]}$.
-    The idea is that \todo{todo}
+    We start by picking gradually each of the $\binom{|\hat{A}|}{b} = \Theta(|E(G)|^b)$ $b$-element subsets of
+    edges we can add between followers, we denote the current subset as $B$.
+    Because we take all the possible $b$-element subsets of $\hat{A}$, we eventually find a subset $B$ such that $B = W$,
+    of course only if $(\mathcal{I}, b)$ is a $yes$-instance and thus such $W$ exists.
+    Then, we try to add those $B$ edges into $G$ and after each such addition, we check whether there are at least $d$ followers
+    with degree greater than $\lambda$. The addition can be done in time $b$, the check can be done in time $|V(G)|$.
+
+    If instance $(\mathcal{I}, b)$ is not identified as a $yes$-instance for any choice of $B$,
+    then we conclude that $(\mathcal{I}, b)$ is a $no$-instance because if it was a $yes$-instance,
+    then we would have found it by the procedure above.
+
+    The algorithm we have just described runs in time $f(b) \cdot |(\mathcal{I}, b)|^{g(b)}$ for $f(b) = g(b) = b$
+    and where the instance size $|(\mathcal{I}, b)|$ is measured as $|E(G)| + |V(G)|$.
+    From this we can conclude that \HL parameterized by $b$ is XP.
 \end{proof}
 
 
