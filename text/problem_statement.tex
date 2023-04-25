@@ -40,6 +40,8 @@ an explanation of its hardness, an introduction to notation we use and a present
 
 In other words, we want to \emph{``identify a set of edges to be added between the followers so that
 the ranking of the leaders (based on some centrality measure) drops below a certain threshold''} \cite{Waniek2017}.
+Adding such set of edges into given network let leaders to increase their security while not affecting their
+influence in the network, although, new members with great influence may arise.
 
 We survey \HLshort only with respect to the degree centrality measure, that is, with $c = c_{deg}$.
 We denote this version of the problem as \HLdeg.
@@ -63,12 +65,16 @@ Later in Section \ref{section:proofRevision}, we show that complexity results fo
 are correct even with this slighty different definition of \HLshort.
 
 The motivation behind only adding edges, with no deletion involved, is that we want leaders to maintain
-their existing control over the network.
-Indeed, deleting edges incident to the leaders would decrease their number of connections and thus network control,
-whereas deleting edges between followers would only decrease their centrality \todo{explain why},
-which is the exact opposite of what we try to achieve.
-Because no connections are deleted in the resulting network, all leaders keep their existing control over the network,
-having increased their security but keeping their efficiency, although, new members with great influence may arise.
+their existing influence in the network.
+Indeed, deleting edges incident to leaders would decrease their number of connections and thus potentially
+reducing their reach within network.
+Also, deleting edges between followers would only decrease the values of all degree, betweenness and closeness
+centrality measures for affected followers \cite{Waniek2016},
+which is the exact opposite of what we try to achieve in the \HL problem.
+From this we can see why it makes sense to only allow adding edges into given network --
+because deleting edges incident with leaders violates our requirements on keeping influence of leaders,
+whereas deleting edges incident with followers violates our requirements on making leaders more hidden.
+
 
 Also note that decreasing the value of degree centrality of any given member is a straightforward task
 (in contrary with decreasing other centralities) as it only consists in cutting edges \cite{Waniek2016}.
