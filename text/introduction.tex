@@ -13,10 +13,11 @@ Such influential users are called leaders.
 Being crucial for their working, leaders try to stay undetected, for which they use various counter-techniques such as
 network modification by adding or deleting edges, or creating whole new networks from scratch.
 
-In this thesis, we survey covert networks from a perspective of the \HL problem first defined by
+In this thesis, we survey covert networks and hiding inside of them from a perspective of the \HL problem first defined by
 Waniek et al. \cite{Waniek2017} and further studied by various authors \cite{Dey2019,Waniek2021,Mohan2023}.
 More concretely, our main concern is the \HL problem with respect to a degree centrality measure
 and using the framework of parameterized computational complexity.
+We expose the problem to various parameters and see how these parameters affect its computational complexity.
 Profound description of the \HL problem can be found in Chapter \ref{chapter:ProblemStatement}, for introduction to
 the theory of parameterized complexity, please refer to Section \ref{section:ParamComp}.
 
@@ -26,8 +27,8 @@ the theory of parameterized complexity, please refer to Section \ref{section:Par
 
 In this section, we bring a thorough examination of the literature on two topics;
 social network analysis together with covert networks, and parameterized complexity.
-The study of the former topic provides an essential knowedge and useful context for the \HL problem, whereas
-the later topic gives us tools to better reason about \NPh problems, among which, as we will see, the \HL problem definitely belongs.
+The study of the former topic provides an useful context for the \HL problem, whereas
+the later topic gives us tools to better reason about \NPh problems, among which, as we will see, the \HL problem surely belongs.
 
 \subsection{Social network analysis \& covert networks}
 
@@ -44,10 +45,11 @@ Indeed, research in this direction have positive impact on understanding such ha
 shedding light on their inner processes and the most potentially hazardous actors and helping in dismantling the entire network,
 preventing further operations and minimizing damage done.
 The understanding of how a covert network works inside can lead to understanding of how it can be broken.
-Among many others, we mention work of these authors \cite{Waniek2017,Dey2019,Raab2003,Lindelauf2009,Xu2005,Ressler2006}.
+Among many others, we mention work of these authors \cite{Waniek2017,Dey2019,Raab2003,Lindelauf2009,Xu2005,Ressler2006, SaavedraNieves2023}.
 However, as noted by Saavedra-Nieves and Casas-Méndez \cite{SaavedraNieves2023}, this view on covert networks as organizations with harmful
-intends is not the only possible, since the usefulness of Covert network analysis lingers even in handling more global or day-to-day events
-such as studying activist groups \cite{Crossley2012} or even sports teams \cite{Buldú2019}.
+intends is not the only possible, since the usefulness of Covert network analysis lingers even in handling situations
+such as analyzing activist groups \cite{Crossley2012}.
+CNA tools, as an extention of SNA, can be then used even for analyzing sports teams \cite{Buldú2019}.
 
 One of the most used techniques in the SNA toolset, and CNA in particular, are \emph{centrality measures},
 the concept introduced by Bavelas \cite{Bavelas1948},
@@ -80,7 +82,7 @@ the dilemma between staying sufficiently hidden, while keeping enough influence 
 which is the often-mentioned topic in the literature about covert networks \cite{Crossley2012,Waniek2017,Lindelauf2009}.
 However, the ways in which this trade-off is addressed vary in the literature.
 Waniek et al. \cite{Waniek2017}, for example, approach this by modeling the security from the perspective of
-centrality measures (centrality measure based secrecy), whereas the efficiency from the perspective of \emph{models of influence}.
+centrality measures (centrality measure based secrecy), whereas the efficiency from the perspective of models of influence.
 They then show how to construct a network designed specifically to hide its leaders, while
 keeping their ability to influence the rest of the network.
 Lindelauf et al. \cite{Lindelauf2009} on the other hand combine graph theory with game theory to model this dilemma.

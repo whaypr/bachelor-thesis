@@ -6,7 +6,7 @@ This is the main chapter of the thesis.
 On this place, we present our contribution to the topic of the \HL problem.
 We first review a proof of a theorem about \HLdeg from Waniek et al. \cite{Waniek2017} and show
 its correctness for our definition of \HL.
-Then, we present our own proofs for \HLshort regarding various parameters and complexity classes.
+Then, we present our own proofs for \HLdeg regarding various parameters and complexity classes.
 Lastly, we put our results in the context of the work of other authors,
 visualizing all the parameterized complexity results for \HLdeg discovered to date.
 
@@ -273,7 +273,7 @@ We present a proof of the variant with parameter $d$ first.
     as $\hat{A}_D \subseteq \hat{A}$, $\hat{A}_D = E(\overline{G[D]})$.
     Because we take all the possible $d$-element subsets of $F$, we eventually find a subset $D$ such that,
     after addition of new edges, $D = F'$,
-    if $F'$ exists, i.e., if $(\mathcal{I}, d)$ is a $yes$-instance.
+    if such $F'$ exists, i.e., if $(\mathcal{I}, d)$ is a $yes$-instance.
     Then, we try to add $min(|\hat{A}_D|, b) \coloneqq t$ edges between followers from $D$ in each of the $\binom{d}{t} \leq 2^d$ possible ways.
     Note that $t$ can be $b$ because we are not allowed to add more than $b$ edges into $G$.
     From now, only these three situations can occur:
@@ -325,12 +325,12 @@ This proof will be led in a similar manner as Proof \ref{proof:XPd}.
 \begin{proof}
     Given parameterized problem $(\mathcal{I}, b)$, where $\mathcal{I} = (G, L, b, c, d)$ is a \HLdeg instance and $b$ is the parameter,
     we show an algorithm which decides whether or not $(\mathcal{I}, b)$ is a $yes$-instance in time bounded by
-    $f(b) \cdot |(\mathcal{I} b)|^{g(b)}$ for some computable functions $f,g$.
+    $f(b) \cdot |(\mathcal{I}, b)|^{g(b)}$ for some computable functions $f,g$.
 
     We start by picking gradually each of the $\binom{|\hat{A}|}{b} = \Theta(|E(G)|^b)$ $b$-element subsets of
     edges we can add between followers, we denote the current subset as $B$.
-    Because we take all the possible $b$-element subsets of $\hat{A}$, we eventually find a subset $B$ such that $B = W$,
-    of course only if $(\mathcal{I}, b)$ is a $yes$-instance and thus such $W$ exists.
+    Because we take all the possible $b$-element subsets of $\hat{A}$, if $(\mathcal{I}, b)$ is a $yes$-instance and
+    thus such $W$ exists, we eventually find a subset $B$ such that $B = W$.
     Then, we try to add those $B$ edges into $G$ and after each such addition, we check whether there are at least $d$ followers
     with degree greater than $\lambda$. The addition can be done in time $b$, the check can be done in time $|V(G)|$.
 
@@ -344,7 +344,7 @@ This proof will be led in a similar manner as Proof \ref{proof:XPd}.
 \end{proof}
 
 
-% Overview
+%---------------------------------------------------------------
 \section{Overview}
 
 % Figure - overview
