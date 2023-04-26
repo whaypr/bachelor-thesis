@@ -50,8 +50,23 @@ all followers from $F'$ have to reach.
 Lastly, we use symbol $\hat{A}$ to denote a set of edges between followers that are not present in $G$ and thus can be added,
 $\hat{A} = E(\overline{G[F]})$.
 
+Among the first authors who surveyed the topic of evading social network analysis tools, rather than developing the new ones,
+were Waniek et al. \cite[y.~2016]{Waniek2016}.
+This topic was further researched by the same authors in the subsequent work \cite[y.~2017]{Waniek2017}
+in which the \HL problem was first formulated.
+Note that the paper from 2017 was only a preliminary version of the work and the completed paper was
+published later in 2021 \cite[y.~2021]{Waniek2021}.
+
 There are two definitions of the \HL problem in the literature and they differ from each other in some details.
-Namely, the definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
+Namely, the definition\footnote{
+    There is actually also a generalized form of this definition in Waniek's dissertation thesis \cite{WaniekPhD2017},
+    where he also consider a set of edges that can be added and a set of edges that can be removed.
+    However, we consider the first mentioned set to always contain all possible edges and the second mentioned set
+    to be empty, which is also the typical situation in the literature.
+    For this reason, we do not distinguish between these two definitions.
+}
+from Waniek et al. \cite{Waniek2017} and the definition from Dey et al. \cite{Dey2019}.
+The definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
 which is a small difference since for $L = V$ the problem is trivial, but the more important difference is that
 it requires centrality measure of followers $F'$ to be strictly greater than that of any leader,
 $\forall_{f \in F'} \forall_{l \in L} c(G', f) > c(G', l)$.
@@ -74,7 +89,6 @@ which is the exact opposite of what we try to achieve in the \HL problem.
 From this we can see why it makes sense to only allow adding edges into given network --
 because deleting edges incident with leaders violates our requirements on keeping influence of leaders,
 whereas deleting edges incident with followers violates our requirements on making leaders more hidden.
-
 
 Also note that decreasing the value of degree centrality of any given member is a straightforward task
 (unlike decreasing other centralities) as it only consists in cutting edges \cite{Waniek2016}.
