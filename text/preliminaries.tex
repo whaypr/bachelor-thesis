@@ -207,6 +207,27 @@ What follows are the formal definitions of some of these classes, together with 
     For an instance $(x, k) \in \Sigma^* \times \mathbb{N}$, $k$ is called the parameter.
 \end{definition}
 
+% Parameterized reduction
+\begin{definition}[Parameterized reduction]
+    Let $A,B \subseteq \Sigma^* \times \mathbb{N}$ be two parameterized problems.
+    A parameterized reduction from $A$ to $B$ is an algorithm that, given an instance $(x, k)$ of $A$,
+    outputs an instance $(x', k')$ of $B$ such that
+    \begin{description}
+        \item $(x, k)$ is a $yes$-instance of $A$ if and only if $(x', k')$ is a $yes$-instance of $B$,
+        \item $k' \leq g(k)$ for some computable, nondecreasing function $g$, and
+        \item the running time is $f(k) \cdot |x|^{\mathcal{O}(1)}$ for some computable, nondecreasing function $f$.
+    \end{description}
+\end{definition}
+
+We note without a formal proof that if there is a parameterized reduction from $A$ to $B$ and $B$ is FPT,
+then $A$ is FPT as well.
+The other way round, if there is a parameterized reduction from $A$ to $B$ and $A$ is not FPT,
+then $B$ is not FPT as well.
+The second approach is often used to show that certain parameterized problem $T$, which we are interested in,
+with parameter $k$ is not tractable for this parameter.
+This is typically done by finding a parameterized reduction from some \Wh problem to $T$.
+We show such a reduction in Proof \ref{proofDB}.
+
 % FPT problem and class
 \begin{definition}[FPT]
     A parameterized problem $L$ is called fixed-parameter tractable (FPT) if there exists
