@@ -144,7 +144,8 @@ These problems are typically in \Po.
 Informally, complexity class \NP consists of all decision problems that can be solved in polynomial time
 when multiple steps can be done in parallel.
 Alternatively, we can say that in \NP are such problem, that their solution can be verified in polynomial time.
-Note that definitions of classes \Po and \NP differs only in a determinism/nondeterminism of the Turing machine.
+Note that definitions of classes \Po and \NP differs only in a determinism/nondeterminism of the Turing machine
+and so $\Po \subseteq \NP$.
 
 Lastly, let us briefly recall computational complexity terms \emph{hardness} and \emph{completeness}.
 A problem $p$ is, given some complexity class \textsf{C}, \textsf{C-hard} if for any problem $c$ from \textsf{C}
@@ -207,6 +208,8 @@ What follows are the formal definitions of some of these classes, together with 
     For an instance $(x, k) \in \Sigma^* \times \mathbb{N}$, $k$ is called the parameter.
 \end{definition}
 
+One particular problem parameterized by different parameters leads to different parameterized problems.
+
 % Parameterized reduction
 \begin{definition}[Parameterized reduction]
     Let $A,B \subseteq \Sigma^* \times \mathbb{N}$ be two parameterized problems.
@@ -241,6 +244,7 @@ We show such a reduction in Proof \ref{proofDB}.
     $f(k) \cdot |(x,k)|^c$.
 \end{definition}
 The complexity class containing all fixed-parameter tractable problems is called \FPT.
+An example of a problem from \FPT is $k$-\textsc{Vertex Cover}. 
 
 The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent $c$
 in the running time boundary as small as possible.
@@ -259,13 +263,14 @@ on the other hand if $k = 1$, then \FPT become \Po \cite{Koutensky2020}.
     $f(k) \cdot |(x,k)|^{g(k)}$.
 \end{definition}
 The complexity class containing all slice-wise polynomial problems is called \XP.
+An example of a problem from \XP is $k$-\textsc{Independent Set}.
 
-Note that definitions of parameterized problems FTP and XP differs only in a running time boundary of algorithm $\mathcal{A}$.
+Note that definitions of parameterized problems FTP and XP differs only in a running time boundary of algorithm $\mathcal{A}$
+and so $\FPT \subseteq \XP$.
 Although both FPT and XP algorithms run in polynomial time for every fixed value of the parameter,
 the underlying difference between them is that FPT algorithms have the combinatorial explosion
 restricticted to the parameter only, leaving the exponent of the instance size constant, in other words,
 FPT algorithms are more efficient that XP algorithms.
-From this we can see that each problem from \FPT is trivialy also in \XP, $\FPT \subset \XP$.
 
 % para-NP
 \begin{definition}[para-NP]
@@ -280,12 +285,13 @@ From this we can see that each problem from \FPT is trivialy also in \XP, $\FPT 
     $f(k) \cdot |(x,k)|^c$.
 \end{definition}
 The complexity class containing all para-NP problems is called \pNP.
+An example of a problem from \pNP is \textsc{Vertex} $k$-\textsc{Coloring}.
 
 Note that definitions of parameterized problems FTP and para-NP differs only in a determinism/nondeterminism of
-algorithm $\mathcal{A}$.
-Without a formal proof, let us mention a known fact that $\FPT = \pNP \Leftrightarrow \Po = \NP$ \cite[p.~39]{Flum2006}\todo{original source}.
-From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter
-and also that \pNPh problems are not in \XP unless $\Po = \NP$ \cite[p.~41]{Flum2006}\todo{original source}. 
+algorithm $\mathcal{A}$ and so $\FPT \subseteq \pNP$.
+Without a formal proof, let us mention a known fact that $\FPT = \pNP \Leftrightarrow \Po = \NP$ \cite[p.~39]{Flum2006}
+and also that not all \pNP problems are in \XP, $\pNP \not\subseteq \XP$, unless $\Po = \NP$ \cite[p.~41]{Flum2006}\todo{original sources}.
+From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter. 
 
 
 \subsection{W-hierarchy}
