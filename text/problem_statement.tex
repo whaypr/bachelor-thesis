@@ -78,6 +78,9 @@ On the other hand, the name ``\HL'' comes from the original definition by Waniek
 the name is more indicative of the possibility that there are many leaders in the network.
 Later in Section \ref{section:proofRevision}, we show that complexity results for degree centrality from Waniek et al.
 are correct even with this slighty different definition of \HLshort.
+Note that there is also a verion of \HL called \textsc{Minimum Hiding Leaders} \cite{Waniek2021}
+in which is no budget specified as the goal is to find the smallest possible set of connections between the followers
+sufficient to solve the problem.
 
 The motivation behind only adding edges, with no deletion involved, is that we want leaders to maintain
 their existing influence in the network.
@@ -102,11 +105,50 @@ is what stands behind the hardness of the \HL problem, because,
 as Waniek et al. \cite{Waniek2017} shown, and as we will also show in Chapter \ref{chapter:contribution},
 there exist instances of \HLshort where finding a solution corresponds to solving certain \NPh problem.
 
+
+%---------------------------------------------------------------
+\section{Results from the literature}
+
+Here we present literature results for the \HL problem.
+We first take a look on results for the degree centrality measure as it is our main concern, then we
+complement it by results for other centralities.
+For a presentation of our results, please refer fo Section \ref{section:OurResults}.
+
+
+% degree centrality
+\subsection{Results for degree centrality}\label{subsection:ResultsDegree}
+
+Waniek et al. \cite{Waniek2017} show that the \HL problem is \NPc for the degree centrality.
+In more detail, they show that the problem is \Wh when parameterized by $b+d$.
+We review this proof for our definition of \HLshort in Section \ref{section:proofRevision} and present
+a similar result as Theorem \ref{theorem:DB}.
+
 From the work of Dey et al. \cite{Dey2019}, we know that \HLdeg is polynomial time solvable
 if the degree of every leader is bounded by some constant.
-That means that \HLdeg admits a \FPT algorithm when parameterized by degree of leaders.
-Moreover, the authors present a $2$-approximation algorithm for \HLdeg which optimizes
+That means that \HLdeg admits a FPT algorithm when parameterized by degree of leaders, or,
+in other words, when parameterized by $\lambda$.
+In addition to this, the authors present a $2$-approximation algorithm for \HLdeg which optimizes
 the number of edges added.
+They empirically evaluate the algorithm in synthetic networks and conclude that it produces near
+optimal solutions in practice.
 They complement that by proving that if there exists a $(2-\epsilon)$-approximation algorithm
 for the above problem for any constant $0 < \epsilon < 1$, then there exists
 a $(\frac{\epsilon}{2})$-approximation algorithm for the \textsc{Densest} $k$-\textsc{Subgraph} problem.
+
+
+% other centralities
+\subsection{Results for other centralities}
+
+Waniek et al. next show that \HL is \NPc for the closeness \cite{Waniek2017} and betweenness \cite{Waniek2021} centralities.
+In more detail, they show that the problem is \Wh when parameterized by $b$ for both the closeness and the betweenness centralities.
+In addition to this, the authors show that \HL cannot be approximated within a ratio of $(1 - \epsilon ) \cdot ln(|F|)$
+for any $\epsilon > 0$, unless \Po = \NP, with respect to both the closeness and the betweenness centralities. \todo{is this right?}
+
+For the core centrality measure, Dey et al. \cite{Dey2019} next show that \HLshort is \NPc even if core centrality of
+every leader is exactly 3. Meaning that \HLshort is \pNPh when parameterized by the maximum core centrality of leaders.
+In addition to this, the authors prove that \HLshort is polynomial time solvable
+if the core centrality of every leader is at most 1.
+They complement that by proving that there does not exist any $((1 - \alpha) \cdot ln(n))$-approximation algorithm
+for any constant $\alpha \in (0, 1)$ which optimizes the number of edges that one needs to add even
+when the core centrality of every leader is 3.
+ 
