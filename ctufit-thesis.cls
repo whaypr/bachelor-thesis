@@ -517,11 +517,23 @@
 	}{}%
 }
 
-% custom commands
+
+% --------------- %
+% custom commands %
+% --------------- %
+
+% HL
 \newcommand{\HL}{\textsc{Hiding Leaders}\xspace}
 \newcommand{\HLshort}{\textsf{HL}\xspace}
 \newcommand{\HLdeg}{\textsf{HL}$_{deg}$\xspace}
 
+% params
+\newcommand{\leaddeg}{$\lambda$}
+\newcommand{\budget}{$b$}
+\newcommand{\safetymarg}{$d$}
+\newcommand{\leadnum}{$|L|$}
+
+% complexity
 \newcommand{\Po}{\textsf{P}\xspace}
 \newcommand{\NP}{\textsf{NP}\xspace}
 \newcommand{\NPh}{\textsf{NP}-hard\xspace}
@@ -532,16 +544,3 @@
 \newcommand{\Wh}{\textsf{W}[1]-hard\xspace}
 \newcommand{\pNP}{\textsf{para-NP}\xspace}
 \newcommand{\pNPh}{\textsf{para-NP}-hard\xspace}
-
-
-% tmp
-\newcommand{\colors}{1}
-\newcommand{\scoalnum}{2}
-\newcommand{\coalsize}{3}
-\newcommand{\types}{4}
-\newcommand{\coalnum}{5}
-
-\newcommand{\HDGshort}{\textsf{HL}$_{deg}$\xspace}
-%\newcommand{\Wh}{W[1]-hard\xspace}
-%\newcommand{\XP}{\textsf{XP}\xspace}
-%\newcommand{\NPc}{\textsf{NP}-complete\xspace}

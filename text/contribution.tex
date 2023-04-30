@@ -8,7 +8,8 @@ We first review a proof of a theorem about \HLdeg from Waniek et al. \cite{Wanie
 its correctness for our definition of \HL.
 Then, we present our own proofs for \HLdeg regarding various parameters and complexity classes.
 Lastly, we put our results in the context of the work of other authors,
-visualizing all the parameterized complexity results for \HLdeg discovered to date.
+visualizing the parameterized complexity results for \HLdeg discovered both by us and by authors
+from the literature.
 
 
 %---------------------------------------------------------------
@@ -67,7 +68,7 @@ The core idea of the proof is that we construct a network in such way that findi
 correspond to finding a solution of the problem we started with, essentially having the starting network
 present in the constructed network in some manner and then finding a solution inside of it.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:DB}
     \HL parameterized by $b + d$ is \Wh even if $|L| = 1$.
 \end{theorem}
 
@@ -244,27 +245,27 @@ present in the constructed network in some manner and then finding a solution in
 \end{figure}
 
 
-% Corollary
+% Corollaries
 We have just shown that \HL parameterized by $b+d$ is \Wh even with a constant number of leaders.
 We can easily see that \HLshort remains \Wh even when parameterized by $|L|+b+d$.
 This is because the problem is \Wh already for $|L|$ bounded by a constant function,
 hence, bounding it by a nonconstant function will not make the problem easier to solve, leaving it \Wh.
 
-\begin{corollary}
+\begin{remark}\label{cor:LnBD:Wh}
     \HL parameterized by $|L|+b+d$ is \Wh.
-\end{corollary}
+\end{remark}
 
 Following the argument, we can see that \HL is \Wh for any variation of parameters $|L|$, $b$, $d$.
 For example, if we ommit $b$ from the parameter, then $b$ is no longer bounded by a function of the parameter and
 become bounded by a function of the input size, making the problem possibly harder and so leaving it \Wh.
 
-\begin{corollary}
+\begin{corollary}\label{cor:LnBD:variation:Wh}
     \HL parameterized by any variation of $|L|$, $b$, $d$ is \Wh.
 \end{corollary}
 
 By taking $|L|$ as the only parameter, we get the last corollary.
 
-\begin{corollary}
+\begin{corollary}\label{cor:Ln:pNPh}
     \HL is \pNPh with respect to $|L|$.
 \end{corollary}
 
@@ -279,7 +280,7 @@ We now show that there are indeed such algorithms for parameters $b$ and $d$, me
 From this we then show that \HLshort is in \XP even for the other parameter variations.
 Let us present a proof of the variant with parameter $d$ first.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:D:XP}
     \HL parameterized by $d$ is XP.
 \end{theorem}
 
@@ -338,7 +339,7 @@ there can be no FPT algorithm for \HL parameterized by $d$.
 Now we proceed to a proof of the variant with parameter $b$.
 This proof will be led in a similar manner as the previous proof.
 
-\begin{theorem}
+\begin{theorem}\label{theorem:B:XP}
     \HL parameterized by $b$ is XP.
 \end{theorem}
 
@@ -372,87 +373,92 @@ because it is now a part of the parameter, |L| is bounded by a function of the p
 hence the problem is possibly easier to solve.
 From this we get the following.
 
-\begin{corollary}
-    \HL parameterized by any variation of $|L|$, $b$, $d$ is XP.
+\begin{corollary}\label{cor:BD:variation:XP}
+    \HL is in \XP when parameterized by at least $b$ or $d$.
+\end{corollary}
+
+Last, following the same logic and considering the results from Dey et al presented in Subsection \ref{subsection:ResultsDegree},
+we can state the following.
+
+\begin{corollary}\label{cor:Ld:variation:FPT}
+    \HL is in \FPT when parameterized by at least $\lambda$.
 \end{corollary}
 
 %---------------------------------------------------------------
 \section{Overview}
 
-% Figure - overview
-\label{lem:allHDG:FPT:ColorsSize}
-\label{lem:allHDGNash:XP:ColorsStrongNum}
-\label{lem:allHDG:XP:ColorsTypes}
-\label{lem:allHDGNash:XP:ColorsWeakNum}
-\label{lem:allHDG:NPh:TypesNum}
-\label{lem:allHDG:NPh:SizeTypes}
-\label{lem:allHDG:FPT:StrongNumSize}
-\label{lem:allHDG:XP:WeakNumSize}
-\label{lem:allHDG:Wh:ColorsNumTypes}
-\label{lem:allHDG:Wh:SizeTypeNum}
+In this last section, we visualize the results for \HLdeg presented in Section \ref{section:OurResults},
+together with the result for parameter $\lambda$ presented in Subsection \ref{subsection:ResultsDegree}.
+The visualization can be seen in Figure \ref{fig:complexityPicture}.
 
-\begin{figure}[bt]
+% Figure - overview
+\begin{figure}[t]
     \centering
-    \begin{tikzpicture}[node distance=1cm]
-        \tikzstyle{every node} = [minimum height=0.6cm,,minimum width=0.7cm];
-        \tikzstyle{result} = [draw,thick];
-        \tikzstyle{known} = [label={[label distance=-5pt]270:\small{\tt Known}}];
-        \tikzstyle{NPh} = [fill=red!30];
+    \begin{tikzpicture}[node distance=16mm, every node/.style={scale=1.8}]
+        \tikzstyle{every node} = [minimum height=0.7cm,,minimum width=0.9cm];
+        \tikzstyle{result} = [draw, very thick];
+        \tikzstyle{corollary} = [draw,dashed];
+        \tikzstyle{pNPh} = [fill=red!30];
         \tikzstyle{Wh} = [fill=orange!30];
         \tikzstyle{FPT} = [fill=green!30];
-        % singletons
-        \node[NPh,known] (C) at (0, 0) {$\colors$};
-        \node[NPh] (SN) [right=of C] {$\scoalnum$};
-        \node[NPh] (S) [right=of SN] {$\coalsize$};
-        \node[NPh] (T) [right=of S] {$\types$};
-        \node[NPh] (WN) [right=of T] {$\coalnum$};
+
+        \tikzstyle{edgeXP} = [color=orange,-{Stealth[length=3mm]}]
+        \tikzstyle{edgeW} = [color=violet,-{Stealth[length=3mm]}]
+        \tikzstyle{edgeFPT} = [color=green,-{Stealth[length=3mm]}]
+
         % pairs
-        \node[result,FPT,label={[label distance=-5pt]90:\small{\tt T\ref{lem:allHDG:FPT:ColorsSize}}}] (CS) [below left=1 and 0 of C] {$\colors\coalsize$};
-        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt C\ref{lem:allHDGNash:XP:ColorsStrongNum}}}] (CSN) [right=0.15 of CS] {$\colors\scoalnum$};
-        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt T\ref{lem:allHDG:XP:ColorsTypes}}}] (CT) [right=0.15 of CSN] {$\colors\types$};
-        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt T\ref{lem:allHDGNash:XP:ColorsWeakNum}}}] (CWN) [right=0.15 of CT] {$\colors\coalnum$};
-        \node[result,NPh,label={[label distance=-5pt]270:\small{\tt\, T\ref{lem:allHDG:NPh:TypesNum}}}] (SNT) [right=0.15 of CWN] {$\scoalnum\types$};
-        \node[result,NPh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:NPh:SizeTypes}}}] (ST) [right=0.15 of SNT] {$\coalsize\types$};
-        \node[result,NPh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:NPh:TypesNum}}}] (WNT) [right=0.15 of ST] {$\coalnum\types$};
-        \node[result,FPT,label={[label distance=-5pt]90:\small{\tt L\ref{lem:allHDG:FPT:StrongNumSize}}}] (SSN) [right=0.15 of WNT] {$\coalsize\scoalnum$};
-        \node[Wh,result,label={[label distance=-5pt]90:\small{\tt L\ref{lem:allHDG:XP:WeakNumSize}}}] (SWN) [right=0.15 of SSN] {$\coalsize\coalnum$};
+        \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (LnB) at (0,0) {\leadnum, \budget};
+        \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (LnD) [right =of LnB] {\leadnum, \safetymarg};
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnLd) [right =of LnD] {\leadnum, \leaddeg};
+        \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (BD) [right=of LnLd] {\budget, \safetymarg};
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (BLd) [right=of BD] {\budget, \leaddeg};
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (DLd) [right=of BLd] {\safetymarg, \leaddeg};
+        % singletons
+        \node[corollary,pNPh,label={0:\small{\tt C\ref{cor:Ln:pNPh}}}] (Ln) [above=of LnD] {\leadnum};
+        \node[result,Wh,label={0:\small{\tt T\ref{theorem:B:XP}}}] (B) [right=of Ln] {\budget};
+        \node[result,Wh,label={0:\small{\tt T\ref{theorem:D:XP}}}] (D) [right=of B] {\safetymarg};
+        \node[FPT,label={0:\small{\tt B\cite{Dey2019}}}] (Ld) [right=of D] {\leaddeg};
         % triplets
-        \node[FPT] (CSSN) [below=1 of CS] {$\colors\coalsize\scoalnum$};
-        \node[FPT] (CSWN) [right=0.25 of CSSN] {$\colors\coalsize\coalnum$};
-        \node[FPT] (CST) [right=0.25 of CSWN] {$\colors\coalsize\types$};
-        \node[result,Wh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:Wh:ColorsNumTypes}}}] (CSNT) [right=0.25 of CST] {$\colors\scoalnum\types$};
-        \node[Wh] (CWNT) [right=0.25 of CSNT] {$\colors\coalnum\types$};
-        \node[FPT] (SSNT) [right=0.25 of CWNT] {$\coalsize\scoalnum\types$};
-        \node[result,Wh,label={[label distance=-5pt]270:\small{\tt T\ref{lem:allHDG:Wh:SizeTypeNum}}}] (SWNT) [right=0.25 of SSNT] {$\coalsize\coalnum\types$};
-        % quadruplets
-        \node[FPT] (CSSNT) [below right=1 and 0.25 of CSWN] {$\colors\coalsize\scoalnum\types$};
-        \node[FPT] (CSWNT) [right=of CSSNT] {$\colors\coalsize\coalnum\types$};
+        \node[result,Wh,label={0:\small{\tt T\ref{theorem:DB}}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnBLd) [right=of LnBD] {\leadnum, \budget, \leaddeg};
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnDLd) [right=of LnBLd] {\leadnum, \safetymarg, \leaddeg};
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (BDLd) [right=of LnDLd] {\budget, \safetymarg, \leaddeg};
+        %quad
+        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnBDLd) [below=of LnBLd] {\leadnum, \budget, \safetymarg, \leaddeg};
         % edges
-        \draw[->] (SSN.south) -- (SSNT.north);
-        \draw[->] (CS.south) -- (CSSN.north);
-        \draw[->] (CS.south) -- (CSWN.north);
-        \draw[->] (CS.south) -- (CST.north);
-        \draw[->] (CST.south) -- (CSSNT.north);
-        \draw[->] (CST.south) -- (CSWNT.north);
-        \draw[->] (ST.north) -- (S.south);
-        \draw[->] (ST.north) -- (T.south);
-        \draw[->] (SNT.north) -- (SN.south);
-        \draw[->] (WNT.north) -- (WN.south);
-        \draw[<->] (CSNT.north) -- (CT.south);
-        \draw[->] (CSNT.north) -- (CSN.south);
-        \draw[->] (3.7,0 |- CSNT.south east) .. controls +(down:5mm) and +(down:5mm) .. (CWNT.south);
-        \draw[<->] (CWNT.north) -- (CWN.south);
-        \draw[<->] (SWNT.north) -- (SWN.south);
+        \draw[->,edgeXP] (B.225) -- (LnB.135);
+        \draw[->,edgeXP] (D.225) -- (LnD.135);
+        \draw[->,edgeXP] (D.225) -- (BD.135);    
+        \draw[->,edgeXP] (BD.225) -- (LnBD.135);
+        
+        \draw[->,edgeW] (LnBD.45) -- (LnB.315);
+        \draw[->,edgeW] (LnBD.45) -- (LnD.315);
+        \draw[->,edgeW] (LnBD.45) -- (BD.315);
+        \draw[->,edgeW] (BD.45) -- (B.315);
+        \draw[->,edgeW] (BD.45) -- (D.315);
+
+        \draw[->,edgeFPT] (Ld.225) -- (LnLd.135);
+        \draw[->,edgeFPT] (Ld.225) -- (BLd.135);
+        \draw[->,edgeFPT] (Ld.225) -- (DLd.135);
+        \draw[->,edgeFPT] (LnLd.225) -- (LnBLd.135);
+        \draw[->,edgeFPT] (LnLd.225) -- (LnDLd.135);
+        \draw[->,edgeFPT] (LnLd.225) -- (BDLd.135);
+        \draw[->,edgeFPT] (LnBLd.225) -- (LnBDLd.135);
     \end{tikzpicture}
     \caption{
-        The complexity picture for \HDGshort for both Nash and individual stability.
+        The complexity picture for the \HL problem given the degree centrality measure, \HLdeg.
         Combinations of parameters which give rise to fixed-parameter algorithms are highlighted in green,
-        while combinations for which \HDGshort is \Wh but in \XP are highlighted in orange and \NPc combinations
+        while combinations for which \HLdeg is \Wh but in \XP are highlighted in orange and \pNP combinations
         are highlighted in red.
-        Results explicitly proved in this work are represented by a black box and a reference to the given theorem,
-        corollary or lemma.
+        Results explicitly proved in this work are represented by a black solid border,
+        their corollaries are represented by a black dashed border and
+        results from the literature does not have any border.
+        Each node have a reference to the corresponding theorem, remark, corollary or bibliography record.
+        Arrows represent how complexity results spread.
+        Green arrows represent \FPT class, orange arrows represent \XP class
+        and violet arrows represent \W-hardness.
+        When multiple arrows would aim to the same node, then only one a only that for the best complexity class is displayed.  
     }
     \label{fig:complexityPicture}
 \end{figure}
-\todo{todo}
 %---------------------------------------------------------------
