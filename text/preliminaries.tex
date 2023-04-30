@@ -21,6 +21,7 @@ For a thorough revision on this topic, please refer the graph theory textbook fr
     Set $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
     Sets of all vertices $V$ and edges $E$ of graph $G$ are in general denoted by $V(G)$ and $E(G)$ respectively.
 \end{definition}
+
 We use a standard graph definition, where graphs are undirected (edges are not ordered),
 unweighted (edges has uniformed ``value''), without loops (edges are pairs of distinct vertices) and
 without multiple edges (edges are unique pairs).
@@ -36,6 +37,7 @@ and edges represents a, in some sense, connection between two given members, e.g
     In other words, it is the number of edges vertex $v$ is a part of, i.e.,
     $\Big|\{x \in V(G) \vert \{v,x\} \in E(G) \vee \{x,v\} \in E(G)\}\Big|$.
 \end{definition}
+
 The number of neighbors of some vertex $v$ can be also denoted as $N(v)$, thus $deg(v) = N(v)$.
 
 % r-regular graph
@@ -90,6 +92,7 @@ Here are definitions of some common \NPh graph problems we will refer to.
     Given graph $G$, the $k$-\textsc{Clique} problem is to determine if
     there exists a clique $C$ in $G$ where $|V(C)| = k$.
 \end{definition}
+
 There are many other graph problems related to cliques. The $k$-\textsc{Clique} problem is a decision problem but
 there are also optimization variants, for example the \textsc{Maximum Clique} problem.
 
@@ -99,6 +102,7 @@ there are also optimization variants, for example the \textsc{Maximum Clique} pr
     the vertex cover $M$ that there is no other vertex cover $N$ with fewer vertices than $M$, i.e., 
     $(\nexists N)(|N| < |M|)$.
 \end{definition}
+
 Do not confuse \emph{minimum vertex cover} from the \textsc{Minimum Vertex Cover} problem defined above with \emph{minimal vertex cover},
 which is the vertex cover such that any of its non-trivial subsets is not a vertex cover.
 Every \emph{minimum vertex cover} is also \emph{minimal vertex cover} but not necessarily vice versa.
@@ -132,15 +136,16 @@ can be found in the textbook from Garey and Johnson \cite{Garey1990}.
     Complexity class \Po is a set of all languages $L$ for which there is a polynomial time DTM program $M$
     such that $L$ is recognized by $M$.
 \end{definition}
+
 Informally, complexity class \Po consists of all decision problems that can be solved in polynomial time.
 Problems for which exists in practice efficient enough algorithm are called \emph{tractable}.
-These problems are typically in \Po.
 
 % NP
 \begin{definition}[\NP]
     Complexity class \NP is a set of all languages $L$ for which there is a polynomial time NDTM program $M$
     such that $L$ is recognized by $M$.
 \end{definition}
+
 Informally, complexity class \NP consists of all decision problems that can be solved in polynomial time
 when multiple steps can be done in parallel.
 Alternatively, we can say that in \NP are such problem, that their solution can be verified in polynomial time.
@@ -243,6 +248,7 @@ We show such a reduction in Proof \ref{proofDB}.
     the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
     $f(k) \cdot |(x,k)|^c$.
 \end{definition}
+
 The complexity class containing all fixed-parameter tractable problems is called \FPT.
 An example of a problem from \FPT is $k$-\textsc{Vertex Cover}. 
 
@@ -262,6 +268,7 @@ on the other hand if $k = 1$, then \FPT become \Po \cite{Koutensky2020}.
     the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
     $f(k) \cdot |(x,k)|^{g(k)}$.
 \end{definition}
+
 The complexity class containing all slice-wise polynomial problems is called \XP.
 An example of a problem from \XP is $k$-\textsc{Independent Set}.
 
@@ -284,6 +291,7 @@ FPT algorithms are more efficient that XP algorithms.
     the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
     $f(k) \cdot |(x,k)|^c$.
 \end{definition}
+
 The complexity class containing all para-NP problems is called \pNP.
 An example of a problem from \pNP is \textsc{Vertex} $k$-\textsc{Coloring}.
 
