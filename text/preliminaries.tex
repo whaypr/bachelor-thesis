@@ -205,9 +205,53 @@ However, we can (and we actually do) express the parameterization by $k$ and $l$
 
 The two most fundamental complexity classes of this theory, used to reason about the complexity of parameterized problems,
 are \FPT and \XP.
-To distinguish between \NPh problems that are in \XP but not in \FPT, we can use another set of complexity classes, the W-hierarchy.
-There is also complexity class called \pNP.
-What follows are the formal definitions of some of these classes, together with definition of parameterized problem.   
+To distinguish between \NPh problems that are in \XP but not in \FPT, we can use another set of complexity classes, the \W-hierarchy.
+There is also a complexity class called \pNP.
+What follows are the formal definitions of some of these classes, together with definitions of parameterized problem
+and parameterized reduction.
+The hierarchy of the classes can be seen in Figure \ref{fig:complexityClasses}.
+
+
+% Figure - complexity classes
+\begin{figure}[t]
+    \centering
+    \begin{tikzpicture}
+        \pgftransformscale{.8}
+        %% Horizontal bar
+        \draw[very thick] (6,0) -- (-6,0);
+        % FPT
+        \draw (-2,0) parabola bend (0,2) (2,0);
+        \node at (0,1) {\FPT};
+        % W[1]
+        \draw (-2.5,0) parabola bend (0,3) (2.5,0);
+        \node at (0,2.5) {\textsf{W}[1]};
+        % W[2]
+        \draw (-3,0) parabola bend (0,4) (3,0);
+        \node at (0,3.5) {\textsf{W}[2]};
+        % % W[t]
+        \draw (-4,0) parabola bend (0,6) (4,0);
+        \node[anchor=north] at (0,5.8) {
+            \begin{tabular}{c}
+                \textsf{W}[$t$] \\
+                $\vdots$ \\
+            \end{tabular}
+        };
+        % XP
+        \draw[rounded corners] (-6,0) .. controls (-1,8) and (9,17) .. (6,0);
+        \node at (4,8) {\XP};
+        % para-NP
+        \draw[rounded corners] (6,0) .. controls (1,8) and (-9,17) .. (-6,0);
+        \node at (-4,8) {\pNP};
+    \end{tikzpicture}
+    \caption
+    [Relations among the parameterized complexity classes]
+    {
+        Relations among the parameterized complexity classes.
+        Inspired by the depiction from Flum and Grohe \cite[p.~97]{Flum2006}.
+    }
+    \label{fig:complexityClasses}
+\end{figure}
+
 
 % Parameterized problem
 \begin{definition}[Parameterized problem]
