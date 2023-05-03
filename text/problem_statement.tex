@@ -30,7 +30,7 @@ an explanation of its hardness, an introduction to notation we use and a present
     \end{itemize}
     Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
     such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
-    whose centrality must be at least as high as the centrality of any leader, that is
+    whose centrality must be at least as high as the centrality of any leader, that is,
     $$|W| \leq b$$
     and
     $$\exists_{F' \subseteq F} |F'| \geq d \wedge \forall_{f \in F'} \forall_{l \in L} c(G', f) \geq c(G', l).$$
@@ -107,12 +107,12 @@ there exist instances of \HLshort where finding a solution corresponds to solvin
 
 
 %---------------------------------------------------------------
-\section{Results from the literature}
+\section{State of the art}
 
 Here we present literature results for the \HL problem.
 We first take a look on results for the degree centrality measure as it is our main concern, then we
 complement it by results for other centralities.
-For a presentation of our results, please refer fo Section \ref{section:OurResults}.
+For a presentation of our results, please refer to Section \ref{section:OurResults}.
 
 
 % degree centrality
@@ -125,7 +125,7 @@ a similar result as Theorem \ref{theorem:DB}.
 
 From the work of Dey et al. \cite{Dey2019}, we know that \HLdeg is polynomial time solvable
 if the degree of every leader is bounded by some constant.
-That means that \HLdeg admits a FPT algorithm when parameterized by degree of leaders, or,
+That means that \HLdeg admits an FPT algorithm when parameterized by degree of leaders, or,
 in other words, when parameterized by $\lambda$.
 In addition to this, the authors present a $2$-approximation algorithm for \HLdeg which optimizes
 the number of edges added.

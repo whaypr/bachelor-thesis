@@ -28,7 +28,7 @@ The idea is following: In a polynomial time, construct a new graph $H$ from $G$ 
 in order to solve \HL in $H$ we must solve $k$-\textsc{Clique} in $G$ in the first place.
 To achieve that, the authors, as a starting point of $H$, first create a complement of $G$ 
 where all vertices are marked as followers. This will be the only followers in final $H$.
-This initial construction assures that every possible solution of \HLshort will only consists of edges from $G$, i.e.,
+This initial construction assures that every possible solution of \HLshort will only consists of edges from $G$, that is,
 $W \subseteq E(G)$ (and $F' \subseteq V(G)$).
 Next, they add two types of leaders into $H$, each type with a different purpose.
 Leaders of the first type act like ``regularizators'' as their only job is to connect with followers (in some way) and,
@@ -81,12 +81,12 @@ present in the constructed network in some manner and then finding a solution in
     Then, we construct a graph $H$ in the following way:
     \begin{enumerate}
         \item Start with an empty graph $H$.
-        \item Add all vertices from $G$, i.e., $V(H) \leftarrow V(G)$, mark these vertices as $F_1$.
-        \item Add all edges from $\overline{G}$, i.e., $E(H) \leftarrow E(\overline{G})$.
-        \item Add an extra vertex $\ell$, i.e., $V(H) \leftarrow V(H) \cup \{\ell\}$.
+        \item Add all vertices from $G$, \emph{i.e.}, $V(H) \leftarrow V(G)$, mark these vertices as $F_1$.
+        \item Add all edges from $\overline{G}$, \emph{i.e.}, $E(H) \leftarrow E(\overline{G})$.
+        \item Add an extra vertex $\ell$, \emph{i.e.}, $V(H) \leftarrow V(H) \cup \{\ell\}$.
         \item Add an edge between vertex $\ell$ and $n - r + (k - 1) = \lambda$ arbitrarily chosen vertices $X \subset F_1$,
-              i.e., $E(H) \leftarrow E(H) \cup \{ (\ell, x) \mid x \in X \}$.
-        \item For each vertex $v \in V(H) \setminus X \eqqcolon Y$, introduce a new vertex $w_v$ and add edge $\{v, w_v\}$, i.e.,
+        \emph{i.e.}, $E(H) \leftarrow E(H) \cup \{ (\ell, x) \mid x \in X \}$.
+        \item For each vertex $v \in V(H) \setminus X \eqqcolon Y$, introduce a new vertex $w_v$ and add edge $\{v, w_v\}$, \emph{i.e.},
               $V(H) \leftarrow V(H) \cup \{ w_v \mid v \in Y \}$ and $E(H) \leftarrow E(H) \cup \{ (v, w_v) \mid v \in Y \}$,
               mark the set of $w_v$ for each $v \in Y$ as $F_2$.
     \end{enumerate}
@@ -294,7 +294,7 @@ Let us present a proof of the variant with parameter $d$ first.
     as $\hat{A}_D \subseteq \hat{A}$, $\hat{A}_D = E(\overline{G[D]})$.
     Because we take all the possible $d$-element subsets of $F$, we eventually find a subset $D$ such that,
     after addition of new edges, $D = F'$,
-    if such $F'$ exists, i.e., if $(\mathcal{I}, d)$ is a $yes$-instance.
+    if such $F'$ exists, that is, if $(\mathcal{I}, d)$ is a $yes$-instance.
     Then, we try to add $min(|\hat{A}_D|, b) \coloneqq t$ edges between followers from $D$ in each of the $\binom{d}{t} \leq 2^d$ possible ways.
     Note that $t$ can be $b$ because we are not allowed to add more than $b$ edges into $G$.
     From now, only these three situations can occur:
