@@ -540,7 +540,8 @@
 \newcommand{\NPc}{\textsf{NP}-complete\xspace}
 \newcommand{\FPT}{\textsf{FPT}\xspace}
 \newcommand{\XP}{\textsf{XP}\xspace}
-\newcommand{\W}{\textsf{W}[1]\xspace}
+\newcommand{\W}{\textsf{W}\xspace}
+\newcommand{\Wone}{\textsf{W}[1]\xspace}
 \newcommand{\Wh}{\textsf{W}[1]-hard\xspace}
 \newcommand{\pNP}{\textsf{para-NP}\xspace}
 \newcommand{\pNPh}{\textsf{para-NP}-hard\xspace}

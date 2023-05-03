@@ -299,10 +299,10 @@ Note that definitions of parameterized problems FTP and para-NP differs only in 
 algorithm $\mathcal{A}$ and so $\FPT \subseteq \pNP$.
 Without a formal proof, let us mention a known fact that $\FPT = \pNP \Leftrightarrow \Po = \NP$ \cite[p.~39]{Flum2006}
 and also that not all \pNP problems are in \XP, $\pNP \not\subseteq \XP$, unless $\Po = \NP$ \cite[p.~41]{Flum2006}\todo{original sources}.
-From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter. 
+From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter.
 
 
-\subsection{W-hierarchy}
+\subsection{\W-hierarchy}
 
 As stated by Cygan et al. \cite[p.~423]{Cygan2015},
 there are thousands of natural problems which are \NPc and which are reducible to each other,
@@ -311,20 +311,20 @@ they occupy the same level of hardness.
 However, we cannot say the same when talking about parameterized problems as it seems there are
 different levels of hardness for such problems and, in this sense, even basic problems
 seem to be differently hard as they occupy different hardness levels.
-For this reason, W-hierarchy was introduced by Downey and Fellows \cite{Downey1999} as
+For this reason, \W-hierarchy was introduced by Downey and Fellows \cite{Downey1999} as
 an attempt to shed a light on these apparent differences in hardness of parameterized problems. 
 
-The levels of W-hierarchy are marked as W[$t$] for $t \in \mathbb{N} \wedge t \geq 0$,
+The levels of \W-hierarchy are marked as \textsf{W}[$t$] for $t \in \mathbb{N} \wedge t \geq 0$,
 where each level represents its own complexity class.
-The most important level for us will be W[1].
+The most important level for us will be \Wone.
 The $k$-\textsc{Clique}, \textsc{Independent Set} and \textsc{Partial Vertex Cover} problems
-are examples of W[1]-complete problems.
+are examples of \Wone-complete problems.
 
-We will not provide the exact definition and further description of W-hierarchy
+We will not provide the exact definition and further description of \W-hierarchy
 because it is not important for the purposes of this work.
 On the other hand, what is important is a fact that we interpret the \W-hardness as an evidence that
 a problem is not fixed-parameter tractable.
-This interpretation is based on a general assumption that $\FPT \neq \W$.
+This interpretation is based on a general assumption that $\FPT \neq \Wone$.
 Further, this assumption is implied by the Exponential Time Hypothesis -- unproven conjecture,
 formulated by Impagliazzo and Paturi \cite{Impagliazzo1999}, saying that there is no
 algorithm subexponential in the number of variables for the $3$-\textsc{SAT} problem.
