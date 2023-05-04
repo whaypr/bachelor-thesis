@@ -7,7 +7,8 @@ social network analysis together with covert networks, and parameterized complex
 The study of the former topic provides an useful context for the \HL problem, whereas
 the later topic gives us tools to better reason about \NPh problems, among which, as we will see, the \HL problem surely belongs.
 
-\subsection{Social network analysis \& covert networks}
+%---------------------------------------------------------------
+\section{Social network analysis \& covert networks}
 
 First of all, we mention the publication from Morselli \cite{Morselli2009} that the reader can refer to get
 an extensive study of criminal networks.
@@ -41,21 +42,21 @@ For the sake of completion, we also mention there exist centrality measures on e
 The two aforementioned algorithms are more reviewed by Ficara et al. \cite{Ficara2021}.
 
 After detecting influential members within given network using centrality measures,
-we want to often talk about their influence in this networks.
-For this, various \emph{models of influence} can be used.
+it is often desirable to talk about their influence in this networks, for which
+various \emph{models of influence} can be used.
 Among frequently used models belong the \emph{Independent Cascade} model and \emph{Linear Threshold} model.
 More on this topic can be found in chapter four of the book from Shakarian et al. \cite{Shakarian2015}.
 
-Apart from centrality measures, there are other important tools SNA has to offer.
+Apart from the centrality measures, there are other important tools SNA has to offer.
 One of them are \emph{node similarity measures} which are with advantage used in \emph{link prediction} \cite{Zhou2009,Wang2014}.
-Link prediction methods also play an important part of research of covert networks
-as they allow us to predict the existence of otherwise hidden connections between members, potentially leading to
-better indentification of important members and relations between them.
+Link prediction also plays an important part of research of covert networks
+as it allows to predict the existence of otherwise hidden connections between members, potentially leading to
+identification of important members and relations between them.
 This is why covert network users might want to manipulate the network to minimize efficiency of such techniques \cite{Zhou2019}.
 Besides CNA, link prediction have other useful applications for example in recommendation systems \cite{Huang2005,Talasu2017}.
 
 Next, we mention that leaders of covert networks often (but not always \cite{Fatih2012}) face what is called
-\emph{efficiency/security trade-off} \cite{Morselli2007} --
+the \emph{efficiency/security trade-off} \cite{Morselli2007} --
 the dilemma between staying sufficiently hidden, while keeping enough influence over the network --
 which is the often-mentioned topic in the literature about covert networks \cite{Crossley2012,Waniek2017,Lindelauf2009}.
 However, the ways in which this trade-off is addressed vary in the literature.
@@ -63,7 +64,7 @@ Waniek et al. \cite{Waniek2017}, for example, approach this by modeling the secu
 centrality measures (centrality measure based secrecy), whereas the efficiency from the perspective of models of influence.
 They then show how to construct a network designed specifically to hide its leaders, while
 keeping their ability to influence the rest of the network.
-Lindelauf et al. \cite{Lindelauf2009} on the other hand combine graph theory with game theory to model this dilemma.
+Lindelauf et al. \cite{Lindelauf2009}, on the other hand, combine graph and game theory to model this dilemma.
 
 When studying covert networks, we often talk about two parties, \emph{evaders} and \emph{seekers};
 evaders are members (often leaders) of some covert network;
@@ -73,17 +74,22 @@ the efficiency/security dilemma.
 However, when talking about seekers and evaders, authors typically consider these three scenarios:
 (i) Evaders act unstrategically in the sense that they are unaware of
 the existence of seekers and SNA tools, centrality measures in particular, seekers use to reveal them;
-(ii) Evaders behave as strategic actors, well-awared of the centrality analysis seekers use against them \cite{Waniek2017,Dey2019,Dey2020}.
+(ii) Evaders behave as strategic actors, well-awared of the centrality analysis seekers use against them \cite{Waniek2016,Waniek2017,Dey2019,Dey2020}.
 (iii) Both seekers and evaders are strategic.
 To this end, we mention the work from Waniek et al. \cite[y.~2021]{Waniek2021} in which the authors propose
 a strategy which tells the seekers which centrality measures they should use to maximize the chances of detecting
 a leader of a covert network.
 
 In the terminology of this section, the \HL problem describes a covert network consisting of strategic leaders
-that are trying to evade being detected by use of centrality measuring techniques,
-for which they modify their network by adding new connections between network members. 
+in the role of evaders, which are trying to evade being detected by the use of centrality measuring techniques,
+for which they modify their network by adding new connections between network members.
+The leaders do not delete any edges because they face the efficiency/security trade-off and
+deleting edges may decrease their efficiency in the network.
+The problem is not bound with any influence model and hence can be study independently of it.
 
-\subsection{Parameterized computational complexity}
+
+%---------------------------------------------------------------
+\section{Parameterized computational complexity}
 
 What follows is a sumamry of the literature on the topic of parameterized complexity.
 For an introduction to the topic itself, please refer to Section \ref{section:ParamComp}.
