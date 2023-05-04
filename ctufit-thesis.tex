@@ -46,11 +46,28 @@
 \ctufitdeclarationplace{Prague} % replace with the place where you sign the declaration
 \ctufitdeclarationdate{\today} % replace with the date of signature of the declaration
 \ctufitabstractENG{
-    This thesis provides an introduction to the topic of covert networks and their analysis, with emphasis on the \HL problem.
-    We study the problem with respect to the degree centrality measure and using the framework of parameterized computational
-    complexity theory.
-    We analyze results on this topic provided in the literature and survey them from the perspective of the parameterized complexity.
-    We then bring new results to the domain and visualize both our results and results from other authors in an overviewing graph.
+    In this thesis, we provide an introduction to the topic of covert networks and their analysis,
+    with emphasis on the \HL problem,
+    which we study with respect to the degree centrality measure
+    and using the framework of parameterized computational complexity.
+
+    We analyze results on this topic provided in the literature and survey them from the
+    new perspective of the parameterized complexity.
+    We also point out there are multiple definitions of the problem
+    and review some of the results from the literature with respect to the definition we have picked.
+
+    We then bring new results to the domain by showing that
+    the problem is \Wh when parameterized by $b+d$ even when $|L|=1$, and \pNPh when parameterized by $|L|$,
+    where $b$ denotes a number of edges allowed to be added into given network,
+    $d$ denotes a number of followers needed to have centrality at least as high as any of leaders
+    and $L$ denotes a set of leaders.
+    We also show that the problem is in \XP when parameterized by $b$ or $d$.
+
+    In the end, we put together our results and their corollaries -- for parameters $|L|$, $b$, $d$ --
+    and results from the literature -- for parameter $\lambda$, where $\lambda$ denotes a maximum degree among leaders --
+    and visualize them altogether in an overviewing graph,
+    providing an easily accessible summary of the current state of the research of optimally solving \HL
+    given the degree centrality and the four aforementioned parameters.
 }
 \ctufitabstractCZE{
     \todo{Fill in abstract of this thesis in Czech language}
