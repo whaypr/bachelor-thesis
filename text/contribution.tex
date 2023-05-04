@@ -394,13 +394,13 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
 % Figure - overview
 \begin{figure}[t]
     \centering
-    \begin{tikzpicture}[node distance=16mm, every node/.style={scale=1.8}]
-        \tikzstyle{every node} = [minimum height=0.7cm,,minimum width=0.9cm];
+    \begin{tikzpicture}[node distance=18mm]
+        \tikzstyle{every node} = [minimum height=0.7cm,minimum width=0.9cm,scale=1.3];
         \tikzstyle{result} = [draw, very thick];
         \tikzstyle{corollary} = [draw,dashed];
         \tikzstyle{pNPh} = [fill=red!30];
         \tikzstyle{Wh} = [fill=orange!30];
-        \tikzstyle{FPT} = [fill=green!30];
+        \tikzstyle{XP} = [fill=green!30];
 
         \tikzstyle{edgeXP} = [color=orange,-{Stealth[length=3mm]}]
         \tikzstyle{edgeW} = [color=violet,-{Stealth[length=3mm]}]
@@ -409,22 +409,14 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
         % pairs
         \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (LnB) at (0,0) {\leadnum, \budget};
         \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (LnD) [right =of LnB] {\leadnum, \safetymarg};
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnLd) [right =of LnD] {\leadnum, \leaddeg};
-        \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (BD) [right=of LnLd] {\budget, \safetymarg};
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (BLd) [right=of BD] {\budget, \leaddeg};
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (DLd) [right=of BLd] {\safetymarg, \leaddeg};
+        \node[corollary,Wh,label={0:\small{\tt C\ref{cor:LnBD:variation:Wh}}}] (BD) [right=of LnD] {\budget, \safetymarg};
         % singletons
-        \node[corollary,pNPh,label={0:\small{\tt C\ref{cor:Ln:pNPh}}}] (Ln) [above=of LnD] {\leadnum};
-        \node[result,Wh,label={0:\small{\tt T\ref{theorem:B:XP}}}] (B) [right=of Ln] {\budget};
-        \node[result,Wh,label={0:\small{\tt T\ref{theorem:D:XP}}}] (D) [right=of B] {\safetymarg};
-        \node[FPT,label={0:\small{\tt B\cite{Dey2019}}}] (Ld) [right=of D] {\leaddeg};
+        \node[result,Wh,label={0:\small{\tt T\ref{theorem:B:XP}}}] (B) [above left=18mm and 2mm of LnD] {\budget};
+        \node[result,Wh,label={0:\small{\tt T\ref{theorem:D:XP}}}] (D) [above right=18mm and 2mm of LnD] {\safetymarg};
+        \node[corollary,pNPh,label={0:\small{\tt C\ref{cor:Ln:pNPh}}}] (Ln) [left=of B] {\leadnum};
+        \node[XP,label={0:\small{\tt B\cite{Dey2019}}}] (Ld) [right=of D] {\leaddeg};
         % triplets
         \node[result,Wh,label={0:\small{\tt T\ref{theorem:DB}}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnBLd) [right=of LnBD] {\leadnum, \budget, \leaddeg};
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnDLd) [right=of LnBLd] {\leadnum, \safetymarg, \leaddeg};
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (BDLd) [right=of LnDLd] {\budget, \safetymarg, \leaddeg};
-        %quad
-        \node[corollary,FPT,label={0:\small{\tt C\ref{cor:Ld:variation:FPT}}}] (LnBDLd) [below=of LnBLd] {\leadnum, \budget, \safetymarg, \leaddeg};
         % edges
         \draw[->,edgeXP] (B.225) -- (LnB.135);
         \draw[->,edgeXP] (D.225) -- (LnD.135);
@@ -436,19 +428,13 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
         \draw[->,edgeW] (LnBD.45) -- (BD.315);
         \draw[->,edgeW] (BD.45) -- (B.315);
         \draw[->,edgeW] (BD.45) -- (D.315);
-
-        \draw[->,edgeFPT] (Ld.225) -- (LnLd.135);
-        \draw[->,edgeFPT] (Ld.225) -- (BLd.135);
-        \draw[->,edgeFPT] (Ld.225) -- (DLd.135);
-        \draw[->,edgeFPT] (LnLd.225) -- (LnBLd.135);
-        \draw[->,edgeFPT] (LnLd.225) -- (LnDLd.135);
-        \draw[->,edgeFPT] (LnLd.225) -- (BDLd.135);
-        \draw[->,edgeFPT] (LnBLd.225) -- (LnBDLd.135);
     \end{tikzpicture}
-    \caption{
+    \caption
+    [Overviewing graph with results for \HLdeg]
+    {
         The complexity picture for the \HL problem given the degree centrality measure, \HLdeg.
-        Combinations of parameters which give rise to fixed-parameter algorithms are highlighted in green,
-        while combinations for which \HLdeg is \Wh but in \XP are highlighted in orange and \pNP combinations
+        Combinations of parameters which give rise to XP algorithms are highlighted in green,
+        while combinations for which \HLdeg is \Wh but still in \XP are highlighted in orange and \pNP combinations
         are highlighted in red.
         Results explicitly proved in this work are represented by a black solid border,
         their corollaries are represented by a black dashed border and
