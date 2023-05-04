@@ -1,10 +1,13 @@
 %---------------------------------------------------------------
-\chapter{Problem statement}\label{chapter:ProblemStatement}
+\chapter{Problem statement and analysis}\label{chapter:ProblemStatement}
 %---------------------------------------------------------------
 
 Now we define the central problem of this thesis, the \HL problem.
-We also provide a detailed description of the problem, a motivation behind its formulation,
-an explanation of its hardness, an introduction to notation we use and a presentation of results from the literature. 
+In this chapter, we also provide an introduction to notation we use,
+a detailed description of the problem, a motivation behind its formulation, an explanation of its hardness
+and a review of the literature on this topic with a description of differences between problem definitions
+and with a presentation of the literature results.
+
 
 \vspace{2.5mm}
 \begin{tcolorbox}[
@@ -55,22 +58,30 @@ were Waniek et al. \cite[y.~2016]{Waniek2016}.
 This topic was further researched by the same authors in the subsequent work \cite[y.~2017]{Waniek2017}
 in which the \HL problem was first formulated.
 Note that the paper from 2017 was only a preliminary version of the work and the completed paper was
-published later in 2021 \cite[y.~2021]{Waniek2021}.
+published later in 2021 \cite[y.~2021]{Waniek2021full}.
+There was formulated also a version of the \HL problem called \textsc{Minimum Hiding Leaders} in the completed paper
+in which there is no budget specified, as the goal is to find the smallest possible set of connections between the followers
+sufficient to solve the problem.
+In another work from 2021 \cite{Waniek2021}, Waniek et al. studied a problem similar to the \HL problem,
+which is called \textsc{Local Hiding}.
+The \HL problem was then also studied by Dey and Medya \cite{Dey2019} in 2019.
+
 
 There are two definitions of the \HL problem in the literature and they differ from each other in some details.
 Namely, the definition\footnote{
     There is actually also a generalized form of this definition in Waniek's dissertation thesis \cite{WaniekPhD2017},
+    similar to the definition of \textsc{Local Hiding},
     where he also consider a set of edges that can be added and a set of edges that can be removed.
     However, we consider the first mentioned set to always contain all possible edges and the second mentioned set
     to be empty, which is also the typical situation in the literature.
     For this reason, we do not distinguish between these two definitions.
 }
-from Waniek et al. \cite{Waniek2017} and the definition from Dey et al. \cite{Dey2019}.
+from Waniek et al. \cite{Waniek2017} and the definition from Dey and Medya \cite{Dey2019}.
 The definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
 which is a small difference since for $L = V$ the problem is trivial, but the more important difference is that
 it requires centrality measure of followers $F'$ to be strictly greater than that of any leader,
 $\forall_{f \in F'} \forall_{l \in L} c(G', f) > c(G', l)$.
-We decided to stick to the definition from Dey \cite{Dey2019} because it seems more natural to us to let followers
+We decided to stick to the definition from Dey and Medya \cite{Dey2019} because it seems more natural to us to let followers
 to be part of a solution as soon as their centrality is at least the same as of all the leaders --
 if no leader has centrality measure greater than any follower from $F'$, then
 we consider the leaders hidden and safe from detection.
@@ -78,9 +89,6 @@ On the other hand, the name ``\HL'' comes from the original definition by Waniek
 the name is more indicative of the possibility that there are many leaders in the network.
 Later in Section \ref{section:proofRevision}, we show that complexity results for degree centrality from Waniek et al.
 are correct even with this slighty different definition of \HLshort.
-Note that there is also a verion of \HL called \textsc{Minimum Hiding Leaders} \cite{Waniek2021}
-in which is no budget specified as the goal is to find the smallest possible set of connections between the followers
-sufficient to solve the problem.
 
 The motivation behind only adding edges, with no deletion involved, is that we want leaders to maintain
 their existing influence in the network.
@@ -97,7 +105,7 @@ Also note that decreasing the value of degree centrality of any given member is 
 (unlike decreasing other centralities) as it only consists in cutting edges \cite{Waniek2016}.
 On the other hand, \HLdeg is \NPc \cite{Waniek2017}.
 The core difference between these two problems is that \HLdeg, and \HLshort in general,
-is not about decreasing centrality of given member but rather about decreasing their ranking,
+is not about decreasing centrality value of given member but rather about decreasing their ranking,
 the relative position among other nodes with respect to the centrality measure.
 To decrease member's ranking, we must increase centrality of some other members.
 This fact, together with budget constraint $b$ and safety margin constraint $d$,
@@ -123,9 +131,9 @@ In more detail, they show that the problem is \Wh when parameterized by $b+d$.
 We review this proof for our definition of \HLshort in Section \ref{section:proofRevision} and present
 a similar result as Theorem \ref{theorem:DB}.
 
-From the work of Dey et al. \cite{Dey2019}, we know that \HLdeg is polynomial time solvable
+From the work of Dey and Medya \cite{Dey2019}, we know that \HLdeg is polynomial time solvable
 if the degree of every leader is bounded by some constant.
-That means that \HLdeg admits an FPT algorithm when parameterized by degree of leaders, or,
+That means that \HLdeg admits an XP algorithm when parameterized by degree of leaders, or,
 in other words, when parameterized by $\lambda$.
 In addition to this, the authors present a $2$-approximation algorithm for \HLdeg which optimizes
 the number of edges added.
@@ -139,12 +147,12 @@ a $(\frac{\epsilon}{2})$-approximation algorithm for the \textsc{Densest} $k$-\t
 % other centralities
 \subsection{Results for other centralities}
 
-Waniek et al. next show that \HL is \NPc for the closeness \cite{Waniek2017} and betweenness \cite{Waniek2021} centralities.
+Waniek et al. next show that \HL is \NPc for the closeness \cite{Waniek2017} and betweenness \cite{Waniek2021full} centralities.
 In more detail, they show that the problem is \Wh when parameterized by $b$ for both the closeness and the betweenness centralities.
 In addition to this, the authors show that \HL cannot be approximated within a ratio of $(1 - \epsilon ) \cdot ln(|F|)$
 for any $\epsilon > 0$, unless \Po = \NP, with respect to both the closeness and the betweenness centralities. \todo{is this right?}
 
-For the core centrality measure, Dey et al. \cite{Dey2019} next show that \HLshort is \NPc even if core centrality of
+For the core centrality measure, Dey and Medya \cite{Dey2019} next show that \HLshort is \NPc even if core centrality of
 every leader is exactly 3. Meaning that \HLshort is \pNPh when parameterized by the maximum core centrality of leaders.
 In addition to this, the authors prove that \HLshort is polynomial time solvable
 if the core centrality of every leader is at most 1.
