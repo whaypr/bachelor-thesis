@@ -1,20 +1,54 @@
 %---------------------------------------------------------------
-\chapter{Conclusion}
+\chapter{Conclusion and future work}
 %---------------------------------------------------------------
 
-In this thesis we introduced the reader to the topic of covert networks and their analysis,
-with emphasis on the \HL problem which we described, motivated its study
-and for which we provided an overview of results from the literature.
-We pointed out there are multiple definition of the problem in the literature and described our motivation
-for picking one,
-we then reviewed some of the results from the literature with repsect to this definition.
+In this thesis, we introduced the reader to the topic of covert networks and their analysis,
+with emphasis on the \HL problem for which we provided a detailed description, motivated its study
+and explained its hardness.
+We mostly followed up on the work from Waniek et al. and Dey with Medya \cite{Waniek2017,Dey2019}.
+We pointed out the authors use definitions which are different from each other and described our motivation
+for picking the one from Dey and Medya.
+We then reviewed the result for the degree centrality from Waniek et al. with repsect to our definition.
+
 The results from the literature are described in a language of classical complexity theory,
 so we put them into a perspective of the parameterized complexity framework, which we also briefly introduced.
-Then, we focused on the problem with respect to the degree centrality measure
+We then focused on the problem with respect to the degree centrality measure
 and presented our own parameterized complexity results in this domain.
+Namely, we showed that \HL is \Wh when parameterized by $b+d$ even if $|L| = 1$.
+Because the reduction in the proof was done in polynomial time,
+we got that \HLshort is \pNPh with respect to $|L|$.
+We then showed that \HLshort is in \XP when parameterized by $b$ or $d$.
 Last, we put together both our results and results from the literature for the degree centrality
-and visualize them in an overviewing graph.
+and parameters $|L|$, $b$, $d$, $\lambda$ and visualize them in an overviewing graph.
 
-Some of the future work may involve revision of more proofs from the literature with respect to our definition,
-or inspecting the problem with different sets of parameters in consideration.
-To this end, a parameter for which \HL may admit an FPT algorithm in some cases seems to be a \emph{mininum vertex cover}.
+Some of the future work on the topic of the \HL problem may involve
+revisioning the results for the closeness and betweenness centralities from Waniek et al. \cite{Waniek2021full}
+with respect to our definition,
+or inspecting the problem for various combinations of centralities and parameters for which there are no results yet.
+
+For instance, it would be interesting to see parameterization of the problem for the core centrality
+which gives rise to some XP or even FPT algorithm,
+as the problem seems much harder for the core centrality than for the degree centrality \cite{Dey2019}.
+For the variant with the core centrality, one could also survey the computational complexity of \HLshort
+when the core centrality of every leader is at most 2,
+as Dey and Medya \cite{Dey2019} inspect only the situation where the core centrality of every leader is exactly 3.
+
+For the variant with the degree centrality, which we studied the most in this thesis,
+it seems that the parameterization by the \emph{vertex cover number} could let \HL to admit an FPT or XP algorithm in some cases.
+Vertex cover number is the size of a \emph{minimum vertex cover},
+minimum vertex cover is the smallest possible number of vertices $V$ of given graph $G$ such that each edge from $E(G)$ is incident
+to at least one vertex from $V$.
+
+Another interesting structural parameter to expose the problem to is a \emph{treewidth}.
+Treewidth is, roughly speaking, a measurement of how good a graph can be decomposed into pieces that are connected in a
+tree-like fashion \cite[p.~151]{Cygan2015}.
+The notion of treewidth was described independently by several authors,
+for example by Robertson and Seymour in the series of papers \cite{Robertson1984,Robertson1986.2,Robertson1986.5}. 
+Treewidth has vast applications in the design of parameterized graphs algorithms and
+in design of graph algorithms in general.
+
+Another open problem in this topic is exploring the average case computational complexity of \HL for various centrality measures.
+The literature results show that the problem is intractable only in the worst case so
+it may exists some heuristics that efficiently solves most of the instances typical in some real-world application.
+If true, then the apparent complexity of hiding in networks by manipulating its structure
+could be overcame in many real-world cases. \cite{Dey2019}
