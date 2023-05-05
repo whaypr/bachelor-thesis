@@ -85,7 +85,7 @@ The number of neighbors of some vertex $v$ can be also denoted as $N(v)$, thus $
 
 \subsection{Graph problems}
 
-Here are definitions of some common \NPh graph problems we will refer to.
+What follows is a definition of the \NPh graph problem we will use in Proof \ref{proofDB}.
 
 % k-Clique
 \begin{definition}[$k$-\textsc{Clique} problem]
@@ -95,17 +95,6 @@ Here are definitions of some common \NPh graph problems we will refer to.
 
 There are many other graph problems related to cliques. The $k$-\textsc{Clique} problem is a decision problem but
 there are also optimization variants, for example the \textsc{Maximum Clique} problem.
-
-% Minimum Vertex Cover
-\begin{definition}[\textsc{Minimum Vertex Cover} problem]
-    Given graph $G$, the \textsc{Minimum Vertex Cover} problem is to find
-    the vertex cover $M$ that there is no other vertex cover $N$ with fewer vertices than $M$, i.e., 
-    $(\nexists N)(|N| < |M|)$.
-\end{definition}
-
-Do not confuse \emph{minimum vertex cover} from the \textsc{Minimum Vertex Cover} problem defined above with \emph{minimal vertex cover},
-which is the vertex cover such that any of its non-trivial subsets is not a vertex cover.
-Every \emph{minimum vertex cover} is also \emph{minimal vertex cover} but not necessarily vice versa.
 
 
 \subsection{Centrality measures}
