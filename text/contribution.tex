@@ -263,7 +263,12 @@ become bounded by a function of the input size, making the problem possibly hard
     \HL parameterized by any variation of $|L|$, $b$, $d$ is \Wh.
 \end{corollary}
 
-By taking $|L|$ as the only parameter, we get the last corollary.
+The parameterized reduction shown in Proof \ref{proofDB} is done in polynomial time,
+that means that it is also a polynomial reduction.
+That is, there is a polynomial reduction from $k$-\textsc{Clique} on regular graphs to \HL, where $|L| = 1$.
+Because $k$-\textsc{Clique} on regular graphs is \NPh, we get from the reduction that \HL is \NPh as well,
+even if the number of leaders is constant.
+From this, we get the following.
 
 \begin{corollary}\label{cor:Ln:pNPh}
     \HL is \pNPh with respect to $|L|$.
