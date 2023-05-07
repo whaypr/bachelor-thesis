@@ -12,11 +12,11 @@ classical computational complexity followed by parameterized complexity.
 \section{Graph theory}
 
 This section introduces basic concepts from graph theory.
-For a thorough revision on this topic, please refer the graph theory textbook from Diestel \cite{Diestel2018}.
+For a thorough revision on this topic, please refer to the monograph of Diestel \cite{Diestel2018}.
 
 % Graph
 \begin{definition}[Graph]
-    Graph $G$ is an ordered pair of disjoint sets $V$ and $E$, $G=(V,E)$.
+    \emph{Graph} $G$ is an ordered pair of disjoint sets $V$ and $E$, $G=(V,E)$.
     Set $V$ is a finite set of arbitrary items called vertices (or nodes).
     Set $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
     Sets of all vertices $V$ and edges $E$ of graph $G$ are in general denoted by $V(G)$ and $E(G)$ respectively.
@@ -29,44 +29,44 @@ These graphs are called \emph{simple}.
 
 In this thesis, the terms ``graph'' and ``network'' are interchangeable as we only use graphs to describe networks.
 By network we mean such graph, where vertices represents members of the network 
-and edges represents a, in some sense, connection between two given members, e.g., enabling their communication.
+and edges represents, in some sense, a connection between two given members, e.g., enabling their communication.
 
 % Degree
 \begin{definition}[Vertex degree]
-    Degree of vertex $v$ in some graph $G$, denoted as deg(v), is the number of neighbors of v.
+    Degree of vertex $v$ in some graph $G$, denoted as $\deg(v)$, is the number of neighbors of $v$.
     In other words, it is the number of edges vertex $v$ is a part of, i.e.,
     $\Big|\{x \in V(G) \vert \{v,x\} \in E(G) \vee \{x,v\} \in E(G)\}\Big|$.
 \end{definition}
 
-The number of neighbors of some vertex $v$ can be also denoted as $N(v)$, thus $deg(v) = N(v)$.
+A set of neighbors of some vertex $v$ is often denoted as $N(v)$, so then $\deg(v) = |N(v)|$.
 
 % r-regular graph
 \begin{definition}[$r$-regular graph]
-    Graph $G$ is $r$-regular if degree of each vertex from $V(G)$ is $r$, i.e., $(\forall v \in V(G))(deg(v) = r)$.
+    Graph $G$ is \emph{$r$-regular} if the degree of each vertex from $V(G)$ is $r$, i.e., $\forall v \in V(G) \colon \deg(v) = r$.
 \end{definition}
 
 % Regular graph
 \begin{definition}[Regular graph]
-    Graph $G$ is regular if there exists some $r \in \mathbb{N}$ for which $G$ is $r$-regular.
+    Graph $G$ is \emph{regular} if there exists some $r \in \mathbb{N}$ for which $G$ is $r$-regular.
 \end{definition}
 
 % Complement graph
 \begin{definition}[Complement graph]
-    Complement graph $\overline{G}$ of graph $G$ is the graph on vertices $V(G)$,
+    \emph{Complement graph} $\overline{G}$ of graph $G$ is the graph on vertices $V(G)$,
     where two vertices are adjacent (there is an edge between them) if and only if
-    they are not adjacent in $G$, i.e., $(\forall e \in V(G) \times V(G))(e \in E(\overline{G}) \Leftrightarrow e \notin E(G))$.
+    they are not adjacent in $G$, i.e., $\forall e \in V(G) \times V(G) \colon e \in E(\overline{G}) \Leftrightarrow e \notin E(G)$.
 \end{definition}
 
 % Induced subgraph
 \begin{definition}[Induced subgraph]
-    Induced subgraph $G[S]$ of graph $G$ is the graph on vertices $V(G[S]) = S \subset V(G)$,
+    \emph{Induced subgraph} $G[S]$ of graph $G$ is the graph on vertices $V(G[S]) = S \subset V(G)$,
     where two vertices are adjacent if and only if they are adjacent in $G$, i.e.,
     $(\forall u,v \in S)(\{u,v\} \in E(G[S]) \Leftrightarrow \{u,v\} \in E(G))$.
 \end{definition}
 
 % Complete graph
 \begin{definition}[Complete graph]
-    Complete graph is the graph $G$ if there is an edge between every pair of vertices from $V(G)$, i.e.,
+    \emph{Complete graph} is the graph $G$ if there is an edge between every pair of vertices from $V(G)$, i.e.,
     $(\forall u,v \in V(G))(\{u,v\} \in E(G))$.
 \end{definition}
 
@@ -77,7 +77,7 @@ The number of neighbors of some vertex $v$ can be also denoted as $N(v)$, thus $
 
 % Vertex cover
 \begin{definition}[Vertex cover]
-    Vertex cover of graph $G$ is the subset $S \subseteq V(G)$ where each edge from $E(G)$ is
+    \emph{Vertex cover} of graph $G$ is the subset $S \subseteq V(G)$ where each edge from $E(G)$ is
     covered by some vertex from $S$. In other words, at least one endpoint of each edge is present in $S$, i.e.,
     $(\forall \{u,v\} \in E(G))(u \in S \vee v \in S)$.
 \end{definition}
@@ -102,31 +102,34 @@ there are also optimization variants, for example the \textsc{Maximum Clique} pr
 Centrality measure, or centrality for short, is a measure from graph theory which is widely used in social network analysis.
 Generally, centrality is a function $c: G \times V \rightarrow \mathbb{R}$ which describes the importance of a node in given network.
 With centrality, we can measure a ranking (position among other nodes) of given node within their network.
-What follows is a definition of a degree centrality introduced by Shaw \cite{Shaw1954} but there are other centralities used in SNA like
+What follows is a definition of a degree centrality introduced by Shaw \cite{Shaw1954}, but there are other centralities used in SNA like
 closeness \cite{Beauchamp1965}, betweenness \cite{Anthonisse1971,Freeman1977} or core \cite{Seidman1983} centrality.
 
 \begin{definition}[Degree centrality]
     A degree centrality measures an importance of a vertex by its degree.
     A degree centrality of the vertex $v$ in network $G$ is defined as:
-    $$c_{deg}(G, v) = deg(v).$$
+    $$c_{deg}(G, v) = \deg(v).$$
 \end{definition}
 
 
 %---------------------------------------------------------------
 \section{Classical computational complexity}
 
-In this section we briefly describe the two most fundamental classical complexity classes.
-Detailed revision on this topic --
-including definitions on formal languages, Turing machines and their programs --
-can be found in the textbook from Garey and Johnson \cite{Garey1990}.
+In this section, we briefly describe the two most fundamental classical complexity classes, \Po and \NP.
+Detailed revision on this topic can be found in the textbook from Arora and Barak \cite{Arora2009}.
 
-In the definitions below, DTM denotes deterministic Turing machine
-and NDTM denotes nondeterministic Turing machine.
+Let us start with defining the \textsf{DTIME} complexity class, which we then use to define the \Po class.
+
+\begin{definition}[\textsf{DTIME}]
+    Complexity class \textsf{DTIME}(f(n)) is the set of all decision problems that are computable in time
+    $c \cdot f(n)$ for some constant $c > 0$ and some function $f \colon \mathbb{N} \rightarrow \mathbb{N}$.
+\end{definition}
 
 % P
 \begin{definition}[\Po]
-    Complexity class \Po is a set of all languages $L$ for which there is a polynomial time DTM program $M$
-    such that $L$ is recognized by $M$.
+    Complexity class \Po is the set of all decision problems that are in class \textsf{DTIME}($n^c$)
+    for any $c \geq 1$, i.e.
+    $\cup_{c \geq 1} \textsf{DTIME}(n^c)$.
 \end{definition}
 
 Informally, complexity class \Po consists of all decision problems that can be solved in polynomial time.
@@ -134,15 +137,17 @@ Problems for which exists in practice efficient enough algorithm are called \emp
 
 % NP
 \begin{definition}[\NP]
-    Complexity class \NP is a set of all languages $L$ for which there is a polynomial time NDTM program $M$
-    such that $L$ is recognized by $M$.
+    Complexity class \NP is the set of all decision problems $L$ for which there exist
+    a polynomial $p :colon \mathbb{N} \rightarrow \mathbb{N}$ and a deterministic Turing machine $M$
+    such that for every instance $x$ of $L$ $x$ is a $yes$-instance if and only if there exists
+    a polynomial-size solution $u$ of $x$ that can be verified on $M$ in polynomial time.
+    Such solution $u$ is then called a \emph{certificate} or \emph{witness}.
 \end{definition}
 
 Informally, complexity class \NP consists of all decision problems that can be solved in polynomial time
 when multiple steps can be done in parallel.
-Alternatively, we can say that in \NP are such problem, that their solution can be verified in polynomial time.
-Note that definitions of classes \Po and \NP differs only in a determinism/nondeterminism of the Turing machine
-and so $\Po \subseteq \NP$.
+Note that $\Po \subseteq \NP$, because, for any problem from \Po, it takes only a polynomial amount of time to solve
+it in the first place.
 
 Lastly, let us briefly recall computational complexity terms \emph{hardness} and \emph{completeness}.
 A problem $p$ is, given some complexity class \textsf{C}, \textsf{C-hard} if for any problem $c$ from \textsf{C}
@@ -263,15 +268,6 @@ One particular problem parameterized by different parameters leads to different 
     \end{description}
 \end{definition}
 
-We note without a formal proof that if there is a parameterized reduction from $A$ to $B$ and $B$ is FPT,
-then $A$ is FPT as well.
-The other way round, if there is a parameterized reduction from $A$ to $B$ and $A$ is not FPT,
-then $B$ is not FPT as well.
-The second approach is often used to show that certain parameterized problem $T$, which we are interested in,
-with parameter $k$ is not tractable for this parameter.
-This is typically done by finding a parameterized reduction from some \Wh problem to $T$.
-We show such a reduction in Proof \ref{proofDB}.
-
 % FPT problem and class
 \begin{definition}[FPT]
     A parameterized problem $L$ is called fixed-parameter tractable (FPT) if there exists
@@ -286,20 +282,29 @@ We show such a reduction in Proof \ref{proofDB}.
 \end{definition}
 
 The complexity class containing all fixed-parameter tractable problems is called \FPT.
-An example of a problem from \FPT is $k$-\textsc{Vertex Cover}. 
+An example of a problem from \FPT is $n$-variable \textsc{SAT} parameterized by $n$.
+Indeed, the problem can be solved in time $\Theta(2^n)$ by simply trying each of the $2^n$
+possible evaluations for the variables and checking if the evaluation is correct in time $\Theta(n)$.
+Moreover, we know from the Exponential Time Hypothesis, formulated by Impagliazzo and Paturi \cite{Impagliazzo1999},
+that the problem cannot be solved in time $2^{o(n)}$
 
 The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent $c$
 in the running time boundary as small as possible.
-We can see that if the parameter is equal to the input size, then \FPT become equal to \NP and,
+We can see that if the parameter is equal to the input size, then \FPT become exponential and,
 on the other hand if $k = 1$, then \FPT become \Po \cite{Koutensky2020}.
+
+The only difference between FPT and para-NP problems is that algorithms for para-NP problems are
+nondeterministic in general.
+We do not provide the exact definition of para-NP problems as they are not important to us.
+From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter.
 
 % XP
 \begin{definition}[XP]
     A parameterized problem $L$ is called slice-wise polynomial (XP) if there exists
-    \begin{description}
+    \begin{itemize}
         \item an algorithm $\mathcal{A}$
         \item and two computable, nondecreasing functions $f,g : \mathbb{N} \times \mathbb{N}$
-    \end{description}
+    \end{itemize}
     such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
     the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
     $f(k) \cdot |(x,k)|^{g(k)}$.
@@ -313,29 +318,7 @@ and so $\FPT \subseteq \XP$.
 Although both FPT and XP algorithms run in polynomial time for every fixed value of the parameter,
 the underlying difference between them is that FPT algorithms have the combinatorial explosion
 restricticted to the parameter only, leaving the exponent of the instance size constant, in other words,
-FPT algorithms are more efficient that XP algorithms.
-
-% para-NP
-\begin{definition}[para-NP]
-    A parameterized problem $L$ is called para-NP if there exists
-    \begin{description}
-        \item a nondeterministic algorithm $\mathcal{A}$,
-        \item a computable, nondecreasing function $f : \mathbb{N} \times \mathbb{N}$
-        \item and a constant $c$
-    \end{description}
-    such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
-    the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
-    $f(k) \cdot |(x,k)|^c$.
-\end{definition}
-
-The complexity class containing all para-NP problems is called \pNP.
-An example of a problem from \pNP is \textsc{Vertex} $k$-\textsc{Coloring}.
-
-Note that definitions of parameterized problems FTP and para-NP differs only in a determinism/nondeterminism of
-algorithm $\mathcal{A}$ and so $\FPT \subseteq \pNP$.
-Without a formal proof, let us mention a known fact that $\FPT = \pNP \Leftrightarrow \Po = \NP$ \cite[p.~39]{Flum2006}
-and also that not all \pNP problems are in \XP, $\pNP \not\subseteq \XP$, unless $\Po = \NP$ \cite[p.~41]{Flum2006}\todo{original sources}.
-From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is \NPh already for a constant value of the parameter.
+FPT algorithms are more efficient than XP algorithms.
 
 
 \subsection{\W-hierarchy}
@@ -352,15 +335,13 @@ an attempt to shed a light on these apparent differences in hardness of paramete
 
 The levels of \W-hierarchy are marked as \textsf{W}[$t$] for $t \in \mathbb{N} \wedge t \geq 0$,
 where each level represents its own complexity class.
-The most important level for us will be \Wone.
-The $k$-\textsc{Clique}, \textsc{Independent Set} and \textsc{Partial Vertex Cover} problems
-are examples of \Wone-complete problems.
+The most important level for us will be \Wone,
+as well as the fact that the $k$-\textsc{Clique} problem is \Wone-complete \cite{Downey1999}.
 
-We will not provide the exact definition and further description of \W-hierarchy
+We do not provide the exact definition and further description of \W-hierarchy
 because it is not important for the purposes of this work.
 On the other hand, what is important is a fact that we interpret the \W-hardness as an evidence that
 a problem is not fixed-parameter tractable.
 This interpretation is based on a general assumption that $\FPT \neq \Wone$.
-Further, this assumption is implied by the Exponential Time Hypothesis -- unproven conjecture,
-formulated by Impagliazzo and Paturi \cite{Impagliazzo1999}, saying that there is no
-algorithm subexponential in the number of variables for the $3$-\textsc{SAT} problem.
+To show that certain problem is \Wh, it is typically shown a parameterized reduction from some other problem,
+which is already known to be \Wh, to it.

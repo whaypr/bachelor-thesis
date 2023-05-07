@@ -5,7 +5,7 @@
 This is the main chapter of the thesis.
 On this place, we present our contribution to the topic of the \HL problem.
 We first review a proof of a theorem about \HLdeg from Waniek et al. \cite{Waniek2017} and show
-its correctness for our definition of \HL.
+that the proof can be adapted for our definition of \HL.
 Then, we present our own proofs for \HLdeg regarding various parameters and complexity classes.
 Lastly, we put our results in the context of the work of other authors,
 visualizing the parameterized complexity results for \HLdeg discovered both by us and by authors
@@ -15,44 +15,52 @@ from the literature.
 %---------------------------------------------------------------
 \section{Proof revision}\label{section:proofRevision}
 
-Waniek et al. \cite{Waniek2017} proposed three hardness results for the \HL problem given degree, closeness and betweenness
+Waniek et al. \cite{Waniek2021full} proposed three hardness results for the \HL problem given degree, closeness and betweenness
 centralities. In this section, we review the first aforementioned result with respect to our definition of \HLshort.
-The original theorem reads: \emph{``The \HL problem is \NPc given the degree centrality.''}.
-The proof adjustments are pretty straightforward but to better understand them,
-let us first briefly describe the idea of that proof.
+The original theorem reads:
 
-A common way of proving \NP-hardness is to propose a polynomial reduction from another \NPh problem to the
-problem we are proving \NP-hardness of.
-In this proof, the authors show a reduction from the $k$-\textsc{Clique} problem defined on graph $G$.
-The idea is following: In a polynomial time, construct a new graph $H$ from $G$ in a way that
-in order to solve \HL in $H$ we must solve $k$-\textsc{Clique} in $G$ in the first place.
-To achieve that, the authors, as a starting point of $H$, first create a complement of $G$ 
-where all vertices are marked as followers. This will be the only followers in final $H$.
-This initial construction assures that every possible solution of \HLshort will only consists of edges from $G$, that is,
-$W \subseteq E(G)$ (and $F' \subseteq V(G)$).
-Next, they add two types of leaders into $H$, each type with a different purpose.
-Leaders of the first type act like ``regularizators'' as their only job is to connect with followers (in some way) and,
-by doing so, make degree of every follower the same and equal to $n$.
-These leaders are denoted as $X$ and $y$ in the original proof.
-The task of the second type, having no connection with followers at all,
-is then to set a maximum degree across all leaders, which followers from $F'$ will have to reach.
-These leaders are denoted as $L'$ and are practically the only concern of our adjustments to which we now proceed.
+\begin{theorem}
+    The \HL problem is \NPc given the degree centrality.
+\end{theorem}
 
-We allow equality of centralities between followers from $F'$ and leaders in our definition of \HL.
-To compensate it, we just need to create one extra leader of the second type, that is,
-$|L'| = n+k$ as opposed of $|L'| = n+k-1$ in the original proof,
-leading to all leaders from $L'$ having degree of $n+k-1$, as opposed of $n+k-2$ in the original proof.
-Now note that this is the highest degree among the leaders and that all the followers have degree $n$,
-so, in order to be part of $F'$, they must obtain at least $(n+k-1) - n = k-1$ new neighbors.
-We got into exactly the same situation as in the original proof and since, as stated above,
-leaders from $L'$ do not have any other purpose than setting the maximum degree of all leaders,
-the rest of the arguments presented in the proof remain unchanged.
+\begin{proof}
+    The proof for our definition of \HL is almost identical to the original proof, with little adjustments.
+    The adjustments are pretty straightforward but to better understand them,
+    let us first briefly describe the idea of the original proof.
 
-We have just shown that allowing equality of centralities between followers from $F'$ and leaders does not
-break the proof presented by Waniek et al. \cite{Waniek2017}.
-The other change in our definition of \HL is that we allow all members to be leaders, $L = V$,
-but since such instances are trivial as they are $yes$-instances if and only if $d = 0$,
-there is nothing to change in the proof.
+    A common way of proving \NP-hardness is to propose a polynomial reduction from another \NPh problem to the
+    problem we are proving \NP-hardness of.
+    In this proof, the authors show a reduction from the $k$-\textsc{Clique} problem defined on graph $G$.
+    The idea is following: In a polynomial time, construct a new graph $H$ from $G$ in a way that
+    in order to solve \HL in $H$ we must solve $k$-\textsc{Clique} in $G$ in the first place.
+    To achieve that, the authors, as a starting point of $H$, first create a complement of $G$ 
+    where all vertices are marked as followers. This will be the only followers in final $H$.
+    This initial construction assures that every possible solution of \HLshort will only consists of edges from $G$, that is,
+    $W \subseteq E(G)$ (and $F' \subseteq V(G)$).
+    Next, they add two types of leaders into $H$, each type with a different purpose.
+    Leaders of the first type act like ``regularizators'' as their only job is to connect with followers (in some way) and,
+    by doing so, make degree of every follower the same and equal to $n$.
+    These leaders are denoted as $X$ and $y$ in the original proof.
+    The task of the second type, having no connection with followers at all,
+    is then to set a maximum degree across all leaders, which followers from $F'$ will have to reach.
+    These leaders are denoted as $L'$ and are practically the only concern of our adjustments to which we now proceed.
+
+    We allow equality of centralities between followers from $F'$ and leaders in our definition of \HL.
+    To compensate it, we just need to create one extra leader of the second type, that is,
+    $|L'| = n+k$ as opposed of $|L'| = n+k-1$ in the original proof,
+    leading to all leaders from $L'$ having degree of $n+k-1$, as opposed of $n+k-2$ in the original proof.
+    Now note that this is the highest degree among the leaders and that all the followers have degree $n$,
+    so, in order to be part of $F'$, they must obtain at least $(n+k-1) - n = k-1$ new neighbors.
+    We got into exactly the same situation as in the original proof and since, as stated above,
+    leaders from $L'$ do not have any other purpose than setting the maximum degree of all leaders,
+    the rest of the arguments presented in the proof remain unchanged.
+
+    We have just shown that allowing equality of centralities between followers from $F'$ and leaders does not
+    break the proof presented by Waniek et al. \cite{Waniek2017}.
+    The other change in our definition of \HL is that we allow all members to be leaders, $L = V$,
+    but since such instances are trivial as they are $yes$-instances if and only if $d = 0$,
+    there is nothing to change in the proof.
+\end{proof}
 
 
 %---------------------------------------------------------------
@@ -60,7 +68,7 @@ there is nothing to change in the proof.
 
 The next proof is built on the same idea Waniek et al. \cite{Waniek2017} presented in their proof of
 \NP-completeness of \HLshort for the degree centrality measure.
-We reviewed the proof from Waniek et al. and its core ideas in Section \ref{section:proofRevision}.
+We reviewed the proof from Waniek et al. \cite{Waniek2017} and its core ideas in Section \ref{section:proofRevision}.
 We present a proof of a stronger theorem, with simpler reduction graph and in the language of parameterized complexity.
 These results are possible mainly because of a stronger assumption in the proof where we assume a regular graph as the input.
 
@@ -73,7 +81,7 @@ present in the constructed network in some manner and then finding a solution in
 \end{theorem}
 
 \begin{proof}\label{proofDB}
-    To proof this theorem, we propose a parameterized reduction from the $k$-\textsc{Clique} problem on regular graphs,
+    To proof this theorem, we give a parameterized reduction from the $k$-\textsc{Clique} problem on regular graphs,
     which is known to be \Wh with respect to $k$ \cite{Mathieson2008}.
     
     Suppose we have a parameterized $k$-\textsc{Clique} instance $(G, k)$, where $|V(G)|=n$, $G$ is a $r$-regular graph and $n-2 \geq r \geq k \geq 3$
@@ -93,7 +101,7 @@ present in the constructed network in some manner and then finding a solution in
     An example of such construction can be seen in Figure \ref{fig:proofDB}.
 
     Note that step 5 can always be done because $r \ge k$, so $|F_1| = n > n - r + (k - 1)$
-    and since $deg(l) = 0$ (before step 5), there are enough vertices for $\ell$ to connect with.
+    and since $\deg(l) = 0$ (before step 5), there are enough vertices for $\ell$ to connect with.
     Considering $G$ is $r$-regular, its complement, constructed and added into $H$ in steps 2 and 3, must be $(n-r-1)$-regular.
     After connecting all the $F_1$ vertices either with $\ell$, or the corresponding $w_v$ in steps 5 and 6,
     they all end up with degree $n-r$; in other words, graph $H[F_1]$ is $(n-r)$-regular.
@@ -104,13 +112,13 @@ present in the constructed network in some manner and then finding a solution in
     as an instance of \HLdeg with $k' \coloneqq b + d = \frac{k\cdot(k-1)}{2} + k$ as a parameter.
     First we note that degree of the only leader $\ell$ is $\lambda$, as presented above.
     The other vertices $V(H) - l$ are naturally followers of which we can recognize two types, $F_1$ and $F_2$,
-    where $\forall_{f_1 \in F_1} deg(f_1)$ = $n-r$ and $\forall_{f_2 \in F_2} deg(f_2)$ = $1$.
+    where $\forall_{f_1 \in F_1} \deg(f_1)$ = $n-r$ and $\forall_{f_2 \in F_2} \deg(f_2)$ = $1$.
     Whereas $F_1$ are vertices of the original graph $G$,
     $F_2$ plays a role of ``partners'' of vertices $Y$, since their only job is to substitute a missing connection with $\ell$.
 
     Because we just have one leader in $\mathcal{I}$, it is clear that for any follower $f' \in F'$ applies that
-    $deg(f') \geq \lambda = n - r + (k - 1)$.
-    Also, because $n > r$, $\max\limits_{\forall f_1 \in F_1}deg(f_1) = n-r > 1 = \max\limits_{\forall f_2 \in F_2}deg(f_2)$.
+    $\deg(f') \geq \lambda = n - r + (k - 1)$.
+    Also, because $n > r$, $\max\limits_{\forall f_1 \in F_1}\deg(f_1) = n-r > 1 = \max\limits_{\forall f_2 \in F_2}\deg(f_2)$.
     With this in mind, we state the following:
 
     \begin{lemma}\label{lemmaInProof}
@@ -277,16 +285,16 @@ From this, we get the following.
 
 % XP algo for param d
 We now look at the problem from the opposite end.
-Let us remind that we interpret \W-hardness as an evidence that given problem is not in \FPT.
+Let us recall that we interpret \W-hardness as an evidence that given problem is not in \FPT.
 Hence, there is no use of trying to find FTP algorithms for \HL parameterized by $|L|$, $b$, $d$, or any of their variation.
 However, there is still a chance for XP algorithms.
 We now show that there are indeed such algorithms for parameters $b$ and $d$, meaning that
-\HL parameterized whether by budget $b$ or by safety margin $d$ belongs to \XP.
+\HL parameterized either by budget $b$ or by safety margin $d$ belongs to \XP.
 From this we then show that \HLshort is in \XP even for the other parameter variations.
 Let us present a proof of the variant with parameter $d$ first.
 
 \begin{theorem}\label{theorem:D:XP}
-    \HL parameterized by $d$ is XP.
+    \HL parameterized by $d$ is in \XP.
 \end{theorem}
 
 \begin{proof}\label{proof:XPd}
@@ -314,7 +322,7 @@ Let us present a proof of the variant with parameter $d$ first.
     In this situation $D = F'$ if and only if there is at least $min_{\delta \in D}\{deg(\delta)\}$ followers
     outside of $D$ and a number of edges we are still allowed to add before reaching budget $b$, $b - |\hat{A}_D|$,
     is smaller than the sum of connections needed to reach $\lambda$ of all vertices from $D$,
-    $\sum_{\delta \in D} min(0, \lambda - deg(\delta))$.
+    $\sum_{\delta \in D} min(0, \lambda - \deg(\delta))$.
     This is true because in order for instance $(\mathcal{I}, d)$ to be a $yes$-instance, we must
     ensure that each follower from $D$ has degree at least $\lambda$, for what we connect them to some followers
     outside $D$ (becuase $D$ is already complete), for which there must be enough followers outside $D$ and
@@ -345,7 +353,7 @@ Now we proceed to a proof of the variant with parameter $b$.
 This proof will be led in a similar manner as the previous proof.
 
 \begin{theorem}\label{theorem:B:XP}
-    \HL parameterized by $b$ is XP.
+    \HL parameterized by $b$ is in \XP.
 \end{theorem}
 
 \begin{proof}
@@ -369,7 +377,7 @@ This proof will be led in a similar manner as the previous proof.
     From this we can conclude that \HL parameterized by $b$ is XP.
 \end{proof}
 
-We have just shown that \HL parameterized by $b$ or $d$ is XP.
+We have just shown that \HL parameterized by $b$ or $d$ is in \XP.
 If we now add some other parameter or parameters to either $b$ or $d$, then the problem
 might become easier but surely stays in \XP.
 For example take $b+|L|$ as the parameter;
@@ -386,7 +394,7 @@ Last, following the same logic and considering the results from Dey and Medya \c
 we can state the following.
 
 \begin{corollary}\label{cor:Ld:variation:FPT}
-    \HL is in \FPT when parameterized by at least $\lambda$.
+    \HL is in \XP when parameterized by at least $\lambda$.
 \end{corollary}
 
 %---------------------------------------------------------------

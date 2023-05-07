@@ -54,17 +54,17 @@ Lastly, we use symbol $\hat{A}$ to denote a set of edges between followers that 
 $\hat{A} = E(\overline{G[F]})$.
 
 Among the first authors who surveyed the topic of evading social network analysis tools, rather than developing the new ones,
-were Waniek et al. \cite[y.~2016]{Waniek2016}.
-This topic was further researched by the same authors in the subsequent work \cite[y.~2017]{Waniek2017}
+were Waniek et al. \cite{Waniek2016}.
+This topic was further researched by the same authors in the subsequent work \cite{Waniek2017}
 in which the \HL problem was first formulated.
 Note that the paper from 2017 was only a preliminary version of the work and the completed paper was
-published later in 2021 \cite[y.~2021]{Waniek2021full}.
-There was formulated also a version of the \HL problem called \textsc{Minimum Hiding Leaders} in the completed paper
+published later in 2021 \cite{Waniek2021full}.
+There was also formulated an optimization variant of the \HL problem in the completed paper, called \textsc{Minimum Hiding Leaders}, 
 in which there is no budget specified, as the goal is to find the smallest possible set of connections between the followers
 sufficient to solve the problem.
 In another work from 2021 \cite{Waniek2021}, Waniek et al. studied a problem similar to the \HL problem,
 which is called \textsc{Local Hiding}.
-The \HL problem was then also studied by Dey and Medya \cite{Dey2019} in 2019.
+The \HL problem was then also studied by Dey and Medya \cite{Dey2019}.
 
 
 There are two definitions of the \HL problem in the literature and they differ from each other in some details.
@@ -87,8 +87,8 @@ if no leader has centrality measure greater than any follower from $F'$, then
 we consider the leaders hidden and safe from detection.
 On the other hand, the name ``\HL'' comes from the original definition by Waniek et al. as
 the name is more indicative of the possibility that there are many leaders in the network.
-Later in Section \ref{section:proofRevision}, we show that complexity results for degree centrality from Waniek et al.
-are correct even with this slighty different definition of \HLshort.
+Later in Section \ref{section:proofRevision}, we show that complexity results for degree centrality
+from Waniek et al. \cite{Waniek2017} still hold even with this slighty different definition of \HLshort.
 
 The motivation behind only adding edges, with no deletion involved, is that we want leaders to maintain
 their existing influence in the network.
@@ -97,7 +97,7 @@ reducing their reach within network.
 Also, deleting edges between followers would only decrease the values of all degree, betweenness and closeness
 centrality measures for affected followers \cite{Waniek2016},
 which is the exact opposite of what we try to achieve in the \HL problem.
-From this we can see why it makes sense to only allow adding edges into given network --
+From this, we can see why it makes sense to only allow adding edges into given network --
 because deleting edges incident with leaders violates our requirements on keeping influence of leaders,
 whereas deleting edges incident with followers violates our requirements on making leaders more hidden.
 
@@ -149,14 +149,14 @@ a $(\frac{\epsilon}{2})$-approximation algorithm for the \textsc{Densest} $k$-\t
 
 Waniek et al. next show that \HL is \NPc for the closeness \cite{Waniek2017} and betweenness \cite{Waniek2021full} centralities.
 In more detail, they show that the problem is \Wh when parameterized by $b$ for both the closeness and the betweenness centralities.
-In addition to this, the authors show that \HL cannot be approximated within a ratio of $(1 - \epsilon ) \cdot ln(|F|)$
+In addition to this, the authors show that \HL cannot be approximated within a ratio of $(1 - \epsilon ) \cdot \ln(|F|)$
 for any $\epsilon > 0$, unless \Po = \NP, with respect to both the closeness and the betweenness centralities. \todo{is this right?}
 
 For the core centrality measure, Dey and Medya \cite{Dey2019} next show that \HLshort is \NPc even if core centrality of
 every leader is exactly 3. Meaning that \HLshort is \pNPh when parameterized by the maximum core centrality of leaders.
 In addition to this, the authors prove that \HLshort is polynomial time solvable
 if the core centrality of every leader is at most 1.
-They complement that by proving that there does not exist any $((1 - \alpha) \cdot ln(n))$-approximation algorithm
+They complement that by proving that there does not exist any $((1 - \alpha) \cdot \ln(n))$-approximation algorithm
 for any constant $\alpha \in (0, 1)$ which optimizes the number of edges that one needs to add even
 when the core centrality of every leader is 3.
  
