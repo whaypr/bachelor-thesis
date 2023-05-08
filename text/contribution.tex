@@ -84,9 +84,13 @@ present in the constructed network in some manner and then finding a solution in
     To proof this theorem, we give a parameterized reduction from the $k$-\textsc{Clique} problem on regular graphs,
     which is known to be \Wh with respect to $k$ \cite{Mathieson2008}.
     
-    Suppose we have a parameterized $k$-\textsc{Clique} instance $(G, k)$, where $|V(G)|=n$, $G$ is a $r$-regular graph and $n-2 \geq r \geq k \geq 3$
-    (for $r > n-2$ or $r < k$ or $k < 3$ the problem is trivial).
-    Then, we construct a graph $H$ in the following way:
+    Suppose we have a parameterized $k$-\textsc{Clique} instance $(G, k)$, where
+    $|V(G)|=n$, $G$ is a $r$-regular graph and $n-2 \geq r \geq k \geq 3$ (for $r > n-2$ or $r < k$ or $k < 3$ the problem is trivial).
+    Next, let us take a parameterized problem $(\mathcal{I}, k')$, where
+    $\mathcal{I} = (H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c_{deg}, k)$ is an instance of \HLdeg and
+    $k' = b + d = \frac{k\cdot(k-1)}{2} + k$ is the parameter.
+    Graph $H$ is then constructed from graph $G$ in the following way:
+
     \begin{enumerate}
         \item Start with an empty graph $H$.
         \item Add all vertices from $G$, \emph{i.e.}, $V(H) \leftarrow V(G)$, mark these vertices as $F_1$.
@@ -106,27 +110,29 @@ present in the constructed network in some manner and then finding a solution in
     After connecting all the $F_1$ vertices either with $\ell$, or the corresponding $w_v$ in steps 5 and 6,
     they all end up with degree $n-r$; in other words, graph $H[F_1]$ is $(n-r)$-regular.
     Also note that the construction of $H$ is done in time polynomial to $n$.
-    Now we show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in $H$.
-
-    Let us take $\mathcal{I} = (H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c, k)$, where $c$ is a degree centrality measure,
-    as an instance of \HLdeg with $k' \coloneqq b + d = \frac{k\cdot(k-1)}{2} + k$ as a parameter.
-    First we note that degree of the only leader $\ell$ is $\lambda$, as presented above.
+    
+    We now show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in $H$, more concretely,
+    we show that $(G, k)$ is a yes-instance of the $k$-\textsc{Clique} problem if and only if $\mathcal{I}$ is a yes-instance of \HLdeg.
+    
+    Let us start with the right-to-left direction of the proof, for which we assume that $\mathcal{I}$ is a yes-instance of \HLdeg,
+    with newly added edges $W$ and the corresponding set of followers $F'$ as the solution. 
+    First, we note that the degree of the only leader $\ell$ is $\lambda$, as presented above.
     The other vertices $V(H) - l$ are naturally followers of which we can recognize two types, $F_1$ and $F_2$,
     where $\forall_{f_1 \in F_1} \deg(f_1)$ = $n-r$ and $\forall_{f_2 \in F_2} \deg(f_2)$ = $1$.
     Whereas $F_1$ are vertices of the original graph $G$,
     $F_2$ plays a role of ``partners'' of vertices $Y$, since their only job is to substitute a missing connection with $\ell$.
 
-    Because we just have one leader in $\mathcal{I}$, it is clear that for any follower $f' \in F'$ applies that
+    Because there is just one leader in $\mathcal{I}$, it is clear that for any follower $f' \in F'$ applies that
     $\deg(f') \geq \lambda = n - r + (k - 1)$.
     Also, because $n > r$, $\max\limits_{\forall f_1 \in F_1}\deg(f_1) = n-r > 1 = \max\limits_{\forall f_2 \in F_2}\deg(f_2)$.
     With this in mind, we state the following:
 
     \begin{lemma}\label{lemmaInProof}
-        No $F'$ can contain vertex from $F_2$, i.e., $F' \cap F_2 = \emptyset$.
+        $F'$ can contain no vertex from $F_2$, i.e., $F' \cap F_2 = \emptyset$.
     \end{lemma}
     \begin{subproof}
         Assume $F' \subseteq F_1$. This is a valid assumption because $|F_1| = n > k$ and it must be at least $d = k$ vertices in $F'$.
-        Because all vertices from $F_1$ have degree $n-r$, we must have added at least $\lambda - (n - r) = k - 1$ new neighbors to all vertices from $F'$.
+        Because all the vertices from $F_1$ have degree $n-r$, we must have added at least $\lambda - (n - r) = k - 1$ new neighbors to all vertices from $F'$.
         Since the budget $b$ in $\mathcal{I}$ is $\frac{k\cdot(k-1)}{2}$,
         the only possible way of how $F'$ could have been constructed is that $|F'|=k$ and the newly added edges $W \subset F_1 \times F_1$, $|W| = b$
         connect all the $k$ vertices $f' \in F'$ in a way that graph $(F', W)$ forms a $k$-clique.
@@ -134,10 +140,15 @@ present in the constructed network in some manner and then finding a solution in
         since there will never be large enough budget $b$ to let us reach the safety margin $d$.
     \end{subproof}
 
-    As shown in the proof of Lemma \ref{lemmaInProof}, every feasible solution $W$ of \HLshort for instance $\mathcal{I}$, together with corresponding $F'$,
-    will form a $k$-clique.
-    Note that every edge from $W$ must be an edge from the original graph $G$ because $W \subset F_1 \times F_1$ and $F_1 = E(G)$
+    As shown in the proof of Lemma \ref{lemmaInProof}, the solution $W$ of \HLshort for instance $\mathcal{I}$,
+    together with the corresponding $F'$, form a $k$-clique.
+    Note that every edge from $W$ must be an edge from the original graph $G$ because $W \subset F_1 \times F_1$ and $F_1 = V(G)$
     and also all the edges from $E(\overline{G})$ are already in $E(H)$ so they cannot be in $W$ since it only contains newly added edges.
+    Because $F_1$ is also from $G$, we get that there is a $k$-clique in $G$.
+
+    Next, we show the left-to-right direction, assuming that $(G, k)$ is a $yes$-instance of $k$-\textsc{Clique}.
+    From the proof of Lemma \ref{lemmaInProof}, we can immediately see that
+    vertices forming the $k$-clique are $F'$ and the edges between them are $W$. 
 
     Because a solution $W$ for \HLshort in $H$ exists if and only if a $k$-clique in $G$ exists,
     we can conclude that finding a solution for the \HL problem in graph $H$ is exactly the same as
