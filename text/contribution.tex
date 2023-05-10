@@ -297,7 +297,7 @@ From this, we get the following.
 % XP algo for param d
 We now look at the problem from the opposite end.
 Let us recall that we interpret \W-hardness as an evidence that given problem is not in \FPT.
-Hence, there is no use of trying to find FTP algorithms for \HL parameterized by $|L|$, $b$, $d$, or any of their variation.
+Hence, there is no use of trying to find FPT algorithms for \HL parameterized by $|L|$, $b$, $d$, or any of their variation.
 However, there is still a chance for XP algorithms.
 We now show that there are indeed such algorithms for parameters $b$ and $d$, meaning that
 \HL parameterized either by budget $b$ or by safety margin $d$ belongs to \XP.
@@ -309,49 +309,53 @@ Let us present a proof of the variant with parameter $d$ first.
 \end{theorem}
 
 \begin{proof}\label{proof:XPd}
-    Given parameterized instance $(\mathcal{I}, d)$, where $\mathcal{I} = (G, L, b, c, d)$ is a \HLdeg instance and $d$ is the parameter,
+    Given parameterized instance $(\mathcal{I}, d)$, where $\mathcal{I} = (G, L, b, c_{deg}, d)$ is a \HLdeg instance and $d$ is the parameter,
     we show an algorithm which decides whether or not $(\mathcal{I}, d)$ is a $yes$-instance in time bounded by
-    $f(d) \cdot |(\mathcal{I}, d)|^{g(d)}$ for some computable functions $f,g$.
+    $f(d) \cdot n^{g(d)}$ for some computable functions $f,g$.
 
-    We start by picking gradually each of the $\binom{|F|}{d} = \Theta(|V(G)|^d)$ $d$-element subsets of followers $F$,
+    We start by picking gradually each of the $\binom{|F|}{d}$,
+    $\binom{|F|}{d} \leq \binom{n}{d} \leq \frac{n^{d}}{d!} \leq n^{\mathcal{O}(d)}$,
+    $d$-element subsets of followers $F$,
     we denote the current subset as $D$ and a set of edges that can be added between followers from $D$
-    as $\hat{A}_D \subseteq \hat{A}$, $\hat{A}_D = E(\overline{G[D]})$.
+    as $\hat{A}_D \subseteq \hat{A}$, $\hat{A}_D = E(\overline{G[D]}) \leq d^2$.
     Because we take all the possible $d$-element subsets of $F$, we eventually find a subset $D$ such that,
-    after addition of new edges, $D = F'$,
+    after the addition of new edges, $D = F'$;
     if such $F'$ exists, that is, if $(\mathcal{I}, d)$ is a $yes$-instance.
-    Then, we try to add $min(|\hat{A}_D|, b) \coloneqq t$ edges between followers from $D$ in each of the $\binom{d}{t} \leq 2^d$ possible ways.
-    Note that $t$ can be $b$ because we are not allowed to add more than $b$ edges into $G$.
-    From now, only these three situations can occur:
+    We then try to add $t \eqqcolon \min(|\hat{A}_D|, b)$ edges between followers from $D$
+    in each of the $\binom{|\hat{A}_D|}{t} \leq 2^{d^2}$ possible ways.
+    Note that $t$ can be equal to $b$ because we are not allowed to add more than $b$ edges into $G$.
+    The addition can be done in time $\mathcal{O}(t)$.
+    From now, only one of these three situations can occur:
 
     First, we added $t$ edges into $G$ and all $D$ vertices have degree greater than $\lambda$.
     Because $|D| = d$, $(\mathcal{I}, d)$ is a $yes$-instance.
-    We can check this in time $\mathcal{O}(|V(G)|)$.
+    We can check this in time $\mathcal{O}(n)$.
     
     Second, we added $t$ edges into $G$ but not all $D$ vertices have degree greater than $\lambda$.
     Moreover, $|\hat{A}_D| < b$ and thus we know that $G[D]$ is (after adding new edges) already a complete graph
     but we still can add some edges into $G$ before reaching the budget $b$. 
-    In this situation $D = F'$ if and only if there is at least $min_{\delta \in D}\{deg(\delta)\}$ followers
+    In this situation, $D = F'$ if and only if there is at least $\lambda - \min\limits_{\forall \delta \in D}deg(\delta)$ followers
     outside of $D$ and a number of edges we are still allowed to add before reaching budget $b$, $b - |\hat{A}_D|$,
-    is smaller than the sum of connections needed to reach $\lambda$ of all vertices from $D$,
-    $\sum_{\delta \in D} min(0, \lambda - \deg(\delta))$.
+    is smaller than the sum of the number of connections each vertex from $D$ needs to reach $\lambda$,
+    $\sum_{\delta \in D} \min(0, \lambda - \deg(\delta))$.
     This is true because in order for instance $(\mathcal{I}, d)$ to be a $yes$-instance, we must
     ensure that each follower from $D$ has degree at least $\lambda$, for what we connect them to some followers
     outside $D$ (becuase $D$ is already complete), for which there must be enough followers outside $D$ and
     we must have enough edges left before reaching $b$.
     Note that if $D = F'$, then $(\mathcal{I}, d)$ in a $yes$-instance.
+    We can check this in time $\mathcal{O}(n)$.
     
     Third, we added $t$ edges into $G$ but not all $D$ vertices have degree greater than $\lambda$.
-    Moreover, $|\hat{A}_D| \geq b$ so $t = b$ and $D \neq F'$.
-    We can check this in time $\mathcal{O}(|V(G)|)$.
+    Moreover, $|\hat{A}_D| \geq b$, so $t = b$ and thus the current set $D$ can never be $F'$.
+    We can check this in time $\mathcal{O}(n)$.
 
     Situation other than one of the three cannot occur.
     If instance $(\mathcal{I}, d)$ is not identified as a $yes$-instance for any choice of $D$,
     then we conclude that $(\mathcal{I}, d)$ is a $no$-instance because if it was a $yes$-instance,
     then we would have found it by the procedure above.
     
-    The algorithm we have just described runs in time $f(d) \cdot |(\mathcal{I}, d)|^{g(d)}$ for $f(d) = 2^d$ and $g(d) = d$
-    and where the instance size $|(\mathcal{I}, d)|$ is measured as $|V(G)|$.
-    From this we can conclude that \HL parameterized by $d$ is XP.
+    The algorithm we have just described runs in time $\mathcal{O}(2^{d^2}) \cdot n^{\mathcal{O}(d)}$.
+    From this, we can conclude that \HL parameterized by $d$ is in \XP.
 \end{proof}
 
 Notice that although the just presented algorithm is not possibly the best one we could find,
@@ -368,30 +372,34 @@ This proof will be led in a similar manner as the previous proof.
 \end{theorem}
 
 \begin{proof}
-    Given parameterized problem $(\mathcal{I}, b)$, where $\mathcal{I} = (G, L, b, c, d)$ is a \HLdeg instance and $b$ is the parameter,
+    Given parameterized problem $(\mathcal{I}, b)$, where $\mathcal{I} = (G, L, b, c_{deg}, d)$ is a \HLdeg instance
+    and $b$ is the parameter,
     we show an algorithm which decides whether or not $(\mathcal{I}, b)$ is a $yes$-instance in time bounded by
-    $f(b) \cdot |(\mathcal{I}, b)|^{g(b)}$ for some computable functions $f,g$.
+    $f(b) \cdot n^{g(b)}$ for some computable functions $f,g$.
 
-    We start by picking gradually each of the $\binom{|\hat{A}|}{b} = \Theta(|E(G)|^b)$ $b$-element subsets of
-    edges we can add between followers, we denote the current subset as $B$.
-    Because we take all the possible $b$-element subsets of $\hat{A}$, if $(\mathcal{I}, b)$ is a $yes$-instance and
-    thus such $W$ exists, we eventually find a subset $B$ such that $B = W$.
-    Then, we try to add those $B$ edges into $G$ and after each such addition, we check whether there are at least $d$ followers
-    with degree greater than $\lambda$. The addition can be done in time $b$, the check can be done in time $|V(G)|$.
+    We start by picking gradually each of the $\binom{|\hat{A}|}{b}$,
+    $\binom{|\hat{A}|}{b} \leq \binom{n^2}{b} \leq \frac{n^{2b}}{b!} \leq n^{\mathcal{O}(b)}$,
+    $b$-element subsets of edges which can be added between followers, we denote the current subset as $B$.
+    Because we take all the possible $b$-element subsets of $\hat{A}$,
+    we eventually find a subset $B$ such that $B = W$;
+    if $(\mathcal{I}, b)$ is a $yes$-instance and thus such $W$ exists.
+    We then try to add those edges $B$ into $G$ and after each such addition,
+    we check whether there are at least $d$ followers
+    with degree greater than $\lambda$.
+    The addition can be done in time $\mathcal{O}(b)$, the check can be done in time $\mathcal{O}(n)$.
 
     If instance $(\mathcal{I}, b)$ is not identified as a $yes$-instance for any choice of $B$,
     then we conclude that $(\mathcal{I}, b)$ is a $no$-instance because if it was a $yes$-instance,
     then we would have found it by the procedure above.
 
-    The algorithm we have just described runs in time $f(b) \cdot |(\mathcal{I}, b)|^{g(b)}$ for $f(b) = g(b) = b$
-    and where the instance size $|(\mathcal{I}, b)|$ is measured as $|E(G)| + |V(G)|$.
-    From this we can conclude that \HL parameterized by $b$ is XP.
+    The algorithm we have just described runs in time $n^{\mathcal{O}(b)}$.
+    From this, we can conclude that \HL parameterized by $b$ is in \XP.
 \end{proof}
 
 We have just shown that \HL parameterized by $b$ or $d$ is in \XP.
 If we now add some other parameter or parameters to either $b$ or $d$, then the problem
 might become easier but surely stays in \XP.
-For example take $b+|L|$ as the parameter;
+For example, take $b+|L|$ as the parameter;
 when not a part of the parameter, |L| was bounded by a function of an input size,
 because it is now a part of the parameter, |L| is bounded by a function of the parameter,
 hence the problem is possibly easier to solve.
