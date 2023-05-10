@@ -137,11 +137,11 @@ Problems for which exists in practice efficient enough algorithm are called \emp
 
 % NP
 \begin{definition}[\NP]
-    Complexity class \NP is the set of all decision problems $L$ for which there exist
-    a polynomial $p :colon \mathbb{N} \rightarrow \mathbb{N}$ and a deterministic Turing machine $M$
+    A complexity class \NP is the set of all decision problems $L$ for which there exist
+    a polynomial $p \colon \mathbb{N} \rightarrow \mathbb{N}$ and a deterministic Turing machine $M$
     such that for every instance $x$ of $L$ $x$ is a $yes$-instance if and only if there exists
     a polynomial-size solution $u$ of $x$ that can be verified on $M$ in polynomial time.
-    Such solution $u$ is then called a \emph{certificate} or \emph{witness}.
+    Such solution $u$ is then called the \emph{certificate} or the \emph{witness}.
 \end{definition}
 
 Informally, complexity class \NP consists of all decision problems that can be solved in polynomial time
