@@ -23,14 +23,15 @@ The original theorem reads:
     The \HL problem is \NPc given the degree centrality.
 \end{theorem}
 
-\begin{proof}
-    The proof for our definition of \HL is almost identical to the original proof, with little adjustments.
-    The adjustments are pretty straightforward but to better understand them,
-    let us first briefly describe the idea of the original proof.
+A proof which follows is almost identical to the original proof from Waniek et al. \cite{Waniek2021full},
+with only little adjustments done.
+The adjustments are pretty straightforward but to better understand them,
+we start the proof by briefly describing the idea of the original proof.
 
+\begin{proof}
     A common way of proving \NP-hardness is to propose a polynomial reduction from another \NPh problem to the
     problem we are proving \NP-hardness of.
-    In this proof, the authors show a reduction from the $k$-\textsc{Clique} problem defined on graph $G$.
+    In the original proof, the authors show a reduction from the $k$-\textsc{Clique} problem defined on graph $G$.
     The idea is following: In a polynomial time, construct a new graph $H$ from $G$ in a way that
     in order to solve \HL in $H$ we must solve $k$-\textsc{Clique} in $G$ in the first place.
     To achieve that, the authors, as a starting point of $H$, first create a complement of $G$ 
