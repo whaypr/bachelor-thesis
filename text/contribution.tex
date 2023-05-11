@@ -74,7 +74,7 @@ We present a proof of a stronger theorem, with a simpler reduction graph and in 
 These results are possible mainly because of a stronger assumption in the proof where we assume a regular graph as the input.
 
 The core idea of the proof is that we construct a network in such a way that finding a solution~$W$ of the \HL problem
-correspond to finding a solution to the problem we started with, essentially having the starting network
+corresponds to finding a solution to the problem we started with, essentially having the starting network
 present in the constructed network in some manner and then finding a solution inside of it.
 
 \begin{theorem}\label{theorem:DB}
@@ -447,7 +447,7 @@ We have just shown that \HL parameterized by $b$ or $d$ is in \XP.
 If we now add some other parameter or parameters to either $b$ or $d$, then the problem
 might become easier but surely stays in \XP.
 For example, take $b+|L|$ as the parameter;
-when not a part of the parameter, |L| was bounded by a function of input size,
+when not a part of the parameter,~|L| was bounded by a function of input size,
 because it is now a part of the parameter, |L| is bounded by a function of the parameter,
 hence the problem is possibly easier to solve.
 From this, we get the following.
@@ -509,7 +509,7 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
         \draw[->,edgeW] (BD.45) -- (D.315);
     \end{tikzpicture}
     \caption
-    [Overviewing graph with results for \HLdeg]
+    [An overviewing graph with results for \HLdeg]
     {
         The complexity picture for the \HL problem given the degree centrality measure, \HLdeg.
         Combinations of parameters for which \HLdeg is in \XP but we do not know if they are \Wh are highlighted in green,
