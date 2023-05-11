@@ -311,7 +311,10 @@ From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is 
 \end{definition}
 
 The complexity class containing all slice-wise polynomial problems is called \XP.
-An example of a problem from \XP is $k$-\textsc{Independent Set}.
+An example of a problem from \XP is $k$-\textsc{Independent Set}, in which the question is
+if there exists a set $K$ of at most $k$ vertices of graph $G$ such that $G[K]$ has no edges.
+A solution to this problem can be found by trying each of the $\binom{n}{k} \leq n^{\mathcal{O}(k)}$ $k$-element subsets of vertices
+and checking in time $\mathcal{O}(n)$ whether or not it is a solution.
 
 Note that definitions of parameterized problems FTP and XP differ only in a running time boundary of algorithm $\mathcal{A}$
 and so $\FPT \subseteq \XP$.
