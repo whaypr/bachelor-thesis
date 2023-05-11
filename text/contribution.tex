@@ -72,7 +72,7 @@ We reviewed the proof from Waniek et al. \cite{Waniek2017} and its core ideas in
 We present a proof of a stronger theorem, with simpler reduction graph and in the language of parameterized complexity.
 These results are possible mainly because of a stronger assumption in the proof where we assume a regular graph as the input.
 
-The core idea of the proof is that we construct a network in such way that finding a solution $W$ of the \HL problem
+The core idea of the proof is that we construct a network in such way that finding a solution~$W$ of the \HL problem
 correspond to finding a solution of the problem we started with, essentially having the starting network
 present in the constructed network in some manner and then finding a solution inside of it.
 
@@ -104,23 +104,23 @@ present in the constructed network in some manner and then finding a solution in
     An example of such construction can be seen in Figure \ref{fig:proofDB}.
 
     Note that step 4 can always be done because $r \ge k$, so $|F_1| = n > n - r + (k - 1)$
-    and since $\deg(l) = 0$ (before step 4), there are enough vertices for $\ell$ to connect with.
+    and since $\deg(\ell) = 0$ (before step 4), there are enough vertices for $\ell$ to connect with.
     Considering $G$ is $r$-regular, its complement, constructed and added into $H$ in steps 2 and 3, must be $(n-r-1)$-regular.
     After connecting all the $F_1$ vertices either with $\ell$, or the corresponding $w_v$ in steps 4 and 5,
     they all end up with degree $n-r$; in other words, graph $H[F_1]$ is $(n-r)$-regular.
-    Also note that the construction of $H$ is done in time polynomial to $n$.
+    Also note that the construction of $H$ is done in time polynomial with $n$.
 
     Next, notice that the degree of the only leader $\ell$ is $\lambda$, as presented above.
-    The other vertices $V(H) - l$ are naturally followers of which we can recognize two types, $F_1$ and $F_2$,
+    The other vertices $V(H) - \ell$ are naturally followers of which we can recognize two types, $F_1$ and $F_2$,
     where $\forall_{f_1 \in F_1} \deg(f_1)$ = $n-r$ and $\forall_{f_2 \in F_2} \deg(f_2)$ = $1$.
-    Whereas $F_1$ are vertices of the original graph $G$,
+    Whereas $F_1$ are vertices of the original graph~$G$,
     $F_2$ plays a role of ``partners'' of vertices $Y$, since their only job is to substitute a missing connection with $\ell$.
 
     Because there is just one leader in $\mathcal{I}$, it is clear that for any follower $f' \in F'$ applies that
     $\deg(f') \geq \lambda = n - r + (k - 1)$.
     Also, because $n > r$, $\max\limits_{\forall f_1 \in F_1}\deg(f_1) = n-r > 1 = \max\limits_{\forall f_2 \in F_2}\deg(f_2)$.
     
-    We now show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in $H$, more concretely,
+    We now show how finding a $k$-clique in graph $G$ corresponds to finding a solution $W$ of \HLshort in~$H$, more precisely,
     we show that $(G, k)$ is a yes-instance of the $k$-\textsc{Clique} problem if and only if $\mathcal{I}$ is a yes-instance of \HLdeg.
 
     Let us start with the left-to-right direction, assuming that $(G, k)$ is a $yes$-instance of $k$-\textsc{Clique}.
@@ -154,7 +154,7 @@ present in the constructed network in some manner and then finding a solution in
         so we must have added more edges than there is in the budget, which is a contradiction.
     \end{subproof}
 
-    We have shown that we can only add edges between followers $F_1$ when looking for solution $W$.
+    We have shown that we can only add edges between followers $F_1$ when looking for solution~$W$.
     We now show that there are exactly $k$ followers in $F'$ and that
     once we add new edge between two followes, they must become part of $F'$.
 
@@ -167,7 +167,7 @@ present in the constructed network in some manner and then finding a solution in
         there are at least $d = k$ followers in $F'$, so, assume, for sake of contradiction, that $|F'| > k$.
 
         Each vertex from $F'$ must have gotten at least $k - 1$ new neighbors,
-        for which we must have added at least $\frac{|F'| \cdot (k-1)}{2} > \frac{|k \cdot (k-1)}{2} = b$,
+        for which we must have added at least $\frac{|F'| \cdot (k-1)}{2} > \frac{k \cdot (k-1)}{2} = b$,
         which is a contradiction.
     \end{subproof}
 
@@ -180,9 +180,9 @@ present in the constructed network in some manner and then finding a solution in
         Assume, for sake of contradiction, that $(f',f_1) \in W$, where $f' \in F'$ and $f_1 \in F_1 \setminus F'$.
         Also assume that $(f',f_1)$ is the only edge from $W$ which is incident to someone from $F_1 \setminus F'$.
     
-        We know that each of the $k-1$ vertices from $F' \setminus f'$ has only gotten new neighbors from $F'$.
+        We know that each of the $k-1$ vertices from $F' \setminus \{f'\}$ has only gotten new neighbors from $F'$.
         Because each vertex from $F'$ must have gotten at least $k-1$ new neighbors,
-        all of the vertices from $F' \setminus f'$ must have became neighbors with all the other vertices from $F'$,
+        all of the vertices from $F' \setminus \{f'\}$ must have became neighbors with all the other vertices from $F'$,
         which means that $\frac{k \cdot (k-1)}{2} = b$ new edges have been added.
         However, $(f',f_1)$ is also in $W$, meaning that there are $b+1$ edges in $W$, which is a contradiction.
     \end{subproof}
@@ -194,15 +194,15 @@ present in the constructed network in some manner and then finding a solution in
     followers from $F'$, meaning that $H[F']$ is a complete graph.
     Also note that every edge from $W$ must be an edge from the original graph $G$ because $W \subset F_1 \times F_1$ and $F_1 = V(G)$
     and also all the edges from $E(\overline{G})$ are already in $E(H)$ so they cannot be in $W$, since it only contains newly added edges.
-    For this reason, the fact that $H[F']$ is a complete graph means that there is a $k$-clique in $G$.
+    For this reason, the fact that $H[F']$ is a complete graph means that vertices $F'$ forms a $k$-clique in~$G$.
 
     Because a solution $W$ for \HLshort in $H$ exists if and only if a $k$-clique in $G$ exists,
-    we can conclude that finding a solution for the \HL problem in graph $H$ is exactly the same as
+    we can conclude that finding a solution for the \HL problem in graph $H$ is at least as hard as
     finding a solution for the $k$-\textsc{Clique} problem in graph $G$.
 
     The reduction presented in this proof is a valid parameterized reduction because;
-    $(G, k)$ is a yes-instance of the $k$-\textsc{Clique} problem if and only if $\mathcal{I}$ is a yes-instance of \HLdeg;
-    the construction of $H$ is done in time polynomial to $n$;
+    $(G, k)$ is a yes-instance of the $k$-\textsc{Clique} problem if and only if $\mathcal{I}$ is a yes-instance of \HLdeg,
+    the construction of $H$ is done in polynomial time;
     and there is a function of $k$, $g(k) = \frac{k\cdot(k-1)}{2} + k$, upper-bounding the parameter $k'$ of $\mathcal{I}$.
 \end{proof}
 
@@ -328,7 +328,7 @@ become bounded by a function of the input size, making the problem possibly hard
     \HL parameterized by any variation of $|L|$, $b$, $d$ is \Wh.
 \end{corollary}
 
-The parameterized reduction shown in Proof \ref{proofDB} is done in polynomial time,
+The parameterized reduction shown in Proof \ref{proofDB} is done in polynomial time with respect to input size,
 that means that it is also a polynomial reduction.
 That is, there is a polynomial reduction from $k$-\textsc{Clique} on regular graphs to \HL, where $|L| = 1$.
 Because $k$-\textsc{Clique} on regular graphs is \NPh, we get from the reduction that \HL is \NPh as well,
@@ -356,7 +356,7 @@ Let us present a proof of the variant with parameter $b$ first.
 
 \begin{proof}
     Given parameterized problem $(\mathcal{I}, b)$, where $\mathcal{I} = (G, L, b, c_{deg}, d)$ is a \HLdeg instance
-    and $b$ is the parameter,
+    and~$b$ is the parameter,
     we show an algorithm which decides whether or not $(\mathcal{I}, b)$ is a $yes$-instance in time bounded by
     $f(b) \cdot n^{g(b)}$ for some computable functions $f,g$.
 
@@ -365,10 +365,10 @@ Let us present a proof of the variant with parameter $b$ first.
     $b$-element subsets of edges which can be added between followers, we denote the current subset as $B$.
     Because we take all the possible $b$-element subsets of $\hat{A}$,
     we eventually find a subset $B$ such that $B = W$;
-    if $(\mathcal{I}, b)$ is a $yes$-instance and thus such $W$ exists.
+    if $(\mathcal{I}, b)$ is a $yes$-instance, then such $W$ exists.
     We then try to add those edges $B$ into $G$ and after each such addition,
     we check whether there are at least $d$ followers
-    with degree greater than $\lambda$.
+    with degree greater than~$\lambda$.
     The addition can be done in time $\mathcal{O}(b)$, the check can be done in time $\mathcal{O}(n)$.
 
     If instance $(\mathcal{I}, b)$ is not identified as a $yes$-instance for any choice of $B$,
@@ -393,7 +393,7 @@ This proof will be led in a similar manner as the previous proof.
 \end{theorem}
 
 \begin{proof}\label{proof:XPd}
-    Given parameterized instance $(\mathcal{I}, d)$, where $\mathcal{I} = (G, L, b, c_{deg}, d)$ is a \HLdeg instance and $d$ is the parameter,
+    Given parameterized instance $(\mathcal{I}, d)$, where $\mathcal{I} = (G, L, b, c_{deg}, d)$ is a \HLdeg instance and~$d$ is the parameter,
     we show an algorithm which decides whether or not $(\mathcal{I}, d)$ is a $yes$-instance in time bounded by
     $f(d) \cdot n^{g(d)}$ for some computable functions $f,g$.
 
@@ -492,7 +492,7 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
         \node[result,Wh,label={0:\small{\tt T\ref{theorem:B:XP}}}] (B) [above left=18mm and 2mm of LnD] {\budget};
         \node[result,Wh,label={0:\small{\tt T\ref{theorem:D:XP}}}] (D) [above right=18mm and 2mm of LnD] {\safetymarg};
         \node[corollary,pNPh,label={0:\small{\tt C\ref{cor:Ln:pNPh}}}] (Ln) [left=of B] {\leadnum};
-        \node[XP,label={0:\small{\tt B\cite{Dey2019}}}] (Ld) [right=of D] {\leaddeg};
+        \node[XP,label={0:\small{\tt known\cite{Dey2019}}}] (Ld) [right=of D] {\leaddeg};
         % triplets
         \node[result,Wh,label={0:\small{\tt T\ref{theorem:DB}}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
         % edges
@@ -519,9 +519,9 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
         results from the literature does not have any border.
         Each node have a reference to the corresponding theorem, remark, corollary or bibliography record.
         Arrows represent how complexity results spread.
-        Green arrows represent \FPT class, orange arrows represent \XP class
-        and violet arrows represent \W-hardness.
-        When multiple arrows would aim to the same node, then only one a only that for the best complexity class is displayed.  
+        Orange arrows represent \XP class and violet arrows represent \W-hardness.
+        When multiple arrows of the same color would aim to the same node,
+        then only one of them is displayed.  
     }
     \label{fig:complexityPicture}
 \end{figure}

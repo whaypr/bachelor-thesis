@@ -33,7 +33,7 @@ and edges represents, in some sense, a connection between two given members, e.g
 
 % Degree
 \begin{definition}[Vertex degree]
-    Degree of vertex $v$ in some graph $G$, denoted as $\deg(v)$, is the number of neighbors of $v$.
+    A degree of vertex $v$ in some graph $G$, denoted as $\deg(v)$, is the number of neighbors of $v$.
     In other words, it is the number of edges vertex $v$ is a part of, i.e.,
     $\Big|\{x \in V(G) \vert \{v,x\} \in E(G) \vee \{x,v\} \in E(G)\}\Big|$.
 \end{definition}
@@ -42,42 +42,42 @@ A set of neighbors of some vertex $v$ is often denoted as $N(v)$, so then $\deg(
 
 % r-regular graph
 \begin{definition}[$r$-regular graph]
-    Graph $G$ is \emph{$r$-regular} if the degree of each vertex from $V(G)$ is $r$, i.e., $\forall v \in V(G) \colon \deg(v) = r$.
+    A graph $G$ is \emph{$r$-regular} if the degree of each vertex from $V(G)$ is $r$, i.e., $\forall v \in V(G) \colon \deg(v) = r$.
 \end{definition}
 
 % Regular graph
 \begin{definition}[Regular graph]
-    Graph $G$ is \emph{regular} if there exists some $r \in \mathbb{N}$ for which $G$ is $r$-regular.
+    A graph $G$ is \emph{regular} if there exists some $r \in \mathbb{N}$ for which~$G$ is $r$-regular.
 \end{definition}
 
 % Complement graph
 \begin{definition}[Complement graph]
-    \emph{Complement graph} $\overline{G}$ of graph $G$ is the graph on vertices $V(G)$,
+    A \emph{complement graph} $\overline{G}$ of graph $G$ is the graph on vertices $V(G)$,
     where two vertices are adjacent (there is an edge between them) if and only if
     they are not adjacent in $G$, i.e., $\forall e \in V(G) \times V(G) \colon e \in E(\overline{G}) \Leftrightarrow e \notin E(G)$.
 \end{definition}
 
 % Induced subgraph
 \begin{definition}[Induced subgraph]
-    \emph{Induced subgraph} $G[S]$ of graph $G$ is the graph on vertices $V(G[S]) = S \subset V(G)$,
+    An \emph{induced subgraph} $G[S]$ of graph $G$ is the graph on vertices $V(G[S]) = S \subset V(G)$,
     where two vertices are adjacent if and only if they are adjacent in $G$, i.e.,
     $(\forall u,v \in S)(\{u,v\} \in E(G[S]) \Leftrightarrow \{u,v\} \in E(G))$.
 \end{definition}
 
 % Complete graph
 \begin{definition}[Complete graph]
-    \emph{Complete graph} is the graph $G$ if there is an edge between every pair of vertices from $V(G)$, i.e.,
+    A \emph{complete graph} is the graph $G$ if there is an edge between every pair of vertices from $V(G)$, i.e.,
     $(\forall u,v \in V(G))(\{u,v\} \in E(G))$.
 \end{definition}
 
 % Clique
 \begin{definition}[Clique]
-    Clique $C$ is the subgraph of graph $G$ where $G[E(C)]$ is a complete graph.
+    A clique $C$ is the subgraph of graph $G$ where $G[E(C)]$ is a complete graph.
 \end{definition}
 
 % Vertex cover
 \begin{definition}[Vertex cover]
-    \emph{Vertex cover} of graph $G$ is the subset $S \subseteq V(G)$ where each edge from $E(G)$ is
+    A \emph{vertex cover} of graph $G$ is the subset $S \subseteq V(G)$ where each edge from $E(G)$ is
     covered by some vertex from $S$. In other words, at least one endpoint of each edge is present in $S$, i.e.,
     $(\forall \{u,v\} \in E(G))(u \in S \vee v \in S)$.
 \end{definition}
@@ -103,7 +103,7 @@ Centrality measure, or centrality for short, is a measure from graph theory whic
 Generally, centrality is a function $c: G \times V \rightarrow \mathbb{R}$ which describes the importance of a node in given network.
 With centrality, we can measure a ranking (position among other nodes) of given node within their network.
 What follows is a definition of a degree centrality introduced by Shaw \cite{Shaw1954}, but there are other centralities used in SNA like
-closeness \cite{Beauchamp1965}, betweenness \cite{Anthonisse1971,Freeman1977} or core \cite{Seidman1983} centrality.
+closeness~\cite{Beauchamp1965}, betweenness \cite{Anthonisse1971,Freeman1977} or core \cite{Seidman1983} centrality.
 
 \begin{definition}[Degree centrality]
     A degree centrality measures an importance of a vertex by its degree.
@@ -121,13 +121,13 @@ Detailed revision on this topic can be found in the textbook from Arora and Bara
 Let us start with defining the \textsf{DTIME} complexity class, which we then use to define the \Po class.
 
 \begin{definition}[\textsf{DTIME}]
-    Complexity class \textsf{DTIME}(f(n)) is the set of all decision problems that are computable in time
+    A complexity class \textsf{DTIME}(f(n)) is the set of all decision problems that are computable in time
     $c \cdot f(n)$ for some constant $c > 0$ and some function $f \colon \mathbb{N} \rightarrow \mathbb{N}$.
 \end{definition}
 
 % P
 \begin{definition}[\Po]
-    Complexity class \Po is the set of all decision problems that are in class \textsf{DTIME}($n^c$)
+    A complexity class \Po is the set of all decision problems that are in class \textsf{DTIME}($n^c$)
     for any $c \geq 1$, i.e.
     $\cup_{c \geq 1} \textsf{DTIME}(n^c)$.
 \end{definition}
@@ -149,8 +149,8 @@ when multiple steps can be done in parallel.
 Note that $\Po \subseteq \NP$, because, for any problem from \Po, it takes only a polynomial amount of time to solve
 it in the first place.
 
-Lastly, let us briefly recall computational complexity terms \emph{hardness} and \emph{completeness}.
-A problem $p$ is, given some complexity class \textsf{C}, \textsf{C-hard} if for any problem $c$ from \textsf{C}
+At the end of this section, let us briefly recall computational complexity terms \emph{hardness} and \emph{completeness}.
+A problem $p$ is, given some complexity class \textsf{C}, \textsf{C-hard} if for any problem $c$ from~\textsf{C}
 there exists a polynomial reduction from $c$ to $p$.
 A problem $p$ is then \textsf{C-complete} if it is \textsf{C-hard} and it belongs to \textsf{C} at the same time.
 
@@ -261,21 +261,21 @@ One particular problem parameterized by different parameters leads to different 
     Let $A,B \subseteq \Sigma^* \times \mathbb{N}$ be two parameterized problems.
     A parameterized reduction from $A$ to $B$ is an algorithm that, given an instance $(x, k)$ of $A$,
     outputs an instance $(x', k')$ of $B$ such that
-    \begin{description}
+    \begin{itemize}
         \item $(x, k)$ is a $yes$-instance of $A$ if and only if $(x', k')$ is a $yes$-instance of $B$,
         \item $k' \leq g(k)$ for some computable, nondecreasing function $g$, and
         \item the running time is $f(k) \cdot |x|^{\mathcal{O}(1)}$ for some computable, nondecreasing function $f$.
-    \end{description}
+    \end{itemize}
 \end{definition}
 
 % FPT problem and class
 \begin{definition}[FPT]
     A parameterized problem $L$ is called fixed-parameter tractable (FPT) if there exists
-    \begin{description}
+    \begin{itemize}
         \item an algorithm $\mathcal{A}$, called fixed-parameter algorithm, or FPT algorithm,
         \item a computable, nondecreasing function $f : \mathbb{N} \times \mathbb{N}$
         \item and a constant $c$
-    \end{description}
+    \end{itemize}
     such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
     the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
     $f(k) \cdot |(x,k)|^c$.
@@ -288,10 +288,10 @@ possible evaluations for the variables and checking if the evaluation is correct
 Moreover, we know from the Exponential Time Hypothesis, formulated by Impagliazzo and Paturi \cite{Impagliazzo1999},
 that the problem cannot be solved in time $2^{o(n)}$
 
-The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent $c$
+The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent~$c$
 in the running time boundary as small as possible.
 We can see that if the parameter is equal to the input size, then \FPT become exponential and,
-on the other hand if $k = 1$, then \FPT become \Po \cite{Koutensky2020}.
+on the other hand if $k = 1$, then \FPT become~\Po~\cite{Koutensky2020}.
 
 The only difference between FPT and para-NP problems is that algorithms for para-NP problems are
 nondeterministic in general.

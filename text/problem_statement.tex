@@ -42,7 +42,7 @@ and with a presentation of the literature results.
 \vspace{2.5mm}
 
 In other words, we want to \emph{``identify a set of edges to be added between the followers so that
-the ranking of the leaders (based on some centrality measure) drops below a certain threshold''} \cite{Waniek2017}.
+the ranking of the leaders (based on some centrality measure) drops below a certain threshold''}~\cite{Waniek2017}.
 Adding such set of edges into given network let leaders to increase their security while not affecting their
 influence in the network, although, new members with great influence may arise.
 
@@ -62,7 +62,7 @@ published later in 2021 \cite{Waniek2021full}.
 There was also formulated an optimization variant of the \HL problem in the completed paper, called \textsc{Minimum Hiding Leaders}, 
 in which there is no budget specified, as the goal is to find the smallest possible set of connections between the followers
 sufficient to solve the problem.
-In another work from 2021 \cite{Waniek2021}, Waniek et al. studied a problem similar to the \HL problem,
+In another work from 2021~\cite{Waniek2021}, Waniek et al. studied a problem similar to the \HL problem,
 which is called \textsc{Local Hiding}.
 The \HL problem was then also studied by Dey and Medya \cite{Dey2019}.
 
@@ -129,7 +129,7 @@ For a presentation of our results, please refer to Section \ref{section:OurResul
 Waniek et al. \cite{Waniek2017} show that the \HL problem is \NPc for the degree centrality.
 In more detail, they show that the problem is \Wh when parameterized by $b+d$.
 We review this proof for our definition of \HLshort in Section \ref{section:proofRevision} and present
-a similar result as Theorem \ref{theorem:DB}.
+a similar result as Theorem~\ref{theorem:DB}.
 
 From the work of Dey and Medya \cite{Dey2019}, we know that \HLdeg is polynomial time solvable
 if the degree of every leader is bounded by some constant.
@@ -150,7 +150,7 @@ a $(\frac{\epsilon}{2})$-approximation algorithm for the \textsc{Densest} $k$-\t
 Waniek et al. next show that \HL is \NPc for the closeness \cite{Waniek2017} and betweenness \cite{Waniek2021full} centralities.
 In more detail, they show that the problem is \Wh when parameterized by $b$ for both the closeness and the betweenness centralities.
 In addition to this, the authors show that \HL cannot be approximated within a ratio of $(1 - \epsilon ) \cdot \ln(|F|)$
-for any $\epsilon > 0$, unless \Po = \NP, with respect to both the closeness and the betweenness centralities. \todo{is this right?}
+for any $\epsilon > 0$, unless \Po = \NP, with respect to both the closeness and the betweenness centralities.
 
 For the core centrality measure, Dey and Medya \cite{Dey2019} next show that \HLshort is \NPc even if core centrality of
 every leader is exactly 3. Meaning that \HLshort is \pNPh when parameterized by the maximum core centrality of leaders.
