@@ -47,17 +47,16 @@
 \ctufitdeclarationdate{\today} % replace with the date of signature of the declaration
 \ctufitabstractENG{
     In this thesis, we provide an introduction to the topic of covert networks and their analysis,
-    with emphasis on the \HL problem,
+    with emphasis on the \HL problem
     which we study with respect to the degree centrality measure
     and using the framework of parameterized computational complexity.
 
-    We analyze results on this topic provided in the literature and survey them from the
-    new perspective of the parameterized complexity.
-    We also point out there are multiple definitions of the problem
+    We analyze results for the \HL problem provided in the literature and put them into a perspective of the parameterized complexity.
+    We also point out that there are multiple definitions of the problem
     and review some of the results from the literature with respect to the definition we have picked.
 
     We then bring new results to the domain by showing that
-    the problem is \Wh when parameterized by $b+d$ even when $|L|=1$, and \pNPh when parameterized by $|L|$,
+    the problem is \Wh when parameterized by $b+d$ even when $|L|=1$, and \pNPh with respect to $|L|$,
     where $b$ denotes a number of edges allowed to be added into given network,
     $d$ denotes a number of followers needed to have centrality at least as high as any of leaders
     and $L$ denotes a set of leaders.
@@ -66,14 +65,33 @@
     In the end, we put together our results and their corollaries -- for parameters $|L|$, $b$, $d$ --
     and results from the literature -- for parameter $\lambda$, where $\lambda$ denotes a maximum degree among leaders --
     and visualize them altogether in an overviewing graph,
-    providing an easily accessible summary of the current state of the research of optimally solving \HL
-    given the degree centrality and the four aforementioned parameters.
+    providing an easily accessible summary of the current state of the research of \HL
+    given the decision version of the problem, the degree centrality and the four aforementioned parameters.
 }
 \ctufitabstractCZE{
-    \todo{Fill in abstract of this thesis in Czech language}
+    V této práci poskytujeme úvod do problematiky skrytých sítí (\emph{covert networks}) a jejich analýzy,
+    s důrazem na problém \HL, který zkoumáme s ohledem na míru centrality měřenou stupněm uzlu (\emph{degree centrality})
+    a pomocí frameworku parametrizované výpočetní složitosti.
+
+    Analyzujeme výsledky pro problém \HL uvedené v literatuře a dáváme je do perspektivy parametrizované složitosti.
+    Zdůrazňujeme také, že existuje více definic tohoto problému a přezkoumáváme některé výsledky z literatury
+    s ohledem na námi vybranou definici.
+
+    Dále přinášíme nové výsledky a ukazujeme, že problém je \textsf{W}[1]-těžký pro parametr $b+d$ i když $|L|=1$,
+    a \textsf{para-NP}-těžký vzhledem k $|L|$,
+    kde $b$ označuje počet hran, které mohou být přidány do dané sítě,
+    $d$ označuje požadovaný počet následovníků, kteří musí mít centralitu alespoň tak vysokou jako kterýkoli z vůdců,
+    a $L$ označuje množinu vůdců.
+    Také ukazujeme, že problém je v \XP při parametrizaci parametry $b$ nebo $d$.
+
+    V závěru práce spojujeme naše výsledky a jejich důsledky -- pro parametry $|L|$, $b$, $d$ --
+    s výsledky z literatury -- pro parametr $\lambda$, kde $\lambda$ označuje maximální stupeň mezi vůdci --
+    a vizualizujeme je společně v přehledném grafu,
+    který poskytuje snadno dostupné shrnutí současného stavu výzkumu \HL problému
+    vzhledem k rozhodovací verzi tohoto problému, centralitě měřené stupněm uzlu a čtyřem výše uvedeným parametrům.
 }
 \ctufitkeywordsENG{Hiding Leaders problem, covert networks, parameterized complexity, degree centrality}
-\ctufitkeywordsCZE{problém Hiding Leaders, covert networks, parametrizovaná složitost, centralita měřená stupněm uzlu}
+\ctufitkeywordsCZE{problém Hiding Leaders, covert networks, parametrizovaná složitost, degree centrality}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % END FILL IN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
