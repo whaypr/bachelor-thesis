@@ -162,15 +162,9 @@ We use the textbook by Cygan et al. \cite{Cygan2015} as our main source of infor
 provides arguably the most complex and comprehensive overview of the theory of parameterized complexity and,
 in many cases, presents the state of the art in the field.
 
-The classical complexity analysis is often insufficient when dealing with \NPh problems.
-The main reason is that there are \NPh problems that are in some sense harder than others.
-This inability of the classical approach to distinguish between the hardness of various \NPh problems
-led to the development of the parameterized complexity theory.
-Parameterized complexity is a direct generalization of the classical complexity theory and it arms its users
-with the ability to analyze the running time of algorithms, and thus computational complexities of problems
-they try to solve, in finer detail.
-It gives us tools that help us to distinguish between different difficulty levels in places where
-\NP-hardness fails to do so.
+As we already mentioned in Section \ref{section:litRev:ParamCompl},
+parameterized complexity gives us tools that help us distinguish between different difficulty levels
+in places where \NP-hardness fails to do so.
 To achieve this, parameter complexity introduces a notion of parameterization of the input instance, where
 the parameter is just some secondary measurement of the input instance.
 Such parameter is then used together with the input instance size when describing a computational complexity of \NPh problems.
@@ -343,8 +337,12 @@ as well as the fact that the $k$-\textsc{Clique} problem is \Wone-complete \cite
 
 We do not provide the exact definition and further description of \W-hierarchy
 because it is not important for the purposes of this work.
-On the other hand, what is important is the fact that we interpret the \W-hardness as an evidence that
+On the other hand, what is important is the fact that we interpret the \W-hardness as evidence that
 a problem is not fixed-parameter tractable.
 This interpretation is based on a general assumption that $\FPT \neq \Wone$.
 To show that a certain problem is \Wh, it is typically shown a parameterized reduction from some other problem,
 which is already known to be \Wh, to it.
+
+At the end of this section, let us note
+that problems that are \Wh cannot be in \FPT but still can be in \XP, however,
+if we show that some problem is \pNPh, then it cannot be either in \FPT or in \XP.

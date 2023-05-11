@@ -93,8 +93,21 @@ leaving the ``efficiency'' part of the efficiency/security trade-off untouched.
 %---------------------------------------------------------------
 \section{Parameterized computational complexity}\label{section:litRev:ParamCompl}
 
-What follows is a sumamry of the literature on the topic of parameterized complexity.
-For an introduction to the topic itself, please refer to Section \ref{section:ParamComp}.
+What follows is a summary of the literature on the topic of parameterized complexity,
+together with a brief introduction to the topic.
+For a thorough introduction to the topic, please refer to Section \ref{section:ParamComp}.
+
+The classical complexity analysis is often insufficient when dealing with \NPh problems,
+which are problems that are computationally intensive to solve --
+they are so-called \emph{intractable}.
+The main reason the classical complexity analysis is an insufficient tool to deal with \NPh problems is that
+it cannot distinguish \NPh problems that are in some sense ``harder'' than others,
+or distinguish between ``hard'' and ``easy'' instances of some \NPh problem.
+This inability of the classical approach to distinguish between the hardness of various \NPh problems and their instances
+led to the development of the parameterized complexity theory.
+Parameterized complexity is a direct generalization of the classical complexity theory and it arms its users
+with the ability to analyze the running time of algorithms, and thus computational complexities of problems
+they try to solve, in finer detail.
 
 The foundations of parameterized complexity were laid by Downey and Fellows
 in the series of papers from years 1992 to 1995 \cite{Downey1995.1,Downey1995.2,Downey1993,Downey1995.4},
