@@ -3,9 +3,9 @@
 %---------------------------------------------------------------
 
 Now we define the central problem of this thesis, the \HL problem.
-In this chapter, we also provide an introduction to notation we use,
+In this chapter, we also provide an introduction to the notation we use,
 a detailed description of the problem, a motivation behind its formulation, an explanation of its hardness
-and a review of the literature on this topic with a description of differences between problem definitions
+and a review of the literature on this topic with a description of the differences between problem definitions
 and with a presentation of the literature results.
 
 
@@ -28,8 +28,8 @@ and with a presentation of the literature results.
         \item $G = (V, E)$ is a network,
         \item $L \subseteq V$ are leaders and the remaining vertices $F = V \setminus L$ are followers,
         \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
-        \item $b$ is a maximum number of edges that we are allowed to add in $G$,
-        \item $d$ is a safety margin -- a number of followers whose final centrality should be at least as high as of any leader.
+        \item $b$ is the maximum number of edges that we are allowed to add in $G$,
+        \item $d$ is a safety margin -- the number of followers whose final centrality should be at least as high as of any leader.
     \end{itemize}
     Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
     such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
@@ -43,7 +43,7 @@ and with a presentation of the literature results.
 
 In other words, we want to \emph{``identify a set of edges to be added between the followers so that
 the ranking of the leaders (based on some centrality measure) drops below a certain threshold''}~\cite{Waniek2017}.
-Adding such set of edges into given network let leaders to increase their security while not affecting their
+Adding such a set of edges into a given network lets leaders increase their security while not affecting their
 influence in the network, although, new members with great influence may arise.
 
 We survey \HLshort only with respect to the degree centrality measure, that is, with $c = c_{deg}$.
@@ -53,7 +53,7 @@ all followers from $F'$ have to reach.
 Lastly, we use symbol $\hat{A}$ to denote a set of edges between followers that are not present in $G$ and thus can be added,
 $\hat{A} = E(\overline{G[F]})$.
 
-Among the first authors who surveyed the topic of evading social network analysis tools, rather than developing the new ones,
+Among the first authors who surveyed the topic of evading social network analysis tools, rather than developing new ones,
 were Waniek et al. \cite{Waniek2016}.
 This topic was further researched by the same authors in the subsequent work \cite{Waniek2017}
 in which the \HL problem was first formulated.
@@ -71,43 +71,43 @@ There are two definitions of the \HL problem in the literature and they differ f
 Namely, the definition\footnote{
     There is actually also a generalized form of this definition in Waniek's dissertation thesis \cite{WaniekPhD2017},
     similar to the definition of \textsc{Local Hiding},
-    where he also consider a set of edges that can be added and a set of edges that can be removed.
-    However, we consider the first mentioned set to always contain all possible edges and the second mentioned set
+    where he also considers a set of edges that can be added and a set of edges that can be removed.
+    However, we consider the first-mentioned set to always contain all possible edges and the second-mentioned set
     to be empty, which is also the typical situation in the literature.
     For this reason, we do not distinguish between these two definitions.
 }
 from Waniek et al. \cite{Waniek2017} and the definition from Dey and Medya \cite{Dey2019}.
 The definition from Waniek et al. \cite{Waniek2017} allows leaders $L$ to be equal to $V$, $L \subseteq V$,
 which is a small difference since for $L = V$ the problem is trivial, but the more important difference is that
-it requires centrality measure of followers $F'$ to be strictly greater than that of any leader,
+it requires the centrality measure of followers $F'$ to be strictly greater than that of any leader,
 $\forall_{f \in F'} \forall_{l \in L} c(G', f) > c(G', l)$.
 We decided to stick to the definition from Dey and Medya \cite{Dey2019} because it seems more natural to us to let followers
 to be part of a solution as soon as their centrality is at least the same as of all the leaders --
-if no leader has centrality measure greater than any follower from $F'$, then
+if no leader has a centrality measure greater than any follower from $F'$, then
 we consider the leaders hidden and safe from detection.
 On the other hand, the name ``\HL'' comes from the original definition by Waniek et al. as
 the name is more indicative of the possibility that there are many leaders in the network.
 Later in Section \ref{section:proofRevision}, we show that complexity results for degree centrality
-from Waniek et al. \cite{Waniek2017} still hold even with this slighty different definition of \HLshort.
+from Waniek et al. \cite{Waniek2017} still hold even with this slightly different definition of \HLshort.
 
 The motivation behind only adding edges, with no deletion involved, is that we want leaders to maintain
 their existing influence in the network.
 Indeed, deleting edges incident to leaders would decrease their number of connections and thus potentially
-reducing their reach within network.
+reducing their reach within the network.
 Also, deleting edges between followers would only decrease the values of all degree, betweenness and closeness
 centrality measures for affected followers \cite{Waniek2016},
 which is the exact opposite of what we try to achieve in the \HL problem.
-From this, we can see why it makes sense to only allow adding edges into given network --
-because deleting edges incident with leaders violates our requirements on keeping influence of leaders,
+From this, we can see why it makes sense to only allow adding edges into a given network --
+because deleting edges incident with leaders violates our requirements on keeping the influence of leaders,
 whereas deleting edges incident with followers violates our requirements on making leaders more hidden.
 
-Also note that decreasing the value of degree centrality of any given member is a straightforward task
+Also, note that decreasing the value of the degree centrality of any given member is a straightforward task
 (unlike decreasing other centralities) as it only consists in cutting edges \cite{Waniek2016}.
 On the other hand, \HLdeg is \NPc \cite{Waniek2017}.
 The core difference between these two problems is that \HLdeg, and \HLshort in general,
-is not about decreasing centrality value of given member but rather about decreasing their ranking,
+is not about decreasing the centrality value of a given member but rather about decreasing their ranking,
 the relative position among other nodes with respect to the centrality measure.
-To decrease member's ranking, we must increase centrality of some other members.
+To decrease member's ranking, we must increase the centrality of some other members.
 This fact, together with budget constraint $b$ and safety margin constraint $d$,
 is what stands behind the hardness of the \HL problem, because,
 as Waniek et al. \cite{Waniek2017} shown, and as we will also show in Chapter \ref{chapter:contribution},
@@ -118,8 +118,8 @@ there exist instances of \HLshort where finding a solution corresponds to solvin
 \section{State of the art}
 
 Here we present literature results for the \HL problem.
-We first take a look on results for the degree centrality measure as it is our main concern, then we
-complement it by results for other centralities.
+We first take a look at results for the degree centrality measure as it is our main concern, then we
+complement it with results for other centralities.
 For a presentation of our results, please refer to Section \ref{section:OurResults}.
 
 
@@ -131,9 +131,9 @@ In more detail, they show that the problem is \Wh when parameterized by $b+d$.
 We review this proof for our definition of \HLshort in Section \ref{section:proofRevision} and present
 a similar result as Theorem~\ref{theorem:DB}.
 
-From the work of Dey and Medya \cite{Dey2019}, we know that \HLdeg is polynomial time solvable
+From the work of Dey and Medya \cite{Dey2019}, we know that \HLdeg is polynomial-time solvable
 if the degree of every leader is bounded by some constant.
-That means that \HLdeg admits an XP algorithm when parameterized by degree of leaders, or,
+That means that \HLdeg admits an XP algorithm when parameterized by the degree of leaders, or,
 in other words, when parameterized by $\lambda$.
 In addition to this, the authors present a $2$-approximation algorithm for \HLdeg which optimizes
 the number of edges added.
@@ -152,9 +152,9 @@ In more detail, they show that the problem is \Wh when parameterized by $b$ for 
 In addition to this, the authors show that \HL cannot be approximated within a ratio of $(1 - \epsilon ) \cdot \ln(|F|)$
 for any $\epsilon > 0$, unless \Po = \NP, with respect to both the closeness and the betweenness centralities.
 
-For the core centrality measure, Dey and Medya \cite{Dey2019} next show that \HLshort is \NPc even if core centrality of
+For the core centrality measure, Dey and Medya \cite{Dey2019} next show that \HLshort is \NPc even if the core centrality of
 every leader is exactly 3. Meaning that \HLshort is \pNPh when parameterized by the maximum core centrality of leaders.
-In addition to this, the authors prove that \HLshort is polynomial time solvable
+In addition to this, the authors prove that \HLshort is polynomial-time solvable
 if the core centrality of every leader is at most 1.
 They complement that by proving that there does not exist any $((1 - \alpha) \cdot \ln(n))$-approximation algorithm
 for any constant $\alpha \in (0, 1)$ which optimizes the number of edges that one needs to add even

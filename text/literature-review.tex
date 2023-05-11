@@ -4,26 +4,26 @@
 
 In this chapter, we bring a thorough examination of the literature on two topics;
 social network analysis together with covert networks, and parameterized complexity.
-The study of the former topic provides an useful context for the \HL problem, whereas
-the later topic gives us tools to better reason about \NPh problems, among which, as the reader will see, the \HL problem surely belongs.
+The study of the former topic provides a useful context for the \HL problem, whereas
+the latter topic gives us tools to better reason about \NPh problems, among which, as the reader will see, the \HL problem surely belongs.
 
 %---------------------------------------------------------------
 \section{Social network analysis \& covert networks}
 
 First of all, we mention the publication from Morselli \cite{Morselli2009} that the reader can refer to get
 an extensive study of criminal networks.
-Next, for recent and exhaustive overview of SNA techniques used for covert network disruption,
+Next, for a recent and exhaustive overview of SNA techniques used for covert network disruption,
 the reader can use the paper from Ficara et al. \cite{Ficara2022}.
 
 Arguably the most extensive line of research is that in which authors use covert networks to analyze structures consisting of
 harmful actors.
-That can be terorist organizations or other structures interested in involving into illegal activities. These networks are
+That can be terrorist organizations or other structures interested in involving in illegal activities. These networks are
 also called \emph{dark networks} \cite{Raab2003}.
-Indeed, research in this direction have positive impact on understanding such harmful organisations,
+Indeed, research in this direction has a positive impact on understanding such harmful organizations,
 shedding light on their inner processes and the most potentially hazardous actors and helping in dismantling the entire network,
-preventing further operations and minimizing damage done.
-The understanding of how a covert network works inside can lead to understanding of how it can be broken.
-Among many others, we mention work of these authors \cite{Waniek2017,Dey2019,Raab2003,Lindelauf2009,Xu2005,Ressler2006, SaavedraNieves2023}.
+preventing further operations and minimizing the damage done.
+The understanding of how a covert network works inside can lead to an understanding of how it can be broken.
+Among many others, we mention the work of these authors \cite{Waniek2017,Dey2019,Raab2003,Lindelauf2009,Xu2005,Ressler2006, SaavedraNieves2023}.
 However, as noted by Saavedra-Nieves and Casas-Méndez \cite{SaavedraNieves2023}, this view on covert networks as organizations with harmful
 intends is not the only possible since covert populations can consist for example of drug users, illegal immigrants, persecuted jews,
 people with infectious diseases, activists, or ravers \cite{Oliver2014}.
@@ -35,25 +35,25 @@ finding the most important vertices within a given network is a natural approach
 studying real-world social networks \cite{Crescenzi2016}.
 The most classical centrality measures are degree \cite{Shaw1954}, closeness \cite{Beauchamp1965},
 betweenness \cite{Anthonisse1971,Freeman1977}, and core \cite{Seidman1983} centrality.
-On top of the standard centrality measures, there are more recent and advanced techniques suitable for measuring one's rank within network,
-for example the \emph{Game of Thieves} algorithm from Mocanu et al. \cite{Mocanu2018}, which can be used even within massive networks.
+On top of the standard centrality measures, there are more recent and advanced techniques suitable for measuring one's rank within a network,
+for example, the \emph{Game of Thieves} algorithm from Mocanu et al. \cite{Mocanu2018}, which can be used even within massive networks.
 For the sake of completeness, we also mention that there also exist centrality measures on edges, e.g.,
 \emph{WERW-Kpath} algorithm from {De Meo} \cite{DeMeo2013}.
 The two aforementioned algorithms are more reviewed by Ficara et al. \cite{Ficara2021}.
 
-After detecting influential members within given network using centrality measures,
-it is often desirable to talk about their influence in this networks, for which
+After detecting influential members within a given network using centrality measures,
+it is often desirable to talk about their influence in these networks, for which
 various \emph{models of influence} can be used.
-Among frequently used models belong the \emph{Independent Cascade} model and \emph{Linear Threshold} model.
+Frequently used models include \emph{Independent Cascade} model and \emph{Linear Threshold} model.
 More on this topic can be found in the book from Easley and Kleinberg \cite{Easley2010}.
 
 Apart from the centrality measures, there are other important tools SNA has to offer.
 One of them are \emph{node similarity measures} which are with advantage used in \emph{link prediction} \cite{Zhou2009,Wang2015}.
-Link prediction also plays an important part of research of covert networks
+Link prediction also plays an important part in the research of covert networks
 as it allows to predict the existence of otherwise hidden connections between members, potentially leading to
 identification of important members and relations between them.
-This is why covert network users might want to manipulate the network to minimize efficiency of such techniques \cite{Zhou2019}.
-Besides CNA, link prediction have other useful applications for example in recommendation systems \cite{Huang2005,Talasu2017}.
+This is why covert network users might want to manipulate the network to minimize the efficiency of such techniques \cite{Zhou2019}.
+Besides CNA, link prediction has other useful applications for example in recommendation systems \cite{Huang2005,Talasu2017}.
 
 Next, we mention that leaders of covert networks often (but not always \cite{Fatih2012}) face what is called
 the \emph{efficiency/security trade-off} \cite{Morselli2007} --

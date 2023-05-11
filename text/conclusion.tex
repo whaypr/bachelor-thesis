@@ -6,9 +6,9 @@ In this thesis, we introduced the reader to the topic of covert networks and the
 with emphasis on the \HL problem for which we provided a detailed description, motivated its study
 and explained its hardness.
 We mostly followed up on the work from Waniek et al. and Dey with Medya \cite{Waniek2017,Dey2019}.
-We pointed out the authors use definitions which are different from each other and described our motivation
+We pointed out the authors use definitions that are different from each other and described our motivation
 for picking the one from Dey and Medya.
-We then reviewed the result for the degree centrality from Waniek et al. with repsect to our definition.
+We then reviewed the result for the degree centrality from Waniek et al. with respect to our definition.
 
 The results from the literature are described in a language of classical complexity theory,
 so we put them into a perspective of the parameterized complexity framework, which we also briefly introduced.
@@ -26,29 +26,30 @@ revisioning the results for the closeness and betweenness centralities from Wani
 with respect to our definition,
 or inspecting the problem for various combinations of centralities and parameters for which there are no results yet.
 
-For instance, it would be interesting to see parameterization of the problem for the core centrality
-which gives rise to some XP or even FPT algorithm,
+For instance, it would be interesting to see the parameterization of the problem for the core centrality
+which gives rise to some XP or even FPT algorithms,
 as the problem seems much harder for the core centrality than for the degree centrality \cite{Dey2019}.
 For the variant with the core centrality, one could also survey the computational complexity of \HLshort
 when the core centrality of every leader is at most 2,
 as Dey and Medya \cite{Dey2019} inspect only the situation where the core centrality of every leader is exactly 3.
 
 For the variant with the degree centrality, which we studied the most in this thesis,
-it seems that the parameterization by the \emph{vertex cover number} could let \HL to admit an FPT or XP algorithm in some cases.
+it seems that the parameterization by the \emph{vertex cover number} could let \HL admit an FPT or XP algorithm in some cases.
 Vertex cover number is the size of a \emph{minimum vertex cover},
 minimum vertex cover is the smallest possible number of vertices $V$ of given graph $G$ such that each edge from $E(G)$ is incident
 to at least one vertex from $V$.
 
 Another interesting structural parameter to expose the problem to is a \emph{treewidth}.
-Treewidth is, roughly speaking, a measurement of how good a graph can be decomposed into pieces that are connected in a
+Treewidth is, roughly speaking, a measurement of how well a graph can be decomposed into pieces that are connected in a
 tree-like fashion \cite[p.~151]{Cygan2015}.
 The notion of treewidth was described independently by several authors,
 for example by Robertson and Seymour in the series of papers \cite{Robertson1984,Robertson1986.2,Robertson1986.5}. 
-Treewidth has vast applications in the design of parameterized graphs algorithms and
-in design of graph algorithms in general.
+Treewidth has vast applications in the design of parameterized graph algorithms and
+in the design of graph algorithms in general.
 
-Another open problem in this topic is exploring the average case computational complexity of \HL for various centrality measures.
+Another open problem in this topic is exploring the average case computational complexity of \HL for various centrality measures,
+rather than doing the worst-case analysis.
 The literature results show that the problem is intractable only in the worst case so
 it may exists some heuristics that efficiently solves most of the instances typical in some real-world application.
-If true, then the apparent complexity of hiding in networks by manipulating its structure
-could be overcame in many real-world cases.~\cite{Dey2019}
+If true, then the apparent complexity of hiding in networks by manipulating their structure
+could be overcome in many real-world cases.~\cite{Dey2019}

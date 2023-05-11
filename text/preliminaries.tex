@@ -21,15 +21,15 @@ For a thorough revision on this topic, please refer to the monograph of Diestel 
     $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
 \end{definition}
 
-Each graph used in this thesis is simple graph, for this reason,
+Each graph used in this thesis is a simple graph, for this reason,
 we omit the word ``simple'' through the text and call each graph just ``graph''.
 Also, the terms ``graph'' and ``network'' are interchangeable in this thesis as we only use graphs to describe networks.
-By network we mean such graph, where vertices represents members of the network 
-and edges represents, in some sense, a connection between two given members, e.g., enabling their communication.
+By network, we mean such a graph, where vertices represent members of the network 
+and edges represent, in some sense, a connection between two given members, e.g., enabling their communication.
 
 Sets of all vertices $V$ and edges $E$ of graph $G$ are typically denoted as $V(G)$ and $E(G)$ respectively.
-A number of vertices in graphs $G$ is typically denoted as $n$, $|V(G)| = n$ and
-a number of edges in $G$ is typically denoted as $m$, $|E(G)| = m$.
+The number of vertices in graphs $G$ is typically denoted as $n$, $|V(G)| = n$ and
+the number of edges in $G$ is typically denoted as $m$, $|E(G)| = m$.
 
 % Degree
 \begin{definition}[Vertex degree]
@@ -94,19 +94,19 @@ What follows is a definition of the \NPh graph problem we will use in Proof \ref
 \end{definition}
 
 There are many other graph problems related to cliques. The $k$-\textsc{Clique} problem is a decision problem but
-there are also optimization variants, for example the \textsc{Maximum Clique} problem.
+there are also optimization variants, for example, the \textsc{Maximum Clique} problem.
 
 
 \subsection{Centrality measures}
 
-Centrality measure, or centrality for short, is a measure from graph theory which is widely used in social network analysis.
-Generally, centrality is a function $c: G \times V \rightarrow \mathbb{R}$ which describes the importance of a node in given network.
-With centrality, we can measure a ranking (position among other nodes) of given node within their network.
+Centrality measure, or centrality for short, is a measure from graph theory that is widely used in social network analysis.
+Generally, centrality is a function $c: G \times V \rightarrow \mathbb{R}$ which describes the importance of a node in a given network.
+With centrality, we can measure the ranking (position among other nodes) of a given node within their network.
 What follows is a definition of a degree centrality introduced by Shaw \cite{Shaw1954}, but there are other centralities used in SNA like
 closeness~\cite{Beauchamp1965}, betweenness \cite{Anthonisse1971,Freeman1977} or core \cite{Seidman1983} centrality.
 
 \begin{definition}[Degree centrality]
-    A degree centrality measures an importance of a vertex by its degree.
+    A degree centrality measures the importance of a vertex by its degree.
     A degree centrality of the vertex $v$ in network $G$ is defined as:
     $$c_{deg}(G, v) = \deg(v).$$
 \end{definition}
@@ -163,24 +163,24 @@ provides arguably the most complex and comprehensive overview of the theory of p
 in many cases, presents the state of the art in the field.
 
 The classical complexity analysis is often insufficient when dealing with \NPh problems.
-The main reason is that there are \NPh problems that are in some sense harder than the others.
+The main reason is that there are \NPh problems that are in some sense harder than others.
 This inability of the classical approach to distinguish between the hardness of various \NPh problems
-led to a development of the parameterized complexity theory.
+led to the development of the parameterized complexity theory.
 Parameterized complexity is a direct generalization of the classical complexity theory and it arms its users
-with the ability to analyze running time of algorithms, and thus computational complexities of problems
-they try to solve, in a finer detail.
-It gives us tools which help us to distinguish between different difficulty levels in places where
+with the ability to analyze the running time of algorithms, and thus computational complexities of problems
+they try to solve, in finer detail.
+It gives us tools that help us to distinguish between different difficulty levels in places where
 \NP-hardness fails to do so.
 To achieve this, parameter complexity introduces a notion of parameterization of the input instance, where
 the parameter is just some secondary measurement of the input instance.
 Such parameter is then used together with the input instance size when describing a computational complexity of \NPh problems.
-Given a problem, there is typically many parameters we can parameterize the problem by.
+Given a problem, there are typically many parameters we can parameterize the problem by.
 This leads us to the importance of choosing the right parameter.
 
-When parameterizing some problem, we typically look for parameters which are small in real-world applications,
-as one of the main goal when studying parameterized problems is to find algorithms for these problems in which
+When parameterizing some problem, we typically look for parameters that are small in real-world applications,
+as one of the main goals when studying parameterized problems is to find algorithms for these problems in which
 the running time is exponential only in the parameter, leaving the running time polynomial in the, potentially enormous, input size.
-However, not every choice of the parameter let us design such an efficient algorithm, as it seems that many problems with
+However, not every choice of parameter lets us design such an efficient algorithm, as it seems that many problems with
 certain parameters admit no efficient algorithm at all.
 That means the hardness, or tractability, of the problem depends on the parameter we use.
 Typically, the more information a parameter carries about the input instance, the higher are chances for us to exploit this
@@ -190,18 +190,18 @@ The typical parameter we often try is the size, or other property, of the soluti
 The other type of parameter is a measure of some property of the input instance.
 For example the maximum degree, regularity or treewidth measurings of the input graph.
 For non-graph instances, it may be the maximum length of a string when the input instance consists of a set of strings,
-or a number of variables when working with Boolean formulas.
+or the number of variables when working with Boolean formulas.
 
-Given problem parameterized by $p$, algorithm designers commonly talk about some function of $p$, $f(p)$.
+Given a problem parameterized by $p$, algorithm designers commonly talk about some function of $p$, $f(p)$.
 Let us note that it is also possible to use more than one parameter.
 Having parameters $k$ and $l$, we then talk about a function of $k$ and $l$, $f(k,l)$.
-However, we can (and we actually do) express the parameterization by $k$ and $l$ by using just one parameter $k+l$, $f(k+l)$.
+However, we can (and we do) express the parameterization by $k$ and $l$ by using just one parameter $k+l$, $f(k+l)$.
 
 The two most fundamental complexity classes of this theory, used to reason about the complexity of parameterized problems,
 are \FPT and \XP.
 To distinguish between \NPh problems that are in \XP but not in \FPT, we can use another set of complexity classes, the \W-hierarchy.
 There is also a complexity class called \pNP.
-What follows are the formal definitions of some of these classes, together with definitions of parameterized problem
+What follows are the formal definitions of some of these classes, together with definitions of the parameterized problem
 and parameterized reduction.
 The hierarchy of the classes can be seen in Figure \ref{fig:complexityClasses}.
 
@@ -263,7 +263,7 @@ One particular problem parameterized by different parameters leads to different 
     outputs an instance $(x', k')$ of $B$ such that
     \begin{itemize}
         \item $(x, k)$ is a $yes$-instance of $A$ if and only if $(x', k')$ is a $yes$-instance of $B$,
-        \item $k' \leq g(k)$ for some computable, nondecreasing function $g$, and
+        \item $k' \leq g(k)$ for some computable, non-decreasing function $g$, and
         \item the running time is $f(k) \cdot |x|^{\mathcal{O}(1)}$ for some computable, nondecreasing function $f$.
     \end{itemize}
 \end{definition}
@@ -273,7 +273,7 @@ One particular problem parameterized by different parameters leads to different 
     A parameterized problem $L$ is called fixed-parameter tractable (FPT) if there exists
     \begin{itemize}
         \item an algorithm $\mathcal{A}$, called fixed-parameter algorithm, or FPT algorithm,
-        \item a computable, nondecreasing function $f : \mathbb{N} \times \mathbb{N}$
+        \item a computable, non-decreasing function $f : \mathbb{N} \times \mathbb{N}$
         \item and a constant $c$
     \end{itemize}
     such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
@@ -290,8 +290,8 @@ that the problem cannot be solved in time $2^{o(n)}$
 
 The typical goal when designing FPT algorithms is to make factor $f(k)$ and constant exponent~$c$
 in the running time boundary as small as possible.
-We can see that if the parameter is equal to the input size, then \FPT become exponential and,
-on the other hand if $k = 1$, then \FPT become~\Po~\cite{Koutensky2020}.
+We can see that if the parameter is equal to the input size, then \FPT becomes exponential and,
+on the other hand if $k = 1$, then \FPT becomes~\Po~\cite{Koutensky2020}.
 
 The only difference between FPT and para-NP problems is that algorithms for para-NP problems are
 nondeterministic in general.
@@ -313,11 +313,11 @@ From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is 
 The complexity class containing all slice-wise polynomial problems is called \XP.
 An example of a problem from \XP is $k$-\textsc{Independent Set}.
 
-Note that definitions of parameterized problems FTP and XP differs only in a running time boundary of algorithm $\mathcal{A}$
+Note that definitions of parameterized problems FTP and XP differ only in a running time boundary of algorithm $\mathcal{A}$
 and so $\FPT \subseteq \XP$.
 Although both FPT and XP algorithms run in polynomial time for every fixed value of the parameter,
 the underlying difference between them is that FPT algorithms have the combinatorial explosion
-restricticted to the parameter only, leaving the exponent of the instance size constant, in other words,
+restricted to the parameter only, leaving the exponent of the instance size constant, in other words,
 FPT algorithms are more efficient than XP algorithms.
 
 
@@ -331,7 +331,7 @@ However, we cannot say the same when talking about parameterized problems as it 
 different levels of hardness for such problems and, in this sense, even basic problems
 seem to be differently hard as they occupy different hardness levels.
 For this reason, \W-hierarchy was introduced by Downey and Fellows \cite{Downey1999} as
-an attempt to shed a light on these apparent differences in hardness of parameterized problems. 
+an attempt to shed light on these apparent differences in the hardness of parameterized problems. 
 
 The levels of \W-hierarchy are marked as \textsf{W}[$t$] for $t \in \mathbb{N} \wedge t \geq 0$,
 where each level represents its own complexity class.
@@ -340,8 +340,8 @@ as well as the fact that the $k$-\textsc{Clique} problem is \Wone-complete \cite
 
 We do not provide the exact definition and further description of \W-hierarchy
 because it is not important for the purposes of this work.
-On the other hand, what is important is a fact that we interpret the \W-hardness as an evidence that
+On the other hand, what is important is the fact that we interpret the \W-hardness as an evidence that
 a problem is not fixed-parameter tractable.
 This interpretation is based on a general assumption that $\FPT \neq \Wone$.
-To show that certain problem is \Wh, it is typically shown a parameterized reduction from some other problem,
+To show that a certain problem is \Wh, it is typically shown a parameterized reduction from some other problem,
 which is already known to be \Wh, to it.
