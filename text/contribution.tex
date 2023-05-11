@@ -317,7 +317,7 @@ We can easily see that \HLshort remains \Wh even when parameterized by $|L|+b+d$
 This is because the problem is \Wh already for $|L|$ bounded by a constant function,
 hence, bounding it by a nonconstant function will not make the problem easier to solve, leaving it \Wh.
 
-\begin{remark}\label{cor:LnBD:Wh}
+\begin{remark}\label{remark:LnBD:Wh}
     \HL parameterized by $|L|+b+d$ is \Wh.
 \end{remark}
 
@@ -473,8 +473,8 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
 % Figure - overview
 \begin{figure}[t]
     \centering
-    \begin{tikzpicture}[node distance=18mm]
-        \tikzstyle{every node} = [minimum height=0.7cm,minimum width=0.9cm,scale=1.3];
+    \begin{tikzpicture}[node distance=19mm]
+        \tikzstyle{every node} = [minimum height=0.7cm,minimum width=1cm,scale=1.5];
         \tikzstyle{result} = [draw, very thick];
         \tikzstyle{corollary} = [draw,dashed];
         \tikzstyle{pNPh} = [fill=red!30];
@@ -495,7 +495,7 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
         \node[corollary,pNPh,label={0:\small{\tt C\ref{cor:Ln:pNPh}}}] (Ln) [left=of B] {\leadnum};
         \node[XP,label={0:\small{\tt known\cite{Dey2019}}}] (Ld) [right=of D] {\leaddeg};
         % triplets
-        \node[result,Wh,label={0:\small{\tt T\ref{theorem:DB}}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
+        \node[result,Wh,label={0:\small{\tt R\ref{remark:LnBD:Wh}}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
         % edges
         \draw[->,edgeXP] (B.225) -- (LnB.135);
         \draw[->,edgeXP] (D.225) -- (LnD.135);
@@ -512,15 +512,15 @@ The visualization can be seen in Figure \ref{fig:complexityPicture}.
     [Overviewing graph with results for \HLdeg]
     {
         The complexity picture for the \HL problem given the degree centrality measure, \HLdeg.
-        Combinations of parameters that give rise to XP algorithms are highlighted in green,
-        while combinations for which \HLdeg is \Wh but still in \XP are highlighted in orange and \pNP combinations
-        are highlighted in red.
-        Results explicitly proved in this work are represented by a black solid border,
-        their corollaries are represented by a black dashed border and
+        Combinations of parameters for which \HLdeg is in \XP but we do not know if they are \Wh are highlighted in green,
+        while combinations for which \HLdeg is in \XP and also \Wh are highlighted in orange,
+        and \pNPh combinations are highlighted in red.
+        Results explicitly proven in this work are represented by a black solid border,
+        their corollaries are represented by a black dashed border, and
         results from the literature do not have any border.
         Each node has a reference to the corresponding theorem, remark, corollary or bibliography record.
         Arrows represent how complexity results spread.
-        Orange arrows represent \XP class and violet arrows represent \W-hardness.
+        Orange arrows represent \XP class and violet arrows represent \Wone-hardness.
         When multiple arrows of the same color would aim at the same node,
         then only one of them is displayed.  
     }
