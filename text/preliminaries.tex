@@ -15,21 +15,21 @@ This section introduces basic concepts from graph theory.
 For a thorough revision on this topic, please refer to the monograph of Diestel \cite{Diestel2018}.
 
 % Graph
-\begin{definition}[Graph]
-    \emph{Graph} $G$ is an ordered pair of disjoint sets $V$ and $E$, $G=(V,E)$.
-    Set $V$ is a finite set of arbitrary items called vertices (or nodes).
-    Set $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
-    Sets of all vertices $V$ and edges $E$ of graph $G$ are in general denoted by $V(G)$ and $E(G)$ respectively.
+\begin{definition}[Simple graph]
+    A \emph{simple graph} is an ordered pair $G=(V,E)$, where $V$ and $E$ are disjoint sets,
+    $V$ is a finite nonempty set of arbitrary items called vertices (or nodes) and 
+    $E$ is a finite set of unordered pairs of vertices called edges, $E \subseteq \{\{x,y\} \mid x,y \in V \wedge x \neq y\}$.
 \end{definition}
 
-We use a standard graph definition, where graphs are undirected (edges are not ordered),
-unweighted (edges has uniformed ``value''), without loops (edges are pairs of distinct vertices) and
-without multiple edges (edges are unique pairs).
-These graphs are called \emph{simple} \cite[p.~29]{Diestel2018}.
-
-In this thesis, the terms ``graph'' and ``network'' are interchangeable as we only use graphs to describe networks.
+Each graph used in this thesis is simple graph, for this reason,
+we omit the word ``simple'' through the text and call each graph just ``graph''.
+Also, the terms ``graph'' and ``network'' are interchangeable in this thesis as we only use graphs to describe networks.
 By network we mean such graph, where vertices represents members of the network 
 and edges represents, in some sense, a connection between two given members, e.g., enabling their communication.
+
+Sets of all vertices $V$ and edges $E$ of graph $G$ are typically denoted as $V(G)$ and $E(G)$ respectively.
+A number of vertices in graphs $G$ is typically denoted as $n$, $|V(G)| = n$ and
+a number of edges in $G$ is typically denoted as $m$, $|E(G)| = m$.
 
 % Degree
 \begin{definition}[Vertex degree]
