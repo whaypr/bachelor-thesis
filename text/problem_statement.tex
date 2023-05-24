@@ -27,12 +27,12 @@ and with a presentation of the literature results.
     \begin{itemize}
         \item $G = (V, E)$ is a network,
         \item $L \subseteq V$ are leaders and the remaining vertices $F = V \setminus L$ are followers,
-        \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
         \item $b$ is the maximum number of edges that we are allowed to add in $G$,
+        \item $c : G \times V \rightarrow \mathbb{R}$ is a centrality measure,
         \item $d$ is a safety margin -- the number of followers whose final centrality should be at least as high as of any leader.
     \end{itemize}
     Given this instance, the goal is to identify a set of maximum $b$ edges between followers W $\subseteq$ F {\texttimes} F
-    such that the resulting network $G' = (V, E \cup |W|)$ contains at least $d$ followers $F' \subseteq F$
+    such that the resulting network $G' = (V, E \cup W)$ contains at least $d$ followers $F' \subseteq F$
     whose centrality must be at least as high as the centrality of any leader, that is,
     $$|W| \leq b$$
     and
