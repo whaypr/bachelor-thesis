@@ -1,0 +1,77 @@
+\begin{figure}[t!]
+    \centering
+    \begin{tikzpicture}[
+        node distance={25mm}, every node/.style={scale=1},
+        ampersand replacement=\&,
+        legend line/.pic={
+          \draw[yshift=.5ex,thick,#1] (0, 0) -- (0.6, 0);
+        },
+        legend lineDashed/.pic={
+          \draw[yshift=.5ex,thick,dashed,#1] (0, 0) -- (0.6, 0);
+        },
+        legend area/.pic={
+          \draw[yshift=.5ex,fill=#1] (0, -0.2) rectangle (0.6, 0.2);
+        }
+      ]
+        \tikzstyle{square} = [regular polygon, regular polygon sides=4]
+        \tikzstyle{leader} = [square, fill=blue!50]
+        \tikzstyle{edgeL} = [color=blue!50, thick]
+        \tikzstyle{follower} = [circle, draw=black]
+        \tikzstyle{followerF} = [circle, fill=green!40]
+        \tikzstyle{edgeW} = [draw=green!40, thick]
+        \tikzstyle{edgePotential} = [dashed, draw=green!40, thick]
+
+        \begin{scope}[local bounding box=L]
+            \node[leader] (l1) at (0,0) {$\ell_1$};
+            \node[leader] (l2) [right of = l1] {$\ell_2$};
+            \node[leader] (l3) [right of = l2] {$\ell_3$};
+            \node[follower] (f1) [below right=15mm and 6mm of l1] {$f_1$};
+            \only<1-3>{\node[follower] (f2) [below left=15mm and 6mm of l3] {$f_2$};}
+            \only<4->{\node[followerF] (f2) [below left=15mm and 6mm of l3] {$f_2$};}
+            \node[follower] (f3) [below of = f1] {$f_3$};
+            \only<1-3>{\node[follower] (f4) [below of = f2] {$f_4$};}
+            \only<4->{\node[followerF] (f4) [below of = f2] {$f_4$};}
+
+            \only<1>{
+                \draw (l1) to [out=45,in=135,looseness=0.5] (l3);
+                \draw (l2)--(l3);
+                \draw (l3)--(f2);
+            }
+            \only<2->{
+                \draw[edgeL] (l1) to [out=45,in=135,looseness=0.5] (l3);
+                \draw[edgeL] (l2)--(l3);
+                \draw[edgeL] (l3)--(f2);
+            }
+
+            \draw (l2)--(f2);
+            \draw (f2)--(f4);
+            \draw (f3)--(f4);
+
+            \only<3>{
+                \draw[edgePotential] (f1)--(f2);
+                \draw[edgePotential] (f1)--(f3);
+                \draw[edgePotential] (f1)--(f4);
+                \draw[edgePotential] (f2)--(f3);
+            }
+            \only<4->{\draw[edgeW] (f1)--(f4);}
+        \end{scope}
+
+        % legend
+        \begin{scope}[shift={(L.center)}]
+            \only<1-3>{
+                \small
+                \matrix [column sep=2mm, draw, above right] at (current bounding box.south east) {
+                    \pic {legend line=white}; \& \node {$b=1$, $c=c_{deg}$, $d=2$}; \& \&\\
+                };
+            }
+            \only<4->{
+                \small
+                \matrix [column sep=2mm, draw, above right] at (current bounding box.south east) {
+                    \pic {legend line=white}; \& \node {$b=1$, $c=c_{deg}$, $d=2$}; \& \&\\
+                    \pic {legend line=green!40}; \& \node {$W$}; \& \&\\
+                    \pic {legend area=green!40}; \& \node {$F'$}; \& \&\\
+                };
+            }
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}

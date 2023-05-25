@@ -1,0 +1,81 @@
+\section{Introduction}
+
+% FRAME
+\begin{frame}{Problem Definition}{}
+    \HL
+    \only<-3>{(\HLshort)}%
+    \only<4->{(\alert{\HLdeg})}
+
+    \uncover<+->{
+        \uncover<+->{
+            \emph{Instance}: $(G, L, b, c, d)$
+            \begin{itemize}
+                \item $G = (V,E)$ is a network
+                \item $L \subseteq V$ are leaders, $F = V \smallsetminus L$ are followers
+                \item $b$ is a budget
+                \item \only<-3>{$c : G \times V \rightarrow \mathbb{R}$ is a centrality measure}
+                \only<4->{\alert{$c = c_{deg}$, $c_{deg}(G, v) = \deg(v)$}}
+                \item $d$ is a safety margin
+            \end{itemize}
+        }
+
+        \uncover<+->{
+            \emph{Question}: Do exist $W \subseteq F \times F$ and $F' \subseteq F$?
+            \begin{itemize}
+                \item $|W| \leq b$
+                \item $|F'| \geq d$
+                \item \only<-3>{$\forall_{f' \in F'} \forall_{\ell \in L} \colon c(G', f') \geq c(G', \ell)$, where $G' = (V, E \cup W)$}
+                \only<4->{\alert{$\forall_{f' \in F'} \colon \deg_{G'}(f') \geq \max\limits_{\forall_{\ell \in L}}\deg_{G'}(\ell)$, where $G' = (V, E \cup W)$}}
+            \end{itemize}
+        }
+    }
+\end{frame}
+
+% FRAME
+\begin{frame}{Sample instance}
+    \input{frames/images/graph-HL-example}
+\end{frame}
+
+% FRAME
+\begin{frame}{Motivation and Goals}
+    \begin{itemize}
+        \item Help to deepen the understanding of hiding in networks
+    \end{itemize}
+
+    \uncover<2->{
+        \begin{center}
+            \line(1,0){\textwidth/3}
+        \end{center}
+
+        With the use of the framework of parameterized complexity:
+        \begin{itemize}
+            \item Survey the computational complexity of the problem variants studied in the literature
+            \item Derive new complexity and algorithmic results for various structural restrictions of covert networks
+        \end{itemize}
+    }
+\end{frame}
+
+% FRAME
+\begin{frame}{Parameterized complexity classes}
+    \begin{columns}
+        \begin{column}{0.39\textwidth}
+            \begin{itemize}
+                \item $\FPT: f(k) \cdot |(x,k)|^c$
+                \item $\XP: f(k) \cdot |(x,k)|^{g(k)}$
+            \end{itemize}
+
+            \begin{center}
+                \line(1,0){\textwidth/3}
+            \end{center}
+
+            \begin{itemize}
+                \item \Wh $\Rightarrow$ not in \FPT
+                \item \pNPh $\Rightarrow$ not in \XP
+            \end{itemize}
+        \end{column}
+    
+        \begin{column}{0.69\textwidth}
+            \input{frames/images/complexity-classes}  
+        \end{column}
+      \end{columns}
+\end{frame}

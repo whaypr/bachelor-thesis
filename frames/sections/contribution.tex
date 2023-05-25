@@ -1,0 +1,142 @@
+\section{Contribution}
+
+% FRAME
+\begin{frame}{Literature Review}
+    \begin{itemize}
+        \item Literature results summarized and described in the language of parameterized complexity theory
+        \item Pointed out that there are two definitions of the problem
+        \begin{itemize}
+            \item Proof of \NP-hardness of \HLdeg reviewed for our definition 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+% ----------------------------------------------------
+\subsection
+{Own results}
+
+% FRAME
+\begin{frame}{Own Results}
+    The \HL problem is:
+    \begin{itemize}
+        \item \Wh when parameterized by $b+d$ even when $|L|=1$
+        \begin{itemize}
+            \item \Wh when parameterized by $|L|+b+d$
+            \item \pNPh with respect to $|L|$
+        \end{itemize}
+        \item In \XP when parameterized by $b$
+        \item In \XP when parameterized by $d$
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{Own Results}{Theorem}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL parameterized by $b + d$ is \Wh even if $|L| = 1$
+        }
+    \end{center}
+
+    \begin{itemize}
+        \item Proved by showing a parameterized reduction from $k$-\textsc{Clique} on regular graphs
+        \begin{itemize}
+            \item $k$-\textsc{Clique} instance $(G, k)$, where $G$ is a $r$-regular graph
+            \item \HL instance $(H, \{\ell\}, \frac{k\cdot(k-1)}{2}, c_{deg}, k)$, where $H$ is constructed from $G$
+            \item Solving \HL in $H$ corresponds to solving $k$-\textsc{Clique} in $G$
+        \end{itemize}
+        \item Enhanced version of the proof from Waniek et al.
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{Sample Construction}
+    \input{frames/images/graph-construction}
+\end{frame}
+
+% FRAME
+\begin{frame}{Own Results}{Remark}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL parameterized by $|L| + b + d$ is \Wh
+        }
+    \end{center}
+
+    \begin{itemize}
+        \item The problem is \Wh already for $|L|$ bounded by a constant function
+        \item Bounding it by a nonconstant function will not make the problem easier to solve
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{Own Results}{Corollary}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL parameterized by any variation of $|L|, b, d$ is \Wh
+        }
+    \end{center}
+
+    \begin{itemize}
+        \item Omitted parameter is no longer bounded by a function of the parameter and become bounded by a function of the input size
+        \item The problem is then possibly harder and so still \Wh
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{Own Results}{Corollary}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL is \pNPh with respect to $|L|$
+        }
+    \end{center}
+
+    \begin{itemize}
+        \item The parameterized reduction is also a polynomial reduction
+        \item $k$-\textsc{Clique} on regular graphs is \NPh $\xRightarrow{\text{reduction}}$ \HLshort with $|L|=1$ is \NPh
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{\HLdeg Complexity Picture}
+    \input{frames/images/complexity-picture-overview-part1}
+\end{frame}
+
+% FRAME
+\begin{frame}{Own Results}{Theorem}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL parameterized by $b$ is in $XP$
+        }
+    \end{center}
+
+    \begin{itemize}
+        \item Try to add every $b$-element subset of edges that can be added between followers
+        \begin{itemize}
+            \item Check if it is a solution
+        \end{itemize}
+        \item Can be done in time $n^{\mathcal{O}(b)}$
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{Own Results}{Theorem}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL parameterized by $d$ is in $XP$
+        }
+    \end{center}
+
+    \begin{itemize}
+        \item Try every $d$-element subset of followers
+        \item Add edges between followers from the subset
+        \begin{itemize}
+            \item Check if it is a solution
+            \item If no, check if a solution can be found by connecting followers outside the subset 
+        \end{itemize}
+        \item Can be done in time $\mathcal{O}(2^{d^2}) \cdot n^{\mathcal{O}(d)}$
+    \end{itemize}
+\end{frame}
+
+% FRAME
+\begin{frame}{\HLdeg Complexity Picture}
+    \input{frames/images/complexity-picture-overview-part2}
+\end{frame}

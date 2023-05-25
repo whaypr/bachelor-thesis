@@ -1,0 +1,170 @@
+\begin{figure}[t]
+    \centering
+    \begin{tikzpicture}[
+      node distance=19mm,
+      ampersand replacement=\&,
+      legend line/.pic={
+        \draw[yshift=.5ex,thick,#1] (0, 0) -- (0.6, 0);
+      },
+      legend area/.pic={
+        \draw[yshift=.5ex,fill=#1] (0, -0.2) rectangle (0.6, 0.2);
+      }
+    ]
+      \tikzstyle{every node} = [minimum height=0.7cm,minimum width=1cm,scale=1.0];
+      \tikzstyle{result} = [draw, very thick];
+      \tikzstyle{corollary} = [draw,dashed];
+      \tikzstyle{pNPh} = [fill=red!30];
+      \tikzstyle{Wh} = [fill=violet!30];
+      \tikzstyle{WhREAL} = [fill=orange!30];
+      \tikzstyle{XP} = [fill=green!30];
+
+      \tikzstyle{edgeXP} = [color=orange,-{Stealth[length=3mm]}]
+      \tikzstyle{edgeW} = [color=violet,-{Stealth[length=3mm]}]
+
+      \tikzstyle{dummy} = [color=white, text=white]
+
+      % pairs
+      \only<1-2>{
+        \node[corollary,Wh,label={0:\small{\tt C\,4.7}}] (LnB) at (0,0) {\leadnum, \budget};
+        \node[corollary,Wh,label={0:\small{\tt C\,4.7}}] (LnD) [right =of LnB] {\leadnum, \safetymarg};
+        \node[corollary,Wh,label={0:\small{\tt C\,4.7}}] (BD) [right=of LnD] {\budget, \safetymarg};
+      }
+      \only<3->{
+        \node[corollary,WhREAL,label={0:\small{\tt C\,4.7}}] (LnB) at (0,0) {\leadnum, \budget};
+        \node[corollary,WhREAL,label={0:\small{\tt C\,4.7}}] (LnD) [right =of LnB] {\leadnum, \safetymarg};
+        \node[corollary,WhREAL,label={0:\small{\tt C\,4.7}}] (BD) [right=of LnD] {\budget, \safetymarg};
+      }
+      % singletons
+      \only<1>{
+        \node[corollary,Wh,label={0:\small{\tt T\,4.9}}] (B) [above left=18mm and 2mm of LnD] {\budget};
+        \node[corollary,Wh,label={0:\small{\tt T\,4.10}}] (D) [above right=18mm and 2mm of LnD] {\safetymarg};
+      }
+      \only<2->{
+        \node[result,WhREAL,label={0:\small{\tt T\,4.9}}] (B) [above left=18mm and 2mm of LnD] {\budget};
+        \node[result,WhREAL,label={0:\small{\tt T\,4.10}}] (D) [above right=18mm and 2mm of LnD] {\safetymarg};
+      }
+      \node[corollary,pNPh,label={0:\small{\tt C\,4.8}}] (Ln) [left=of B] {\leadnum};
+      \only<1-3>{
+        \node[XP, dummy] (Ld) [right=of D] {\leaddeg};
+      }
+      \only<4->{
+        \node[XP,label={0:\small{\tt known}}] (Ld) [right=of D] {\leaddeg};
+      }
+      % triplets
+      \only<1-2>{
+        \node[result,Wh,label={0:\small{\tt R\,4.6}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
+      }
+      \only<3->{
+        \node[result,WhREAL,label={0:\small{\tt R\,4.6}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
+      }
+      % edges
+      \draw[->,edgeW] (LnBD.45) -- (LnB.315);
+      \draw[->,edgeW] (LnBD.45) -- (LnD.315);
+      \draw[->,edgeW] (LnBD.45) -- (BD.315);
+      \draw[->,edgeW] (BD.45) -- (B.315);
+      \draw[->,edgeW] (BD.45) -- (D.315);
+      \only<3->{
+        \draw[->,edgeXP] (B.225) -- (LnB.135);
+        \draw[->,edgeXP] (D.225) -- (LnD.135);
+        \draw[->,edgeXP] (D.225) -- (BD.135);    
+        \draw[->,edgeXP] (BD.225) -- (LnBD.135);
+      }
+      % legend
+      \only<1>{
+        \small
+        \matrix [column sep=2mm, draw, anchor=west, xshift=1.8cm, yshift=0.6cm] at (Ld |- LnBD){
+          \pic {legend area=violet!30}; \& \node {\Wh}; \& \&\\
+          \pic {legend area=red!30}; \& \node {\pNPh}; \& \&\\
+          \pic {legend line=violet}; \& \node {\Wh}; \& \&\\
+        };
+      }
+      \only<2>{
+        \small
+        \matrix [column sep=2mm, draw, anchor=west, xshift=1.8cm, yshift=0.6cm] at (Ld |- LnBD){
+          \pic {legend area=orange!30}; \& \node {\Wh}; \& \&\\
+          \pic {legend area=red!30}; \& \node {\pNPh}; \& \&\\
+          \pic {legend line=violet}; \& \node {\Wh}; \& \&\\
+        };
+      }
+      \only<3>{
+        \small
+        \matrix [column sep=2mm, draw, anchor=west, xshift=1.8cm, yshift=0.6cm] at (Ld |- LnBD){
+          \pic {legend area=orange!30}; \& \node {\Wh}; \& \&\\
+          \pic {legend area=red!30}; \& \node {\pNPh}; \& \&\\
+          \pic {legend line=orange}; \& \node {\XP}; \& \&\\
+          \pic {legend line=violet}; \& \node {\Wh}; \& \&\\
+        };
+      }
+      \only<4>{
+        \small
+        \matrix [column sep=2mm, draw, anchor=west, xshift=1.8cm, yshift=0.6cm] at (Ld |- LnBD){
+          \pic {legend area=green!30}; \& \node {\XP}; \& \&\\
+          \pic {legend area=orange!30}; \& \node {\Wh, \XP}; \& \&\\
+          \pic {legend area=red!30}; \& \node {\pNPh}; \& \&\\
+          \pic {legend line=orange}; \& \node {\XP}; \& \&\\
+          \pic {legend line=violet}; \& \node {\Wh}; \& \&\\
+        };
+      }
+    \end{tikzpicture}
+    \label{fig:complexityPicture}
+\end{figure}
+
+
+% \begin{figure}[t]
+%   \centering
+%   \begin{tikzpicture}[
+%     node distance=19mm,
+%     ampersand replacement=\&,
+%     legend line/.pic={
+%       \draw[yshift=.5ex,thick,#1] (0, 0) -- (0.6, 0);
+%     },
+%     legend area/.pic={
+%       \draw[yshift=.5ex,fill=#1] (0, -0.2) rectangle (0.6, 0.2);
+%     }
+%   ]
+%     \tikzstyle{every node} = [minimum height=0.7cm,minimum width=1cm,scale=1.0];
+%     \tikzstyle{result} = [draw, very thick];
+%     \tikzstyle{corollary} = [draw,dashed];
+%     \tikzstyle{pNPh} = [fill=red!30];
+%     \tikzstyle{Wh} = [fill=orange!30];
+%     \tikzstyle{XP} = [fill=green!30];
+
+%     \tikzstyle{edgeXP} = [color=orange,-{Stealth[length=3mm]}]
+%     \tikzstyle{edgeW} = [color=violet,-{Stealth[length=3mm]}]
+
+%     % pairs
+%     \node[corollary,Wh,label={0:\small{\tt C\,4.7}}] (LnB) at (0,0) {\leadnum, \budget};
+%     \node[corollary,Wh,label={0:\small{\tt C\,4.7}}] (LnD) [right =of LnB] {\leadnum, \safetymarg};
+%     \node[corollary,Wh,label={0:\small{\tt C\,4.7}}] (BD) [right=of LnD] {\budget, \safetymarg};
+%     % singletons
+%     \node[result,Wh,label={0:\small{\tt T\,4.9}}] (B) [above left=18mm and 2mm of LnD] {\budget};
+%     \node[result,Wh,label={0:\small{\tt T\,4.10}}] (D) [above right=18mm and 2mm of LnD] {\safetymarg};
+%     \node[corollary,pNPh,label={0:\small{\tt C\,4.8}}] (Ln) [left=of B] {\leadnum};
+%     \node[XP,label={0:\small{\tt known}}] (Ld) [right=of D] {\leaddeg};
+%     % triplets
+%     \node[result,Wh,label={0:\small{\tt R\,4.6}}] (LnBD) [below=of LnD] {\leadnum, \budget, \safetymarg};
+%     % edges
+%     \draw[->,edgeXP] (B.225) -- (LnB.135);
+%     \draw[->,edgeXP] (D.225) -- (LnD.135);
+%     \draw[->,edgeXP] (D.225) -- (BD.135);    
+%     \draw[->,edgeXP] (BD.225) -- (LnBD.135);
+    
+%     \draw[->,edgeW] (LnBD.45) -- (LnB.315);
+%     \draw[->,edgeW] (LnBD.45) -- (LnD.315);
+%     \draw[->,edgeW] (LnBD.45) -- (BD.315);
+%     \draw[->,edgeW] (BD.45) -- (B.315);
+%     \draw[->,edgeW] (BD.45) -- (D.315);
+%     % legend
+%     \begin{scope}[xshift=12cm,yshift=2cm]
+%     \end{scope}
+%     \small
+%     \matrix [column sep=2mm, draw, anchor=west, xshift=1.8cm, yshift=0.6cm] at (Ld |- LnBD){
+%       \pic {legend area=green!30}; \& \node {\XP}; \& \&\\
+%       \pic {legend area=orange!30}; \& \node {\Wh, \XP}; \& \&\\
+%       \pic {legend area=red!30}; \& \node {\pNPh}; \& \&\\
+%       \pic {legend line=orange}; \& \node {\XP}; \& \&\\
+%       \pic {legend line=violet}; \& \node {\Wh}; \& \&\\
+%     };
+%   \end{tikzpicture}
+%   \label{fig:complexityPicture}
+% \end{figure}
