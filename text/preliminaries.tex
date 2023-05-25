@@ -267,7 +267,7 @@ One particular problem parameterized by different parameters leads to different 
     A parameterized problem $L$ is called fixed-parameter tractable (FPT) if there exists
     \begin{itemize}
         \item an algorithm $\mathcal{A}$, called fixed-parameter algorithm, or FPT algorithm,
-        \item a computable, non-decreasing function $f : \mathbb{N} \times \mathbb{N}$
+        \item a computable, non-decreasing function $f : \mathbb{N} \rightarrow \mathbb{N}$
         \item and a constant $c$
     \end{itemize}
     such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
@@ -297,7 +297,7 @@ From the \pNP-hardness perspective, we can say that a problem is \pNPh if it is 
     A parameterized problem $L$ is called slice-wise polynomial (XP) if there exists
     \begin{itemize}
         \item an algorithm $\mathcal{A}$
-        \item and two computable, nondecreasing functions $f,g : \mathbb{N} \times \mathbb{N}$
+        \item and two computable, nondecreasing functions $f,g : \mathbb{N} \rightarrow \mathbb{N}$
     \end{itemize}
     such that, given $(x,k) \in \Sigma^* \times \mathbb{N}$,
     the algorithm $\mathcal{A}$ correctly decides whether $(x, k) \in L$ in time bounded by
