@@ -1,22 +1,46 @@
 % FRAME
 \begin{frame}{Questions from the opponent}
-\begin{alertblock}{Question 1}
+\begin{alertblock}{Question}
     \begin{quote}
-    Dotaz 1
+        V definici 2.11 definujete centralitu měřenou stupněm uzlu jako hodnotu danou stupněm daného vrcholu (1).
+        Články, na které se odkazujete v konstrukcích a důkazech ovšem tuto míru definují jinak (2) (zdroje [2, 51]).
+        Není tato odlišná definice problémem v důkazech, které v práci uvádíte?
+        Prodiskutujte prosím odlišnosti a navrhněte řešení.
     \end{quote}
 \end{alertblock}
 
-\begin{tcolorbox}%[colback=green!5,colframe=green!40!black,title=A nice heading]
-    Rozepsaná Odpověď
-\end{tcolorbox}
+\centering
+(1) $c(G,v) = \deg v$
 
-\begin{alertblock}{Question 2}
-    \begin{quote}
-    Dotaz 2
-    \end{quote}
-\end{alertblock}
+\centering
+(2) $c(G,v) = \deg \frac{v}{|V|-1}$
+\end{frame}
 
-\begin{tcolorbox}%[colback=green!5,colframe=green!40!black,title=A nice heading]
-    Rozepsaná Odpověď
-\end{tcolorbox}
+
+% FRAME
+\begin{frame}{Questions from the opponent}
+    \centering
+    (1) $c(G,v) = \deg v$
+    \medspace\medspace\medspace\medspace\medspace\medspace\medspace\medspace\medspace
+    (2) $c(G,v) = \deg \frac{v}{|V|-1}$
+
+    \begin{exampleblock}{Answer}
+        Odlišná definice není problémem v důkazech, které v práci uvádím.
+
+        Normalizační faktor $\frac{1}{|V|-1}$ ve vztahu (2) představuje pro daný graf konstantu
+        a tedy nemění relativní pořadí vrcholů oproti pořadí určeného pomocí vztahu (1).
+        Po přidání/odebrání vrcholů do/z grafu se sice tento faktor změní, zůstane však stejný pro všechny vrcholy v grafu
+        a relativní pořadí oproti vzathu (1) se tak nezmění.
+        Během zkoumání problému \HL jde právě o relativní pořadí vrcholů mezi sebou,
+        čili vztah (1) nepředstavuje v tomto ohledu vůči vztahu (2) žádný rozdíl,
+        avšak umožňuje jednodušší argumentaci díky možné záměně centrality vrcholu a stupně vrcholu.
+
+        Vztah (1) je také použitý v definici ve zdroji [3].
+
+
+    \end{exampleblock}
+
+    % \begin{tcolorbox}%[colback=green!5,colframe=green!40!black,title=A nice heading]
+    %     Rozepsaná Odpověď
+    % \end{tcolorbox}
 \end{frame}
