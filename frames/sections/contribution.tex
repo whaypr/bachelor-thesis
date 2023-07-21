@@ -27,6 +27,11 @@
             \HL parameterized by $b + d$ is \Wh even if $|L| = 1$
         }
     \end{center}
+    \begin{center}
+        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
+            \HL parameterized by $|L| + b + d$ is \Wh
+        }
+    \end{center}
 
     \begin{itemize}
         \item Proved by showing a parameterized reduction from $k$-\textsc{Clique} on regular graphs
@@ -43,32 +48,6 @@
 \begin{frame}{Sample Construction}
     \input{frames/images/graph-construction}
 \end{frame}
-
-% FRAME
-\begin{frame}{Own Results}{Remark}
-    \begin{center}
-        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
-            \HL parameterized by $|L| + b + d$ is \Wh
-        }
-    \end{center}
-
-    \begin{itemize}
-        \item The problem is \Wh already for $|L|$ bounded by a constant function
-        \item Bounding it by a nonconstant function will not make the problem easier to solve
-    \end{itemize}
-\end{frame}
-
-% FRAME
-\begin{frame}{Own Results}{Corollary}
-    \begin{center}
-        \tcbox[enhanced, skin=enhancedmiddle, arc=0pt, outer arc=0pt, frame hidden, colback=OwlGray!10, boxsep=0mm] {
-            \HL parameterized by any variation of $|L|, b, d$ is \Wh
-        }
-    \end{center}
-
-    \begin{itemize}
-        \item Omitted parameter is no longer bounded by a function of the parameter and become bounded by a function of the input size
-        \item The problem is then possibly harder and so still \Wh
     \end{itemize}
 \end{frame}
 
