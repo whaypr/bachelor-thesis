@@ -16,7 +16,7 @@
 
     \uncover<+->{
         \uncover<+->{
-            \emph{Instance}: $(G, L, b, c, d)$
+            \emph{Instance}: $(G, L, b, c, d)$, where
             \begin{itemize}
                 \item $G = (V,E)$ is a network
                 \item $L \subseteq V$ are leaders, $F = V \smallsetminus L$ are followers
@@ -28,12 +28,12 @@
         }
 
         \uncover<+->{
-            \emph{Question}: Do exist $W \subseteq F \times F$ and $F' \subseteq F$?
+            \emph{Question}: Is there $W \subseteq F \times F$ and $F' \subseteq F$ such that
             \begin{itemize}
-                \item $|W| \leq b$
                 \item $|F'| \geq d$
-                \item \only<-3>{$\forall_{f' \in F'} \forall_{\ell \in L} \colon c(G', f') \geq c(G', \ell)$, where $G' = (V, E \cup W)$}
-                \only<4->{\alert{$\forall_{f' \in F'} \colon \deg_{G'}(f') \geq \max\limits_{\forall_{\ell \in L}}\deg_{G'}(\ell)$, where $G' = (V, E \cup W)$}}
+                \item $|W| \leq b$
+                \item \only<-3>{$\forall_{f' \in F'} \forall_{\ell \in L} \colon c\big((V, E \cup W), f'\big) \geq c\big((V, E \cup W), \ell\big)$}
+                \only<4->{\alert{$\forall_{f' \in F'} \colon \deg(f') \geq \max\limits_{\forall_{\ell \in L}}\deg(\ell)$ in $(V, E \cup W)$}}
             \end{itemize}
         }
     }
